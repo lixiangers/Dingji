@@ -7,16 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends NeolixBaseActivity {
 
     private EditText accountEditText;
     private EditText pwdEditText;
     private Button loginButton;
 
+    public LoginActivity() {
+        super(R.layout.activity_login);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         initView();
         initListener();
