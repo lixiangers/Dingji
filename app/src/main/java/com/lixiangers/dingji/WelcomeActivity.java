@@ -7,6 +7,7 @@ import android.os.Handler;
 
 
 public class WelcomeActivity extends Activity {
+    public static final int DELAY_MILLIS = 1500;
     private Handler handler = new Handler();
 
     @Override
@@ -18,6 +19,6 @@ public class WelcomeActivity extends Activity {
             public void run() {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
-        }, 1500);
+        }, DELAY_MILLIS);
     }
 }

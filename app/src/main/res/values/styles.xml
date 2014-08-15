@@ -5,4 +5,30 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="my_positive_button">
+        <item name="android:background">@drawable/selector_positive_button</item>
+        <item name="android:textColor">@color/my_white</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
+    <style name="my_negative_button">
+        <item name="android:background">@drawable/selector_negative_button</item>
+        <item name="android:textColor">@color/my_red</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
+    <style name="my_edit_view">
+        <item name="android:textSize">@dimen/text_size_h</item>
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:background">@drawable/selector_bg_edit_view</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:paddingLeft">@dimen/edit_text_padding</item>
+    </style>
+
+    <style name="edit_view_text">
+        <item name="android:textColor">@color/my_white</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
 </resources>

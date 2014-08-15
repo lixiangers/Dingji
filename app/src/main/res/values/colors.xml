@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="my_red">#BE1F2E</color>
+    <color name="my_red_hl">#FFA49A</color>
+    <color name="my_white">#FFFFFF</color>
+    <color name="my_white_hl">#FFFFCC</color>
+    <color name="my_black">#000000</color>
+    <color name="my_gray">#BEBEBE</color>
+    <color name="edit_txt_view_border">#E1E1E1</color>
+    <color name="edit_txt_view_border_hl">#8EDA08</color>
+    <color name="transparent">#00000000</color>
+    <color name="hint_text_color">#CCCCCC</color>
+    <color name="split_color">#EBEBEB</color>
+</resources>
