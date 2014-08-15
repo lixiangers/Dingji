@@ -31,4 +31,9 @@
         <item name="android:textColor">@color/my_white</item>
         <item name="android:textSize">@dimen/text_size_h</item>
     </style>
+
+    <style name="remark_text">
+        <item name="android:textColor">@color/my_gray</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
+    </style>
 </resources>

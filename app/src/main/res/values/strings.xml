@@ -8,5 +8,13 @@
     <string name="pleae_input_password">请输入密码</string>
     <string name="login">登陆</string>
     <string name="register">注册</string>
+    <string name="goods_manager">商品管理</string>
+    <string name="query_order">订单查询</string>
+    <string name="backlog_order">未完成订单</string>
+    <string name="completed_order">已完成订单</string>
+    <string name="remark1">可以完成对现有商品的增删改查操作</string>
+    <string name="remark2">可以对所有订单进行查询</string>
+    <string name="remark3">可以订单进行处理</string>
+    <string name="remark4">可以订单进行查询</string>
 
 </resources>
