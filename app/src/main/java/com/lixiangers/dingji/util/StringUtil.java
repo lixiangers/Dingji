@@ -1,4 +1,4 @@
-package com.lixiangers.dingji;
+package com.lixiangers.dingji.util;
 
 import android.graphics.Bitmap;
 import android.util.Base64;

@@ -1,8 +1,9 @@
-package com.lixiangers.dingji;
+package com.lixiangers.dingji.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.lixiangers.dingji.R;
 
 public class ManagerActivity extends NeolixNaviagationBaseActivity {
 

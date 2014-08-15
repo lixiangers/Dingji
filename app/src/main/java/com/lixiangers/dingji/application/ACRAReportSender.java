@@ -5,9 +5,9 @@ import android.os.Build;
 import android.util.Log;
 
 
-import com.lixiangers.dingji.DeviceUtil;
+import com.lixiangers.dingji.util.DeviceUtil;
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.StringUtil;
+import com.lixiangers.dingji.util.StringUtil;
 
 import org.acra.ACRA;
 import org.acra.ReportField;

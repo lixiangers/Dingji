@@ -1,4 +1,4 @@
-package com.lixiangers.dingji;
+package com.lixiangers.dingji.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.ViewStub;
 
 
+import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.application.MyApplication;
 
 import java.io.Serializable;

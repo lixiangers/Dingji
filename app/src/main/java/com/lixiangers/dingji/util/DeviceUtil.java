@@ -1,4 +1,4 @@
-package com.lixiangers.dingji;
+package com.lixiangers.dingji.util;
 
 import android.app.Instrumentation;
 import android.content.Context;

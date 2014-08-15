@@ -1,9 +1,11 @@
-package com.lixiangers.dingji;
+package com.lixiangers.dingji.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.lixiangers.dingji.R;
 
 
 public class WelcomeActivity extends Activity {

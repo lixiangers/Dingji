@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.StringUtil;
+import com.lixiangers.dingji.util.StringUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;

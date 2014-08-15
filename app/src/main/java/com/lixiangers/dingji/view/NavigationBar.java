@@ -1,4 +1,4 @@
-package com.lixiangers.dingji;
+package com.lixiangers.dingji.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.lixiangers.dingji.R;
 
 
 public class NavigationBar extends LinearLayout {
