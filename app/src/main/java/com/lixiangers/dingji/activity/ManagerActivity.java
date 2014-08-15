@@ -18,7 +18,7 @@ public class ManagerActivity extends NeolixNaviagationBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("系统管理");
+        setTitle(getString(R.string.system_manager));
 
         initView();
     }
