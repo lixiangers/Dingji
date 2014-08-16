@@ -25,5 +25,10 @@
     <string name="add_new_goods">添加新商品</string>
     <string name="add_goods">添加商品</string>
     <string name="fail_connect_server_text">服务器返回错误</string>
+    <string name="save">保存</string>
+    <string name="goods_price">商品价格</string>
+    <string name="goods_des">商品介绍</string>
+    <string name="goods_name">商品名称</string>
+    <string name="delete">删除</string>
 
 </resources>

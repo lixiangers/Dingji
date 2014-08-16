@@ -1,120 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/my_white">
+    android:background="@color/my_white"
+    android:fadingEdgeLength="30dp"
+    android:fillViewport="true"
+    android:orientation="vertical">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/button_view"
-        android:layout_alignParentTop="true"
-        android:fadingEdgeLength="30dp"
-        android:fillViewport="true"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/view_margin_left_right_to_border"
         android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-        <RelativeLayout
+        <com.lixiangers.dingji.view.AddPictureView
+            android:id="@+id/add_picture_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" />
 
-            <TextView
-                android:id="@+id/tv_modify_good_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="请输入商品名称"
-                android:textColor="@color/my_black"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tv_modify_good_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/add_picture_view"
+            android:layout_marginTop="10dp"
+            android:text="@string/goods_name"
+            android:textColor="@color/my_black"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/et_good_name_input"
-                style="@style/my_edit_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_modify_good_name"
-                android:layout_marginTop="10dp" />
+        <EditText
+            android:id="@+id/et_good_name_input"
+            style="@style/my_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_modify_good_name"
+            android:layout_marginTop="10dp"
+            android:maxLength="20" />
 
-            <TextView
-                android:id="@+id/tv_modify_good_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/et_good_name_input"
-                android:layout_marginTop="15dp"
-                android:text="请输入商品价格"
-                android:textColor="@color/my_black"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tv_modify_good_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_good_name_input"
+            android:layout_marginTop="15dp"
+            android:text="@string/goods_des"
+            android:textColor="@color/my_black"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/et_good_price_input"
-                style="@style/my_edit_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_modify_good_price"
-                android:layout_marginTop="10dp"
-                android:inputType="numberDecimal" />
+        <EditText
+            android:id="@+id/et_goods_des"
+            style="@style/my_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/tv_modify_good_price"
+            android:layout_marginTop="10dp"
+            android:maxLength="200"
+            android:singleLine="false" />
+
+        <LinearLayout
+            android:id="@+id/price_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_goods_des"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_good_barcode"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/et_good_price_input"
-                android:layout_marginTop="15dp"
-                android:text="请扫描或输入商品条码"
+                android:text="@string/goods_price"
                 android:textColor="@color/my_black"
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/et_good_barcode_input"
+                android:id="@+id/et_goods_price"
                 style="@style/my_edit_view"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_good_barcode"
-                android:layout_marginTop="10dp"
-                android:numeric="integer" />
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal" />
 
-            <com.lixiangers.dingji.view.AddPictureView
-                android:id="@+id/add_picture_view"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/et_good_barcode_input"
-                android:layout_marginTop="15dp" />
-        </RelativeLayout>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="/"
+                android:textColor="@color/my_red"
+                android:textSize="@dimen/text_size_h" />
 
-    </ScrollView>
+            <EditText
+                android:id="@+id/et_goods_unit"
+                style="@style/my_edit_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
-    <LinearLayout
-        android:id="@+id/button_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
-        android:layout_marginRight="@dimen/view_margin_left_right_to_border"
-        android:orientation="horizontal"
-        android:paddingBottom="25dp">
-
-        <Button
-            android:id="@+id/negative_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="12dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_negative_button"
-            android:text="@string/cancel"
-            android:textColor="@color/my_black"
-            android:textSize="@dimen/text_size_h" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/positive_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_positive_button"
+            style="@style/my_positive_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price_view"
+            android:layout_marginTop="10dp"
             android:enabled="false"
-            android:textColor="@color/my_black"
-            android:textSize="@dimen/text_size_h" />
-    </LinearLayout>
-</RelativeLayout>
+            android:text="@string/save" />
+
+        <Button
+            android:id="@+id/negative_button"
+            style="@style/my_negative_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/positive_button"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/delete" />
+
+
+    </RelativeLayout>
+</ScrollView>
