@@ -24,5 +24,6 @@
     <string name="cancel">取消</string>
     <string name="add_new_goods">添加新商品</string>
     <string name="add_goods">添加商品</string>
+    <string name="fail_connect_server_text">服务器返回错误</string>
 
 </resources>

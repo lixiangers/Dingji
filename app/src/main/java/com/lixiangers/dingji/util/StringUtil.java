@@ -2,6 +2,7 @@ package com.lixiangers.dingji.util;
 
 import android.graphics.Bitmap;
 import android.util.Base64;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.joda.time.DateTime;
@@ -179,5 +180,9 @@ public final class StringUtil {
 
     public static String formatTimeToMMDDString(Date time) {
         return time == null ? null : new SimpleDateFormat("M月d日").format(time);
+    }
+
+    public static String getTextFrom(TextView textView) {
+        return textView.getText().toString();
     }
 }

@@ -55,6 +55,14 @@
         <activity
             android:name=".activity.GoodsManagerActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.PhotoViewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.AddGoodsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

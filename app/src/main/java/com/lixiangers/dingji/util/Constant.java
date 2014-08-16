@@ -1,6 +1,8 @@
 package com.lixiangers.dingji.util;
 
 
+import com.lixiangers.dingji.protocol.http.HttpClient;
+
 import java.nio.charset.Charset;
 
 public class Constant {
@@ -44,10 +46,12 @@ public class Constant {
     public static final String SMS_REGISTER_FLAG = "【叮咚快递】";
     public static final boolean BUILT_IN_TEST = true;
     public static final String TEST_VERIFICATION_CODE = "1234";
+    public static final String GOODS = "goods";
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
     public static String ACTION_NEW_MESSAGE = "ACTION_NEW_MESSAGE";
+    public static final String PICTURE_IMAGE_URL_SPLIT = ";";
 
 
     public static class HttpConstant {
@@ -59,6 +63,9 @@ public class Constant {
         public static final Charset UTF_8 = Charset.forName("UTF8");
         public static final Charset DEFAULT_CHARSET = UTF_8;
         public static final String JSON_RPC_VERSION = "2.0";
+        public static final String TAG = HttpClient.class.getSimpleName();
+        public static final int NETWORK_CONNECT_ERROR_CODE = 500;
+        public static final int TOKEN_ERROR_CODE=400;
     }
 
     public static class GeTuiConstant {

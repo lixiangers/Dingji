@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.application.MyApplication;
 
 public class LoginActivity extends NeolixBaseActivity {
 
@@ -36,6 +37,7 @@ public class LoginActivity extends NeolixBaseActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.getInstance().loginApp();
                 startActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
             }
         });

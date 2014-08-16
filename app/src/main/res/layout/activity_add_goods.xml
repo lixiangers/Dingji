@@ -75,7 +75,7 @@
                 android:layout_marginTop="10dp"
                 android:numeric="integer" />
 
-            <com.neolix.view.AddPictureView
+            <com.lixiangers.dingji.view.AddPictureView
                 android:id="@+id/add_picture_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
