@@ -24,7 +24,7 @@ public class Constant {
     public static final String MESSAGE_VIEW_MODEL = "message_view_model";
     public static final int WEEK_DAY_NUMBER = 7;
     public static final int LIMIT_TEXT_NUMBER = 200;
-    public static final String EXPRESS_RUNTIME_DB_NAME = "neolixExpress.db";
+    public static final String RUNTIME_DB_NAME = "DingJi.db";
 
     /*用来标识请求照相功能的activity*/
     public static final int TAKE_PHONE = 1001;

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_view"
+        android:layout_alignParentTop="true"
+        android:fadingEdgeLength="30dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/view_margin_left_right_to_border"
+        android:paddingRight="@dimen/view_margin_left_right_to_border">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_modify_good_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="请输入商品名称"
+                android:textColor="@color/my_black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_good_name_input"
+                style="@style/my_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_modify_good_name"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/tv_modify_good_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_good_name_input"
+                android:layout_marginTop="15dp"
+                android:text="请输入商品价格"
+                android:textColor="@color/my_black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_good_price_input"
+                style="@style/my_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_modify_good_price"
+                android:layout_marginTop="10dp"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/tv_good_barcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_good_price_input"
+                android:layout_marginTop="15dp"
+                android:text="请扫描或输入商品条码"
+                android:textColor="@color/my_black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_good_barcode_input"
+                style="@style/my_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_good_barcode"
+                android:layout_marginTop="10dp"
+                android:numeric="integer" />
+
+            <com.neolix.view.AddPictureView
+                android:id="@+id/add_picture_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_good_barcode_input"
+                android:layout_marginTop="15dp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/button_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
+        android:layout_marginRight="@dimen/view_margin_left_right_to_border"
+        android:orientation="horizontal"
+        android:paddingBottom="25dp">
+
+        <Button
+            android:id="@+id/negative_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_negative_button"
+            android:text="@string/cancel"
+            android:textColor="@color/my_black"
+            android:textSize="@dimen/text_size_h" />
+
+        <Button
+            android:id="@+id/positive_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/selector_positive_button"
+            android:enabled="false"
+            android:textColor="@color/my_black"
+            android:textSize="@dimen/text_size_h" />
+    </LinearLayout>
+</RelativeLayout>

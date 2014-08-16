@@ -3,6 +3,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/my_white"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/view_margin_left_right_to_border"
+        android:paddingRight="@dimen/view_margin_left_right_to_border">
+
+        <ImageView
+            android:id="@+id/iv_add_goods"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/selector_bg_add_picture"
+            android:scaleType="center"
+            android:src="@drawable/ico_add_picture" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
+            android:text="@string/add_new_goods"
+            android:textColor="@color/my_black"
+            android:textSize="@dimen/text_size_h" />
+    </LinearLayout>
+
+    <include layout="@layout/split_view" />
+
+    <ListView
+        android:id="@+id/lv_goods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/split_color"
+        android:dividerHeight="@dimen/split_width" />
 
 </LinearLayout>
