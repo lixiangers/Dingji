@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <Button
+        android:id="@+id/from_picture"
+        style="@style/selector_button_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_yellow_button"
+        android:text="@string/choose_from_the_gallery" />
+
+    <Button
+        android:id="@+id/take_picture"
+        style="@style/selector_button_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_yellow_button"
+        android:text="@string/take_phone" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        style="@style/selector_button_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/selector_yellow_button"
+        android:text="@string/cancel" />
+
+</LinearLayout>

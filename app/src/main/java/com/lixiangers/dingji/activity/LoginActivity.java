@@ -36,7 +36,7 @@ public class LoginActivity extends NeolixBaseActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ManagerActivity.class));
+                startActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
             }
         });
     }

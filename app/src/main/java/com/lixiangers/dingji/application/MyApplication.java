@@ -51,8 +51,6 @@ public class MyApplication extends Application {
             ACRA.getErrorReporter().setReportSender(new ACRAReportSender(this));
         }
 
-        SpeechUtility.createUtility(getInstance(), SpeechConstant.APPID + "=53d06d97");
-
         String sDir = StringUtil.getGoodsImagePath();
         File desDir = new File(sDir);
         if (!desDir.exists()) {

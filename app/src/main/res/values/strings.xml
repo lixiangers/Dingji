@@ -19,5 +19,8 @@
     <string name="acra_mail_subject">crash</string>
     <string name="crash_text">crash</string>
     <string name="system_manager">系统管理</string>
+    <string name="choose_from_the_gallery">从图库中选择</string>
+    <string name="take_phone">拍照</string>
+    <string name="cancel">取消</string>
 
 </resources>

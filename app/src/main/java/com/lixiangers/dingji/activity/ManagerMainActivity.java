@@ -5,13 +5,13 @@ import android.widget.Button;
 
 import com.lixiangers.dingji.R;
 
-public class ManagerActivity extends NeolixNaviagationBaseActivity {
+public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
 
     private Button goodsManagerButton;
     private Button orderManagerButton;
     private Button orderQueryButton;
 
-    public ManagerActivity() {
+    public ManagerMainActivity() {
         super(R.layout.activity_manager);
     }
 
