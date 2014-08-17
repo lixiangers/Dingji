@@ -47,6 +47,8 @@ public class Constant {
     public static final boolean BUILT_IN_TEST = true;
     public static final String TEST_VERIFICATION_CODE = "1234";
     public static final String GOODS = "goods";
+    public static final String GOODS_ITEM_VIEW_MODEL = "goods_item_view_model";
+    public static final String IS_DELETE = "IS_DELETE";
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;

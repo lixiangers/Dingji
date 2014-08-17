@@ -1,0 +1,33 @@
+package com.lixiangers.dingji.viewmodel;
+
+import android.view.View;
+
+import com.lixiangers.dingji.dao.Goods;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class GoodsItemViewModel implements Serializable {
+    private Goods goods;
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return onClickListener;
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+}

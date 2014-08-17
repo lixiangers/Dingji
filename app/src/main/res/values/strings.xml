@@ -30,5 +30,8 @@
     <string name="goods_des">商品介绍</string>
     <string name="goods_name">商品名称</string>
     <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="price">价格:</string>
+    <string name="edit_goods">编辑商品</string>
 
 </resources>

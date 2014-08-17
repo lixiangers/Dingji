@@ -17,7 +17,8 @@ import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.LocalTextWatcher;
 import com.lixiangers.dingji.view.AddPictureView;
 
-import java.io.Serializable;
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,9 +27,9 @@ import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.isNotBlank;
 
 public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
-    private EditText nameInput;
-    private EditText priceInput;
-    private Button backButton;
+    private EditText nameEditText;
+    private EditText priceEditText;
+    private Button deleteButton;
     private Button doneButton;
     private EditText unitEditText;
     public List<Goods> addGoodsList;
@@ -36,6 +37,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     private ArrayList<String> bitmapList;
     private RunTimeDatabaseHelper databaseHelper;
     private EditText goodsDesEditText;
+    private Goods goods;
 
     public AddGoodsActivity() {
         super(R.layout.activity_add_goods);
@@ -44,16 +46,14 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.add_goods));
+        Intent intent = getIntent();
+        goods = (Goods) intent.getSerializableExtra(Constant.GOODS_ITEM_VIEW_MODEL);
+        setTitle(goods == null ? R.string.add_goods : R.string.edit_goods);
         setLeftButton(R.drawable.selector_bg_back);
 
         initView();
         initListener();
-
-        databaseHelper = RunTimeDatabaseHelper.initial(getApplicationContext());
-        addGoodsList = new ArrayList<Goods>();
-        bitmapList = new ArrayList<String>();
-        pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+        initData();
     }
 
     @Override
@@ -90,16 +90,16 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 super.onTextChanged(charSequence, i, i2, i3);
-                doneButton.setEnabled(isNotBlank(getTextFrom(nameInput)) &&
-                        isNotBlank(getTextFrom(priceInput)) &&
+                doneButton.setEnabled(isNotBlank(getTextFrom(nameEditText)) &&
+                        isNotBlank(getTextFrom(priceEditText)) &&
                         isNotBlank(getTextFrom(unitEditText)));
             }
         };
 
-        nameInput.addTextChangedListener(textWatcher);
+        nameEditText.addTextChangedListener(textWatcher);
         goodsDesEditText.addTextChangedListener(textWatcher);
         unitEditText.addTextChangedListener(textWatcher);
-        priceInput.addTextChangedListener(new LocalTextWatcher() {
+        priceEditText.addTextChangedListener(new LocalTextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
                 super.afterTextChanged(editable);
@@ -114,13 +114,13 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 super.onTextChanged(charSequence, i, i2, i3);
-                doneButton.setEnabled(isNotBlank(getTextFrom(nameInput)) &&
-                        isNotBlank(getTextFrom(priceInput)) &&
+                doneButton.setEnabled(isNotBlank(getTextFrom(nameEditText)) &&
+                        isNotBlank(getTextFrom(priceEditText)) &&
                         isNotBlank(getTextFrom(unitEditText)));
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 deleteGoods();
@@ -130,7 +130,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addGoods();
+                saveGoods();
             }
         });
 
@@ -143,16 +143,44 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         });
     }
 
-    private void addGoods() {
+    private void initData() {
+        databaseHelper = RunTimeDatabaseHelper.initial(getApplicationContext());
+        addGoodsList = new ArrayList<Goods>();
+        bitmapList = new ArrayList<String>();
+
+        if (goods != null) {
+            unitEditText.setText(goods.getUnit());
+            nameEditText.setText(goods.getName());
+            goodsDesEditText.setText(goods.getDes());
+            priceEditText.setText(String.valueOf(goods.getPrice()));
+            bitmapList = goods.getArrayList();
+        }
+        pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+    }
+
+    private void saveGoods() {
         //TODO add goods
-//        String name = getTextFrom(nameInput);
-//        String price = getTextFrom(priceInput);
-//        String barcode = getTextFrom(unitEditText);
-//
-//        float realPrice = Float.parseFloat(price);
-//        final Goods goods = new Goods(getUserID(), name, realPrice, barcode);
-//
-//        EditGoodsReqHttpEntity params = new EditGoodsReqHttpEntity(getUserID(), goods);
+        String name = getTextFrom(nameEditText);
+        String des = getTextFrom(goodsDesEditText);
+        String price = getTextFrom(priceEditText);
+        String unit = getTextFrom(unitEditText);
+        float realPrice = Float.parseFloat(price);
+
+        if (goods == null)
+            goods = new Goods();
+
+        goods.setId(DateTime.now().getMillis() + "");
+        goods.setPrice((int) (realPrice * 100));
+        goods.setName(name);
+        goods.setDes(des);
+        goods.setUnit(unit);
+
+        Intent intent = new Intent();
+        intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
+        setResult(RESULT_OK, intent);
+        finish();
+
+//                EditGoodsReqHttpEntity params = new EditGoodsReqHttpEntity(getUserID(), goods);
 //        HttpRequest httpRequest = new HttpRequest(
 //                RequestType.add_goods, params);
 //
@@ -166,8 +194,8 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
 //                    public void OnResponse(HttpResponseNew<EditGoodsResponse> httpResponse) {
 //                        if (httpResponse.noErrorMessage()) {
 //                            Goods resultGoods = new Goods(getUserID(),
-//                                    nameInput.getText().toString(),
-//                                    Float.parseFloat(priceInput.getText().toString()),
+//                                    nameEditText.getText().toString(),
+//                                    Float.parseFloat(priceEditText.getText().toString()),
 //                                    unitEditText.getText().toString());
 //
 //                            ArrayList<String> tempList = new ArrayList<String>();
@@ -185,10 +213,10 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
 //                            GoodsPictureRecord record = new GoodsPictureRecord(getUserID(), resultGoods.getBarcode(), getImageUrls(), DateTime.now(), null, false);
 //                            databaseHelper.insertPictureRecords(asList(record));
 //
-//                            nameInput.setText(EMPTY);
-//                            priceInput.setText(EMPTY);
+//                            nameEditText.setText(EMPTY);
+//                            priceEditText.setText(EMPTY);
 //                            unitEditText.setText(EMPTY);
-//                            nameInput.requestFocus();
+//                            nameEditText.requestFocus();
 //                            addGoodsList.add(resultGoods);
 //                            bitmapList.clear();
 //                            pictureView.setImageList(AddGoodsActivity.this, bitmapList);
@@ -201,27 +229,23 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void initView() {
-        nameInput = (EditText) findViewById(R.id.et_good_name_input);
-        priceInput = (EditText) findViewById(R.id.et_goods_price);
+        nameEditText = (EditText) findViewById(R.id.et_good_name_input);
+        priceEditText = (EditText) findViewById(R.id.et_goods_price);
         unitEditText = (EditText) findViewById(R.id.et_goods_unit);
         goodsDesEditText = (EditText) findViewById(R.id.et_goods_des);
 
-        backButton = (Button) findViewById(R.id.negative_button);
+        deleteButton = (Button) findViewById(R.id.negative_button);
         doneButton = (Button) findViewById(R.id.positive_button);
 
         pictureView = (AddPictureView) findViewById(R.id.add_picture_view);
-
-        Intent intent = getIntent();
-        Goods goods = (Goods) intent.getSerializableExtra(Constant.GOODS);
-        if (goods != null) {
-//            unitEditText.setText(goods.getBarcode());
-            unitEditText.setText("");
-            nameInput.setText(goods.getName());
-        }
     }
 
     private void deleteGoods() {
         //TODO delete goods
+        Intent intent = new Intent();
+        intent.putExtra(Constant.IS_DELETE, true);
+        intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
+        setResult(RESULT_OK,intent);
         finish();
     }
 
