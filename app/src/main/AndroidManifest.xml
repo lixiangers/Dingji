@@ -58,7 +58,8 @@
 
         <activity
             android:name=".activity.PhotoViewActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/my_dialog"/>
 
         <activity
             android:name=".activity.AddGoodsActivity"

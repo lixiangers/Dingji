@@ -1,8 +1,11 @@
 package com.lixiangers.dingji.dao;
 
 import com.lixiangers.dingji.dao.DaoSession;
+import com.lixiangers.dingji.util.Constant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import de.greenrobot.dao.DaoException;
 
@@ -141,8 +144,32 @@ public class Goods implements java.io.Serializable {
 
 
     // KEEP METHODS - put your custom methods here
-    public ArrayList<String> getArrayList() {
-        return null;
+    public ArrayList<String> getImageArrayList() {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        String[] urls = getImageList().split(Constant.PICTURE_IMAGE_URL_SPLIT);
+        for (String url : urls) {
+            if (!url.equals(""))
+                arrayList.add(url);
+        }
+        return arrayList;
+    }
+
+    public void setImageArrayList(ArrayList<String> bitmapList) {
+        String urls = "";
+        if (bitmapList != null) {
+            for (int i = 0; i < bitmapList.size(); i++) {
+                urls += bitmapList.get(i);
+
+                if (i < bitmapList.size() - 1)
+                    urls += Constant.PICTURE_IMAGE_URL_SPLIT;
+            }
+        }
+
+        setImageList(urls);
+    }
+
+    public float getPriceOfYuan() {
+        return getPrice() / 100f;
     }
     // KEEP METHODS END
 

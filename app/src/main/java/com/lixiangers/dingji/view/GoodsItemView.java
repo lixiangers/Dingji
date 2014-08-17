@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
+import com.lixiangers.dingji.util.StringUtil;
 import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -39,12 +40,13 @@ public class GoodsItemView extends BaseItemView<GoodsItemViewModel> {
     public void setModel(GoodsItemViewModel model) {
         super.setModel(model);
         goodsNameTextView.setText(model.getGoods().getName());
-        goodsPriceTextView.setText(String.valueOf(model.getGoods().getPrice()));
+        goodsPriceTextView.setText(StringUtil.formatTemplateString(R.string.price_unit,
+                model.getGoods().getPriceOfYuan(), model.getGoods().getUnit()));
         rightView.setOnClickListener(model.getOnClickListener());
 
         String uri;
-        uri = model.getGoods().getArrayList() == null || model.getGoods().getArrayList().isEmpty() ?
-                "" : model.getGoods().getArrayList().get(0);
+        uri = model.getGoods().getImageArrayList() == null || model.getGoods().getImageArrayList().isEmpty() ?
+                "" : model.getGoods().getImageArrayList().get(0);
 
         imageLoader.displayImage(uri, goodsImage, options);
     }

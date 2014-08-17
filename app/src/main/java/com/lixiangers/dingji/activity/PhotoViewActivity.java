@@ -29,7 +29,7 @@ public class PhotoViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(FEATURE_NO_TITLE);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         setContentView(R.layout.activity_photoview);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
 

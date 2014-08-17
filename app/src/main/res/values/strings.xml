@@ -33,5 +33,7 @@
     <string name="edit">编辑</string>
     <string name="price">价格:</string>
     <string name="edit_goods">编辑商品</string>
+    <string name="split">/</string>
+    <string name="price_unit" formatted="false">¥%.2f/%s</string>
 
 </resources>

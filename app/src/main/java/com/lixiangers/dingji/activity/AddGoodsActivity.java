@@ -152,8 +152,8 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
             unitEditText.setText(goods.getUnit());
             nameEditText.setText(goods.getName());
             goodsDesEditText.setText(goods.getDes());
-            priceEditText.setText(String.valueOf(goods.getPrice()));
-            bitmapList = goods.getArrayList();
+            priceEditText.setText(String.valueOf(goods.getPriceOfYuan()));
+            bitmapList = goods.getImageArrayList();
         }
         pictureView.setImageList(AddGoodsActivity.this, bitmapList);
     }
@@ -174,6 +174,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         goods.setName(name);
         goods.setDes(des);
         goods.setUnit(unit);
+        goods.setImageArrayList(bitmapList);
 
         Intent intent = new Intent();
         intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);

@@ -65,7 +65,7 @@ public class AddPictureView extends LinearLayout {
         this.imageUrlList = bitmaps;
         this.activity = activity;
         models = new ArrayList<AddPictureItemViewModel>();
-        if (bitmaps == null || bitmaps.size() == 0) {
+        if (bitmaps == null || bitmaps.isEmpty()) {
             models.add(getAddPictureViewModel());
         } else {
             for (int i = 0; i < bitmaps.size(); i++) {

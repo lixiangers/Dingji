@@ -2,15 +2,18 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="80dp"
     android:background="@color/my_white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="@dimen/view_margin_left_right_to_border">
+    android:paddingLeft="@dimen/view_margin_left_right_to_border"
+    android:paddingRight="@dimen/view_margin_left_right_to_border"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/iv_goods_image"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_default_head" />
@@ -56,7 +59,7 @@
 
     <LinearLayout
         android:id="@+id/right_view"
-        android:layout_width="45dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content">
 
         <TextView
