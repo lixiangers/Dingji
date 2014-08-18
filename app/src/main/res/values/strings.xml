@@ -35,5 +35,6 @@
     <string name="edit_goods">编辑商品</string>
     <string name="split">/</string>
     <string name="price_unit" formatted="false">¥%.2f/%s</string>
+    <string name="ding_ji_goods">鼎记肉品</string>
 
 </resources>

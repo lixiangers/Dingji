@@ -14,6 +14,7 @@ public class LoginActivity extends NeolixBaseActivity {
     private EditText accountEditText;
     private EditText pwdEditText;
     private Button loginButton;
+    private Button registerButton;
 
     public LoginActivity() {
         super(R.layout.activity_login);
@@ -31,6 +32,7 @@ public class LoginActivity extends NeolixBaseActivity {
         accountEditText = (EditText) findViewById(R.id.et_account);
         pwdEditText = (EditText) findViewById(R.id.et_pwd);
         loginButton = (Button) findViewById(R.id.bt_login);
+        registerButton = (Button) findViewById(R.id.bt_register);
     }
 
     private void initListener() {
@@ -39,6 +41,13 @@ public class LoginActivity extends NeolixBaseActivity {
             public void onClick(View v) {
                 MyApplication.getInstance().loginApp();
                 startActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(BrowseGoodsActivity.class);
             }
         });
     }

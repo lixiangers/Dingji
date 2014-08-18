@@ -44,6 +44,7 @@
         android:text="@string/login" />
 
     <Button
+        android:id="@+id/bt_register"
         style="@style/my_negative_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
