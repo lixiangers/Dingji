@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="20dp"
+    android:background="@color/my_white"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/bt_subtraction"
+        style="@style/my_positive_button"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="-" />
+
+    <EditText
+        android:id="@+id/et_quantity"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        style="@style/my_edit_view"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:paddingLeft="0dp"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/bt_saddition"
+        style="@style/my_positive_button"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="+" />
+</LinearLayout>
