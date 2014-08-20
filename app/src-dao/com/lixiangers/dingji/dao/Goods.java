@@ -1,11 +1,10 @@
 package com.lixiangers.dingji.dao;
 
-import com.lixiangers.dingji.dao.DaoSession;
+import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.util.Constant;
+import com.lixiangers.dingji.util.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import de.greenrobot.dao.DaoException;
 
@@ -170,6 +169,11 @@ public class Goods implements java.io.Serializable {
 
     public float getPriceOfYuan() {
         return getPrice() / 100f;
+    }
+
+    public String getPriceAndUnit() {
+        return StringUtil.formatTemplateString(R.string.price_unit,
+                getPriceOfYuan(), getUnit());
     }
     // KEEP METHODS END
 

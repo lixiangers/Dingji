@@ -28,8 +28,23 @@
     </style>
 
     <style name="white_text_h">
-    <item name="android:textColor">@color/my_white</item>
+        <item name="android:textColor">@color/my_white</item>
         <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
+    <style name="black_text_h">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
+    <style name="black_text_xh">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:textSize">@dimen/text_size_xh</item>
+    </style>
+
+    <style name="red_text_xh">
+        <item name="android:textColor">@color/my_red</item>
+        <item name="android:textSize">@dimen/text_size_xh</item>
     </style>
 
     <style name="white_text_xh">

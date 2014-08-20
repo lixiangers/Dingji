@@ -1,6 +1,5 @@
 package com.lixiangers.dingji.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,8 +8,11 @@ import android.widget.EditText;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.application.MyApplication;
 
+import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
+
 public class LoginActivity extends NeolixBaseActivity {
 
+    public static final String TEST_USER = "lixiang";
     private EditText accountEditText;
     private EditText pwdEditText;
     private Button loginButton;
@@ -33,21 +35,21 @@ public class LoginActivity extends NeolixBaseActivity {
         pwdEditText = (EditText) findViewById(R.id.et_pwd);
         loginButton = (Button) findViewById(R.id.bt_login);
         registerButton = (Button) findViewById(R.id.bt_register);
+
+        accountEditText.setText(TEST_USER);
     }
 
     private void initListener() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyApplication.getInstance().loginApp();
-                startActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
-            }
-        });
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goTo(BrowseGoodsActivity.class);
+                if (getTextFrom(accountEditText).equals(TEST_USER)) {
+                    MyApplication.getInstance().loginApp();
+                    goTo(BrowseGoodsActivity.class);
+                } else {
+                    MyApplication.getInstance().loginApp();
+                    goTo(ManagerMainActivity.class);
+                }
             }
         });
     }

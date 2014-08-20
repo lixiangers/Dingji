@@ -36,5 +36,8 @@
     <string name="split">/</string>
     <string name="price_unit" formatted="false">¥%.2f/%s</string>
     <string name="ding_ji_goods">鼎记肉品</string>
+    <string name="products_introduction">商品介绍</string>
+    <string name="quantity">购买数量</string>
+    <string name="add_to_shopping_cart">加入购物车</string>
 
 </resources>

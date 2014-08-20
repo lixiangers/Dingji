@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.dao.Goods;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
+import com.lixiangers.dingji.view.GoodsItemView;
+import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
 
 import java.util.List;
 
@@ -18,6 +20,16 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
     private final Context context;
     private final LayoutInflater inflater;
     private List<GoodsCategory> data = null;
+
+    private onByGoodsListener onByGoodsListener = new onByGoodsListener() {
+        @Override
+        public void OnByGoods(Goods goods) {
+        }
+    };
+
+    public void setOnByGoodsListener(GoodsExpandeAdapter.onByGoodsListener onByGoodsListener) {
+        this.onByGoodsListener = onByGoodsListener;
+    }
 
     public GoodsExpandeAdapter(Context ctx, List<GoodsCategory> list) {
         context = ctx;
@@ -80,21 +92,28 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.child_item_layout, null);
+            convertView = new GoodsItemView(context);
         }
-
-        TextView childName = (TextView) convertView.findViewById(R.id.item_name);
-        childName.setText(getChild(groupPosition, childPosition)
-                .getName());
-
-        TextView priceText = (TextView) convertView.findViewById(R.id.item_detail);
-        priceText.setText(getChild(groupPosition, childPosition)
-                .getUnit() + "/" + getChild(groupPosition, childPosition).getPriceOfYuan());
+        GoodsItemViewModel itemViewModel = new GoodsItemViewModel();
+        final Goods child = getChild(groupPosition, childPosition);
+        itemViewModel.setGoods(child);
+        itemViewModel.setShowByView(true);
+        itemViewModel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onByGoodsListener.OnByGoods(child);
+            }
+        });
+        ((GoodsItemView) convertView).setModel(itemViewModel);
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public interface onByGoodsListener {
+        void OnByGoods(Goods goods);
     }
 }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/view_margin_left_right_to_border"
+    android:paddingRight="@dimen/view_margin_left_right_to_border">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <LinearLayout
+        android:id="@+id/points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:padding="15.0dip"
+            android:src="@drawable/selector_point" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:padding="15.0dip"
+            android:src="@drawable/selector_point" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:padding="15.0dip"
+            android:src="@drawable/selector_point" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/black_text_xh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/products_introduction" />
+
+    <TextView
+        android:id="@+id/tv_goods_des"
+        style="@style/black_text_h"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/black_text_xh"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/goods_price" />
+
+        <TextView
+            android:id="@+id/tv_goods_price"
+            style="@style/red_text_xh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/black_text_xh"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/quantity" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_by"
+        style="@style/my_positive_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/add_to_shopping_cart" />
+</LinearLayout>

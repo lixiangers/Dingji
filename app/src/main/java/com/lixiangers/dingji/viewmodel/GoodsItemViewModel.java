@@ -5,7 +5,6 @@ import android.view.View;
 import com.lixiangers.dingji.dao.Goods;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class GoodsItemViewModel implements Serializable {
     private Goods goods;
@@ -15,6 +14,17 @@ public class GoodsItemViewModel implements Serializable {
 
         }
     };
+
+    private boolean isShowByView = false;
+
+    public boolean isShowByView() {
+        return isShowByView;
+    }
+
+    public void setShowByView(boolean isShowByView) {
+        this.isShowByView = isShowByView;
+    }
+
     public Goods getGoods() {
         return goods;
     }

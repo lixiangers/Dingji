@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
-import com.lixiangers.dingji.util.StringUtil;
 import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -23,6 +22,8 @@ public class GoodsItemView extends BaseItemView<GoodsItemViewModel> {
     private TextView goodsNameTextView;
     private TextView goodsPriceTextView;
     private View rightView;
+    private View byGoodsView;
+    private View editTextView;
 
     public GoodsItemView(Context context) {
         super(context);
@@ -40,8 +41,16 @@ public class GoodsItemView extends BaseItemView<GoodsItemViewModel> {
     public void setModel(GoodsItemViewModel model) {
         super.setModel(model);
         goodsNameTextView.setText(model.getGoods().getName());
-        goodsPriceTextView.setText(StringUtil.formatTemplateString(R.string.price_unit,
-                model.getGoods().getPriceOfYuan(), model.getGoods().getUnit()));
+        goodsPriceTextView.setText(model.getGoods().getPriceAndUnit());
+
+        if (model.isShowByView()) {
+            byGoodsView.setVisibility(VISIBLE);
+            editTextView.setVisibility(GONE);
+        } else {
+            byGoodsView.setVisibility(GONE);
+            editTextView.setVisibility(VISIBLE);
+        }
+
         rightView.setOnClickListener(model.getOnClickListener());
 
         String uri;
@@ -59,6 +68,8 @@ public class GoodsItemView extends BaseItemView<GoodsItemViewModel> {
         goodsPriceTextView = (TextView) findViewById(R.id.goods_price);
 
         rightView = findViewById(R.id.right_view);
+        byGoodsView = findViewById(R.id.iv_buy_goods);
+        editTextView = findViewById(R.id.tv_edit_view);
 
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.ic_default_head)

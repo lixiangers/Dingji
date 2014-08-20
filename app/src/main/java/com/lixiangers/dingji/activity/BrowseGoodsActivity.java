@@ -1,12 +1,15 @@
 package com.lixiangers.dingji.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.GoodsExpandeAdapter;
 import com.lixiangers.dingji.dao.Goods;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
+import com.lixiangers.dingji.util.Constant;
+import com.lixiangers.dingji.util.StringUtil;
 
 import org.joda.time.DateTime;
 
@@ -36,8 +39,24 @@ public class BrowseGoodsActivity extends NeolixNaviagationBaseActivity {
         addTestData("牛肉");
         addTestData("鸡肉");
         addTestData("兔肉");
-        GoodsExpandeAdapter adapter = new GoodsExpandeAdapter(getApplication(), goodsCategories);
+        final GoodsExpandeAdapter adapter = new GoodsExpandeAdapter(getApplication(), goodsCategories);
+        adapter.setOnByGoodsListener(new GoodsExpandeAdapter.onByGoodsListener() {
+            @Override
+            public void OnByGoods(Goods goods) {
+                //TODO 添加商品
+                StringUtil.showText(goods.getName());
+            }
+        });
         goodsListView.setAdapter(adapter);
+
+        goodsListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Goods child = adapter.getChild(groupPosition, childPosition);
+                goToNextWithBundle(child, GoodsDetailActivity.class, Constant.GOODS);
+                return false;
+            }
+        });
     }
 
     private void addTestData(String categoryName) {
