@@ -16,7 +16,7 @@
 
         <EditText
             android:id="@+id/et_account"
-            style="@style/edit_view_text"
+            style="@style/white_text_h"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/transparent"
@@ -27,7 +27,7 @@
 
         <EditText
             android:id="@+id/et_pwd"
-            style="@style/edit_view_text"
+            style="@style/white_text_h"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/transparent"

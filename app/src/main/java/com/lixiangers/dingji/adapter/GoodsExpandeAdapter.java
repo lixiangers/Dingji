@@ -71,10 +71,6 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.group_name);
         groupName.setText(data.get(groupPosition).getCategoryName());
 
-        TextView count = (TextView) convertView
-                .findViewById(R.id.group_count);
-        count.setText("[" + data.get(groupPosition).getGoodsList().size() + "]");
-
         ImageView group_indicator_image = (ImageView) convertView.findViewById(R.id.iv_group_indicator);
         group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_back_hl : R.drawable.ic_back);
         return convertView;

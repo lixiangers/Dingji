@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="20dp"
+    android:background="@color/my_white"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/group_name"
-        android:layout_width="wrap_content"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_marginLeft="35dip"
-        android:gravity="center_vertical"
+        style="@style/white_text_h"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:background="@color/my_red"
+        android:gravity="center"
         android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="鸡肉" />
 
-    <TextView
-        android:id="@+id/group_count"
-        android:layout_width="wrap_content"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:layout_marginLeft="5dip"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/iv_group_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:gravity="center|right">
+
+            <ImageView
+                android:id="@+id/iv_group_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/my_red" />
+    </LinearLayout>
 </LinearLayout>
