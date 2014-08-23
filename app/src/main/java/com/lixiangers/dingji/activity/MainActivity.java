@@ -62,7 +62,7 @@ public class MainActivity extends NeolixBaseActivity {
                 BrowseGoodsFragment.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec(Constant.TAG_SETTING).setIndicator(deliveryTab),
-                BrowseGoodsFragment.class, null);
+                AccountSettingFragment.class, null);
     }
 
     private RelativeLayout createIndicator(int icoResourceId) {

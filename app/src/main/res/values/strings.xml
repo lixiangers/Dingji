@@ -46,5 +46,13 @@
     <string name="amount_yuan" formatted="false">¥%.2f元</string>
     <string name="price_total">价格总计</string>
     <string name="close_an_account">结算</string>
+    <string name="account">账号</string>
+    <string name="history_order">历史订单</string>
+    <string name="suggest">意见及建议</string>
+    <string name="about_ding_ji">关于鼎记</string>
+    <string name="problem">常见问题</string>
+    <string name="modify_password">修改密码</string>
+    <string name="manager_address">收货地址管理</string>
+    <string name="account_manager">账号管理</string>
 
 </resources>
