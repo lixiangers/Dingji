@@ -61,6 +61,7 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
     private void loadData() {
         adapter.setData(orderItemList);
         goodsListView.setVisibility(orderItemList.isEmpty() ? View.GONE : View.VISIBLE);
+        goodsListView.setItemsCanFocus(true);
         calcTotalAmount();
         CommonHelper.setListViewHeightBasedOnChildren(goodsListView);
     }

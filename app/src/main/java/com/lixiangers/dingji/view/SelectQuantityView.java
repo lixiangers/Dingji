@@ -68,6 +68,7 @@ public class SelectQuantityView extends LinearLayout {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 super.onTextChanged(charSequence, i, i2, i3);
+                quantityEditView.requestFocus();
                 if (StringUtil.isBlank(charSequence.toString())) {
                     quantity = 0;
                     onNumberChangeListener.onNumberChange(quantity);
@@ -105,6 +106,7 @@ public class SelectQuantityView extends LinearLayout {
 
     private void setQuantityTextValue() {
         quantityEditView.setText(String.valueOf(quantity));
+        quantityEditView.setSelection(quantityEditView.getText().toString().length());
     }
 
     public interface onNumberChangeListener {

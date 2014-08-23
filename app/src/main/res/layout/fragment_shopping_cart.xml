@@ -24,8 +24,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:descendantFocusability="afterDescendants"
             android:divider="@color/split_color"
             android:dividerHeight="@dimen/split_width" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,10 +70,10 @@
             style="@style/my_positive_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
             android:layout_marginRight="@dimen/view_margin_left_right_to_border"
+            android:layout_marginTop="20dp"
             android:text="@string/close_an_account" />
     </LinearLayout>
 </LinearLayout><!--</ScrollView>-->
