@@ -15,11 +15,14 @@ import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.dao.Goods;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.DensityUtil;
+import com.lixiangers.dingji.view.SelectQuantityView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
 
@@ -33,6 +36,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
     private LinearLayout pointsView;
     private List<ImageView> pointsImageList;
     private int currentIndex = 0;
+    private SelectQuantityView selectQuantityView;
 
     public GoodsDetailActivity() {
         super(R.layout.activity_detail);
@@ -57,6 +61,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
         goodsPriceTextView = (TextView) findViewById(R.id.tv_goods_price);
         byButton = (Button) findViewById(R.id.bt_by);
         pointsView = (LinearLayout) findViewById(R.id.points_view);
+        selectQuantityView = (SelectQuantityView) findViewById(R.id.select_quantity_view);
 
         int images = goods.getImageArrayList().isEmpty() ? 1 : goods.getImageArrayList().size();
         for (int i = 0; i < images; i++) {
@@ -77,6 +82,8 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void onClick(View v) {
                 //TODO 添加到购物车
+                if (selectQuantityView.getNumber() < 1)
+                    showText(getString(R.string.quantity_must_greater_than_0));
             }
         });
     }

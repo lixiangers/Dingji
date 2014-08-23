@@ -23,10 +23,11 @@
         android:gravity="center"
         android:textStyle="bold"
         android:paddingLeft="0dp"
+        android:maxLength="6"
         android:inputType="number" />
 
     <Button
-        android:id="@+id/bt_saddition"
+        android:id="@+id/bt_addition"
         style="@style/my_positive_button"
         android:layout_width="20dp"
         android:layout_height="match_parent"

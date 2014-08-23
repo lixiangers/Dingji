@@ -40,5 +40,6 @@
     <string name="quantity">购买数量</string>
     <string name="add_to_shopping_cart">加入购物车</string>
     <string name="please_press_again_to_exit_app">再按下返回将会退出应用</string>
+    <string name="quantity_must_greater_than_0">数量必须大于0</string>
 
 </resources>
