@@ -42,9 +42,9 @@ public class MainActivity extends NeolixBaseActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         String tag = intent.getStringExtra(Constant.TAB_TAG);
         mTabHost.setCurrentTabByTag(tag);
-        super.onNewIntent(intent);
     }
 
     private void initTabHost() {

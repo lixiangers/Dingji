@@ -84,6 +84,7 @@ public class BrowseGoodsFragment extends Fragment {
         addTestData("鸡肉");
         addTestData("兔肉");
         adapter.setData(goodsCategories);
+        goodsListView.expandGroup(0, true);
     }
 
     private void addTestData(String categoryName) {
