@@ -6,15 +6,14 @@ import android.os.Message;
 import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lixiangers.dingji.R;
 
 
-public class MainActivity extends NeolixNaviagationBaseActivity {
+public class MainActivity extends NeolixBaseActivity {
     public static final String TAB_ACCEPT_ORDER = "tab_accept_order";
     public static final String TAB_DELIVERY = "tab_delivery";
     public static final String TAG_PICK_UP = "tag_pick_up";
@@ -44,27 +43,27 @@ public class MainActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void initTabHost() {
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        mTabHost = (FragmentTabHost) findViewById(R.id.tab_host);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.real_tab_content);
 
-        RelativeLayout acceptOrderTab = createIndicator(getString(R.string.accept_order_text), R.drawable.selector_tab_host_accept);
-        RelativeLayout pickUpTab = createIndicator(getString(R.string.pick_up), R.drawable.selector_tab_host_pick_up);
-        RelativeLayout deliveryTab = createIndicator(getString(R.string.delivery), R.drawable.selector_tab_host_delivery);
+        RelativeLayout acceptOrderTab = createIndicator(R.drawable.selector_bg_back);
+        RelativeLayout pickUpTab = createIndicator(R.drawable.selector_bg_back);
+        RelativeLayout deliveryTab = createIndicator(R.drawable.selector_bg_back);
 
         mTabHost.addTab(mTabHost.newTabSpec(TAB_ACCEPT_ORDER).setIndicator(acceptOrderTab),
-                FragmentAcceptOrder.class, null);
+                BrowseGoodsFragment.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec(TAG_PICK_UP).setIndicator(pickUpTab),
-                FragmentPickUp.class, null);
+                BrowseGoodsFragment.class, null);
 
         mTabHost.addTab(mTabHost.newTabSpec(TAB_DELIVERY).setIndicator(deliveryTab),
-                FragmentDelivery.class, null);
+                BrowseGoodsFragment.class, null);
     }
 
-    private RelativeLayout createIndicator(String tabText, int icoResourceId) {
+    private RelativeLayout createIndicator(int icoResourceId) {
         RelativeLayout articleTab = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tab_host_view, null);
-        TextView articleTabLabel = (TextView) articleTab.findViewById(R.id.tab_label);
-        articleTabLabel.setText(tabText);
+        ImageView imageSwitcher = (ImageView) articleTab.findViewById(R.id.tab_image_view);
+        imageSwitcher.setImageResource(icoResourceId);
         return articleTab;
     }
 

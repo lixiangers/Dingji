@@ -1,15 +1,21 @@
 package com.lixiangers.dingji.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.GoodsExpandeAdapter;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.dao.Goods;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.StringUtil;
+import com.lixiangers.dingji.view.NavigationBar;
 
 import org.joda.time.DateTime;
 
@@ -18,28 +24,29 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 
-public class BrowseGoodsActivity extends NeolixNaviagationBaseActivity {
+public class BrowseGoodsFragment extends Fragment {
 
     private ExpandableListView goodsListView;
     private List<GoodsCategory> goodsCategories;
-
-    public BrowseGoodsActivity() {
-        super(R.layout.activity_browse_goods);
-    }
+    private GoodsExpandeAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.ding_ji_goods));
-
-        goodsListView = (ExpandableListView) findViewById(R.id.lv_goods);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_browse_goods, container, false);
+        goodsListView = (ExpandableListView) view.findViewById(R.id.lv_goods);
+        NavigationBar navigationBar = (NavigationBar) view.findViewById(R.id.navigation_bar);
+        navigationBar.setTitle(R.string.ding_ji_goods);
 
         goodsCategories = new ArrayList<GoodsCategory>();
-        addTestData("羊肉");
-        addTestData("牛肉");
-        addTestData("鸡肉");
-        addTestData("兔肉");
-        final GoodsExpandeAdapter adapter = new GoodsExpandeAdapter(getApplication(), goodsCategories);
+
+        initAdapter();
+        initGoodsListView();
+
+        return view;
+    }
+
+    private void initAdapter() {
+        adapter = new GoodsExpandeAdapter(MyApplication.getInstance(), goodsCategories);
         adapter.setOnByGoodsListener(new GoodsExpandeAdapter.onByGoodsListener() {
             @Override
             public void OnByGoods(Goods goods) {
@@ -47,16 +54,34 @@ public class BrowseGoodsActivity extends NeolixNaviagationBaseActivity {
                 StringUtil.showText(goods.getName());
             }
         });
-        goodsListView.setAdapter(adapter);
+    }
 
+    private void initGoodsListView() {
+        goodsListView.setAdapter(adapter);
         goodsListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Goods child = adapter.getChild(groupPosition, childPosition);
-                goToNextWithBundle(child, GoodsDetailActivity.class, Constant.GOODS);
+                Intent intent = new Intent(MyApplication.getInstance(), GoodsDetailActivity.class);
+                intent.putExtra(Constant.GOODS, child);
+                startActivity(intent);
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        loadData();
+        super.onResume();
+    }
+
+    private void loadData() {
+        addTestData("羊肉");
+        addTestData("牛肉");
+        addTestData("鸡肉");
+        addTestData("兔肉");
+        adapter.setData(goodsCategories);
     }
 
     private void addTestData(String categoryName) {

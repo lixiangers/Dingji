@@ -38,6 +38,11 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
         data = list;
     }
 
+    public void setData(List<GoodsCategory> list) {
+        data = list;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getGroupCount() {
         return data.size();

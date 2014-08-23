@@ -66,12 +66,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".activity.BrowseGoodsActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".activity.GoodsDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

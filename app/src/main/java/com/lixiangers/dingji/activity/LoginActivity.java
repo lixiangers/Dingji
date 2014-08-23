@@ -45,7 +45,7 @@ public class LoginActivity extends NeolixBaseActivity {
             public void onClick(View v) {
                 if (getTextFrom(accountEditText).equals(TEST_USER)) {
                     MyApplication.getInstance().loginApp();
-                    goTo(BrowseGoodsActivity.class);
+                    goTo(MainActivity.class);
                 } else {
                     MyApplication.getInstance().loginApp();
                     goTo(ManagerMainActivity.class);
