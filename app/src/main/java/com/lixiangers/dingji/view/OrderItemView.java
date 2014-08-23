@@ -78,7 +78,8 @@ public class OrderItemView extends BaseItemView<OrderItem> {
             @Override
             public void onNumberChange(int number) {
                 orderItem.setQuantity(number);
-                amountTextView.setText(StringUtil.formatTemplateString(R.string.amount_yuan, orderItem == null ? 0 : orderItem.getTotalAmount()));
+                amountTextView.setText(StringUtil.formatTemplateString(R.string.amount_yuan, orderItem == null ? 0 : orderItem.getTotalAmount() / 100f));
+                orderItem.getOnNumberChangeListener().onNumberChange(number);
             }
         });
     }

@@ -1,14 +1,18 @@
 package com.lixiangers.dingji.model;
 
 import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.view.SelectQuantityView;
 
 public class OrderItem {
     private Goods goods;
     private int quantity;
 
+    private SelectQuantityView.onNumberChangeListener onNumberChangeListener;
+
     public Goods getGoods() {
         return goods;
     }
+
 
     public void setGoods(Goods goods) {
         this.goods = goods;
@@ -22,7 +26,15 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public float getTotalAmount() {
-        return goods.getPriceOfYuan() * quantity;
+    public void setOnNumberChangeListener(SelectQuantityView.onNumberChangeListener onNumberChangeListener) {
+        this.onNumberChangeListener = onNumberChangeListener;
+    }
+
+    public SelectQuantityView.onNumberChangeListener getOnNumberChangeListener() {
+        return onNumberChangeListener;
+    }
+
+    public int getTotalAmount() {
+        return goods.getPrice() * quantity;
     }
 }
