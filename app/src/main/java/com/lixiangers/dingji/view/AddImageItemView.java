@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
-import com.lixiangers.dingji.model.AddPictureItemViewModel;
+import com.lixiangers.dingji.viewmodel.AddPictureItemViewModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

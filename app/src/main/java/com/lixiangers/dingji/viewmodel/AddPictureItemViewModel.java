@@ -1,4 +1,4 @@
-package com.lixiangers.dingji.model;
+package com.lixiangers.dingji.viewmodel;
 
 import static android.view.View.OnClickListener;
 

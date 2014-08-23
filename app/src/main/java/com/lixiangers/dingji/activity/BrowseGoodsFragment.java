@@ -12,12 +12,11 @@ import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.GoodsExpandeAdapter;
 import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.model.OrderItem;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.StringUtil;
 import com.lixiangers.dingji.view.NavigationBar;
-
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +49,11 @@ public class BrowseGoodsFragment extends Fragment {
         adapter.setOnByGoodsListener(new GoodsExpandeAdapter.onByGoodsListener() {
             @Override
             public void OnByGoods(Goods goods) {
-                //TODO 添加商品
                 StringUtil.showText(goods.getName());
+                OrderItem orderItem = new OrderItem();
+                orderItem.setGoods(goods);
+                orderItem.setQuantity(1);
+                ShoppingCartFragment.addGoods(orderItem);
             }
         });
     }
@@ -85,10 +87,10 @@ public class BrowseGoodsFragment extends Fragment {
     }
 
     private void addTestData(String categoryName) {
-        Goods goodsl = getGoods("鼎记" + categoryName + "1", "美味无穷", 5698, "500g");
-        Goods goods2 = getGoods("鼎记" + categoryName + "2", "美味无穷", 1234, "500g");
-        Goods goods3 = getGoods("鼎记" + categoryName + "3", "美味无穷", 7823, "500g");
-        Goods goods4 = getGoods("鼎记" + categoryName + "4", "美味无穷", 1342, "500g");
+        Goods goodsl = getGoods("001", "鼎记" + categoryName + "1", "美味无穷", 5698, "500g");
+        Goods goods2 = getGoods("002", "鼎记" + categoryName + "2", "美味无穷", 1234, "500g");
+        Goods goods3 = getGoods("003", "鼎记" + categoryName + "3", "美味无穷", 7823, "500g");
+        Goods goods4 = getGoods("004", "鼎记" + categoryName + "4", "美味无穷", 1342, "500g");
 
         GoodsCategory category = new GoodsCategory();
         category.setCategoryName(categoryName);
@@ -97,8 +99,8 @@ public class BrowseGoodsFragment extends Fragment {
         goodsCategories.add(category);
     }
 
-    private Goods getGoods(String name, String des, int price, String unit) {
-        Goods goods = new Goods(DateTime.now().getMillis() + "", name, des, unit, price, "");
+    private Goods getGoods(String id, String name, String des, int price, String unit) {
+        Goods goods = new Goods(id, name, des, unit, price, "");
         return goods;
     }
 }

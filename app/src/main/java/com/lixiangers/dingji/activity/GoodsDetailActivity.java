@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.model.OrderItem;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.DensityUtil;
 import com.lixiangers.dingji.view.SelectQuantityView;
@@ -81,9 +82,16 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
         byButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 添加到购物车
                 if (selectQuantityView.getNumber() < 1)
                     showText(getString(R.string.quantity_must_greater_than_0));
+
+                OrderItem orderItem = new OrderItem();
+                orderItem.setGoods(goods);
+                orderItem.setQuantity(selectQuantityView.getNumber());
+                ShoppingCartFragment.addGoods(orderItem);
+
+                goToNextWithBundle(Constant.TAB_SHOPPING_CART, MainActivity.class, Constant.TAB_TAG);
+                finish();
             }
         });
     }

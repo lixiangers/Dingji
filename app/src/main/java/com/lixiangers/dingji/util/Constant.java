@@ -43,12 +43,15 @@ public class Constant {
     public static final int SMS_VERIFY_CODE_EFFECTIVE_SECOND = 5 * 60;
     public static final String PHONE_NUMBER = "phone_number";
     public static final String COMPANY_INFO = "company_info";
-    public static final String SMS_REGISTER_FLAG = "【叮咚快递】";
     public static final boolean BUILT_IN_TEST = true;
     public static final String TEST_VERIFICATION_CODE = "1234";
     public static final String GOODS = "goods";
     public static final String GOODS_ITEM_VIEW_MODEL = "goods_item_view_model";
     public static final String IS_DELETE = "IS_DELETE";
+    public static final String TAB_TAG = "tab_tag";
+    public static final String TAB_SHOPPING_CART = "tab_shopping_cart";
+    public static final String TAB_GOODS = "tab_goods";
+    public static final String TAG_SETTING = "tag_setting";
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
@@ -67,7 +70,7 @@ public class Constant {
         public static final String JSON_RPC_VERSION = "2.0";
         public static final String TAG = HttpClient.class.getSimpleName();
         public static final int NETWORK_CONNECT_ERROR_CODE = 500;
-        public static final int TOKEN_ERROR_CODE=400;
+        public static final int TOKEN_ERROR_CODE = 400;
     }
 
     public static class GeTuiConstant {

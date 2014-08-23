@@ -47,6 +47,21 @@
         <item name="android:textSize">@dimen/text_size_xh</item>
     </style>
 
+    <style name="red_text_xxh">
+        <item name="android:textColor">@color/my_red</item>
+        <item name="android:textSize">@dimen/text_size_xxh</item>
+    </style>
+
+    <style name="red_text_h">
+        <item name="android:textColor">@color/my_red</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
+    <style name="gray_text_h">
+        <item name="android:textColor">@color/my_gray</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
     <style name="white_text_xh">
         <item name="android:textColor">@color/my_white</item>
         <item name="android:textSize">@dimen/text_size_xh</item>

@@ -22,8 +22,8 @@ import android.widget.LinearLayout;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.activity.PhotoViewActivity;
 import com.lixiangers.dingji.adapter.ModelListAdapter;
-import com.lixiangers.dingji.model.AddPictureItemViewModel;
 import com.lixiangers.dingji.util.Constant;
+import com.lixiangers.dingji.viewmodel.AddPictureItemViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

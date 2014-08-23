@@ -68,10 +68,10 @@
         <activity
             android:name=".activity.GoodsDetailActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait" />
-
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
     </application>
-
 </manifest>

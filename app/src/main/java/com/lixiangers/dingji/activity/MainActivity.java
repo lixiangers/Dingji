@@ -1,5 +1,6 @@
 package com.lixiangers.dingji.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,13 +12,10 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.util.Constant;
 
 
 public class MainActivity extends NeolixBaseActivity {
-    public static final String TAB_ACCEPT_ORDER = "tab_accept_order";
-    public static final String TAB_DELIVERY = "tab_delivery";
-    public static final String TAG_PICK_UP = "tag_pick_up";
-
     private FragmentTabHost mTabHost;
     private boolean isExit;
 
@@ -42,6 +40,13 @@ public class MainActivity extends NeolixBaseActivity {
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        String tag = intent.getStringExtra(Constant.TAB_TAG);
+        mTabHost.setCurrentTabByTag(tag);
+        super.onNewIntent(intent);
+    }
+
     private void initTabHost() {
         mTabHost = (FragmentTabHost) findViewById(R.id.tab_host);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.real_tab_content);
@@ -50,13 +55,13 @@ public class MainActivity extends NeolixBaseActivity {
         RelativeLayout pickUpTab = createIndicator(R.drawable.selector_bg_back);
         RelativeLayout deliveryTab = createIndicator(R.drawable.selector_bg_back);
 
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_ACCEPT_ORDER).setIndicator(acceptOrderTab),
+        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAB_SHOPPING_CART).setIndicator(acceptOrderTab),
+                ShoppingCartFragment.class, null);
+
+        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAB_GOODS).setIndicator(pickUpTab),
                 BrowseGoodsFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec(TAG_PICK_UP).setIndicator(pickUpTab),
-                BrowseGoodsFragment.class, null);
-
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_DELIVERY).setIndicator(deliveryTab),
+        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAG_SETTING).setIndicator(deliveryTab),
                 BrowseGoodsFragment.class, null);
     }
 
