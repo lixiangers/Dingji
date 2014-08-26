@@ -1,5 +1,6 @@
 package com.lixiangers.dingji.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.view.NavigationBar;
 
 public class AccountSettingFragment extends android.support.v4.app.Fragment {
@@ -32,6 +34,13 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
         suggestView = view.findViewById(R.id.view_suggest);
         problemView = view.findViewById(R.id.view_problem);
         modifyPasswordView = view.findViewById(R.id.view_modify_password);
+
+        manangerAddressView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyApplication.getInstance(), ManagerAddressActivity.class));
+            }
+        });
 
         return view;
     }

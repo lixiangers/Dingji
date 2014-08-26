@@ -49,7 +49,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         Intent intent = getIntent();
         goods = (Goods) intent.getSerializableExtra(Constant.GOODS_ITEM_VIEW_MODEL);
         setTitle(goods == null ? R.string.add_goods : R.string.edit_goods);
-        setLeftButton(R.drawable.selector_bg_back);
+        setLeftImage(R.drawable.selector_bg_back);
 
         initView();
         initListener();
@@ -246,7 +246,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         Intent intent = new Intent();
         intent.putExtra(Constant.IS_DELETE, true);
         intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
-        setResult(RESULT_OK,intent);
+        setResult(RESULT_OK, intent);
         finish();
     }
 

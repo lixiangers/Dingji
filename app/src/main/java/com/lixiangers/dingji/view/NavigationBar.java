@@ -13,10 +13,11 @@ import com.lixiangers.dingji.R;
 public class NavigationBar extends LinearLayout {
 
     private Context context;
-    private ImageView rightButton;
+    private ImageView rightImage;
     private TextView activityTitle;
-    private ImageView leftButton;
+    private ImageView leftImage;
     private ImageView centerImageView;
+    private TextView rightTextView;
 
     public NavigationBar(Context context) {
         super(context);
@@ -34,59 +35,66 @@ public class NavigationBar extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.view_navigation_bar, this);
 
-        rightButton = (ImageView) findViewById(R.id.right_button);
-        leftButton = (ImageView) findViewById(R.id.left_button);
+        rightImage = (ImageView) findViewById(R.id.right_button);
+        leftImage = (ImageView) findViewById(R.id.left_button);
         activityTitle = (TextView) findViewById(R.id.activity_title);
         centerImageView = (ImageView) findViewById(R.id.center_image_view);
+
+        rightTextView = (TextView) findViewById(R.id.right_text_view);
     }
 
     public void setTitle(CharSequence text) {
-        activityTitle.setVisibility(VISIBLE);
         activityTitle.setText(text);
-        centerImageView.setVisibility(GONE);
-        leftButton.setVisibility(GONE);
-        rightButton.setVisibility(GONE);
+        resetView();
     }
 
     public void setTitle(int resId) {
-        activityTitle.setVisibility(VISIBLE);
         activityTitle.setText(resId);
+        resetView();
+    }
+
+    private void resetView() {
+        activityTitle.setVisibility(VISIBLE);
         centerImageView.setVisibility(GONE);
-        leftButton.setVisibility(GONE);
-        rightButton.setVisibility(GONE);
+        leftImage.setVisibility(GONE);
+        rightImage.setVisibility(GONE);
+        rightTextView.setVisibility(GONE);
     }
 
-    public void setRightButton(int resId) {
-        rightButton.setBackgroundResource(resId);
-        rightButton.setVisibility(VISIBLE);
+    public void setLeftImage(int resId, OnClickListener listener) {
+        leftImage.setVisibility(VISIBLE);
+        leftImage.setImageResource(resId);
+        leftImage.setOnClickListener(listener);
     }
 
-    public void setRightButtonClickedListener(OnClickListener listener) {
-        rightButton.setOnClickListener(listener);
-    }
-
-    public void setLeftButton(int resId) {
-        leftButton.setImageResource(resId);
-        leftButton.setVisibility(VISIBLE);
-    }
-
-    public void setLeftButtonClickedListener(OnClickListener listener) {
-        leftButton.setOnClickListener(listener);
-    }
-
-    public void setLeftButtonVisibility(boolean isDisplay) {
-        leftButton.setVisibility(isDisplay ? VISIBLE : INVISIBLE);
-    }
-
-    public void setRightButtonVisibility(boolean isDisplay) {
-        rightButton.setVisibility(isDisplay ? VISIBLE : INVISIBLE);
+    public void setRightImage(int resId, OnClickListener listener) {
+        setRightView(true);
+        rightImage.setImageResource(resId);
+        rightImage.setOnClickListener(listener);
     }
 
     public void setCenterImageResource(int resource) {
         centerImageView.setVisibility(VISIBLE);
         centerImageView.setImageResource(resource);
         activityTitle.setVisibility(GONE);
-        leftButton.setVisibility(GONE);
-        rightButton.setVisibility(GONE);
+        leftImage.setVisibility(GONE);
+        rightImage.setVisibility(GONE);
+    }
+
+    public void setRightText(CharSequence text, OnClickListener listener) {
+        rightTextView.setText(text);
+        setRightView(true);
+        rightTextView.setOnClickListener(listener);
+    }
+
+    public void setRightText(int resourceId, OnClickListener listener) {
+        rightTextView.setText(resourceId);
+        setRightView(true);
+        rightTextView.setOnClickListener(listener);
+    }
+
+    private void setRightView(boolean isShowText) {
+        rightTextView.setVisibility(isShowText ? VISIBLE : GONE);
+        rightImage.setVisibility(isShowText ? GONE : VISIBLE);
     }
 }

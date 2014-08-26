@@ -7,18 +7,20 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewStub;
 
-
-import com.lixiangers.dingji.view.NavigationBar;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.application.MyApplication;
+import com.lixiangers.dingji.view.NavigationBar;
 
 import java.io.Serializable;
+
+import static android.view.View.OnClickListener;
 
 
 public abstract class NeolixNaviagationBaseActivity extends FragmentActivity {
 
     private int contentViewId;
     private NavigationBar navigationBar;
+    private OnClickListener listener;
 
     public NeolixNaviagationBaseActivity(int contentViewStubId) {
         this.contentViewId = contentViewStubId;
@@ -35,12 +37,13 @@ public abstract class NeolixNaviagationBaseActivity extends FragmentActivity {
 
     private void initNavBar() {
         navigationBar = (NavigationBar) findViewById(R.id.navigation_bar);
-        navigationBar.setLeftButtonClickedListener(new View.OnClickListener() {
+        listener = new OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });
+        };
+        navigationBar.setLeftImage(R.drawable.selector_bg_back, listener);
     }
 
     public void setTitle(CharSequence text) {
@@ -53,36 +56,30 @@ public abstract class NeolixNaviagationBaseActivity extends FragmentActivity {
         navigationBar.setTitle(resId);
     }
 
-    public void setRightButton(int resId) {
+    public void setRightImage(int resId, OnClickListener listener) {
         navigationBar.setVisibility(View.VISIBLE);
-        navigationBar.setRightButton(resId);
+        navigationBar.setRightImage(resId, listener);
     }
 
-    public void setRightButtonClickedListener(View.OnClickListener listener) {
+    public void setLeftImage(int resId, OnClickListener listener) {
         navigationBar.setVisibility(View.VISIBLE);
-        navigationBar.setRightButtonClickedListener(listener);
+        navigationBar.setLeftImage(resId, listener);
     }
 
-    public void setLeftButton(int resId) {
+    public void setLeftImage(int resId) {
         navigationBar.setVisibility(View.VISIBLE);
-        navigationBar.setLeftButton(resId);
+        navigationBar.setLeftImage(resId, listener);
     }
 
-    public void setLeftButtonClickedListener(View.OnClickListener listener) {
+    public void setRightText(int resId, OnClickListener listener) {
         navigationBar.setVisibility(View.VISIBLE);
-        navigationBar.setLeftButtonClickedListener(listener);
+        navigationBar.setRightText(resId, listener);
     }
 
-    public void setLeftButtonVisibility(boolean isDisplay) {
+    public void setRightText(CharSequence text, OnClickListener listener) {
         navigationBar.setVisibility(View.VISIBLE);
-        navigationBar.setLeftButtonVisibility(isDisplay);
+        navigationBar.setRightText(text, listener);
     }
-
-    public void setRightButtonVisibility(boolean isDisplay) {
-        navigationBar.setVisibility(View.VISIBLE);
-        navigationBar.setRightButtonVisibility(isDisplay);
-    }
-
 
     public void setCenterImageResource(int resource) {
         navigationBar.setVisibility(View.VISIBLE);

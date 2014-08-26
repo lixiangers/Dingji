@@ -36,7 +36,7 @@ public class GoodsManagerActivity extends NeolixNaviagationBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.goods_manager);
-        setLeftButton(R.drawable.selector_bg_back);
+        setLeftImage(R.drawable.selector_bg_back);
 
         initView();
         initListView();
@@ -100,7 +100,7 @@ public class GoodsManagerActivity extends NeolixNaviagationBaseActivity {
         viewModel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),AddGoodsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddGoodsActivity.class);
                 intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, viewModel.getGoods());
                 currentIndex = models.indexOf(viewModel);
                 startActivityForResult(intent, REQUEST_CODE_EDIT);
