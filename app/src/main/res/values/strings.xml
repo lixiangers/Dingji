@@ -46,5 +46,7 @@
     <string name="amount_yuan" formatted="false">¥%.2f元</string>
     <string name="price_total">价格总计</string>
     <string name="close_an_account">结算</string>
+    <string name="manager_address">收货地址管理</string>
+    <string name="add_new_address">添加新地址</string>
 
 </resources>

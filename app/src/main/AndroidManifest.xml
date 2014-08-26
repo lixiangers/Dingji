@@ -71,7 +71,11 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.ManagerAddressActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
