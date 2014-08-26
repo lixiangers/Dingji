@@ -54,5 +54,6 @@
     <string name="modify_password">修改密码</string>
     <string name="manager_address">收货地址管理</string>
     <string name="account_manager">账号管理</string>
+    <string name="add_new_address">添加新地址</string>
 
 </resources>
