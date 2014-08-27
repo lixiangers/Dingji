@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.view.NavigationBar;
+
+import static com.lixiangers.dingji.application.MyApplication.getInstance;
 
 public class AccountSettingFragment extends android.support.v4.app.Fragment {
 
@@ -38,14 +39,28 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
         manangerAddressView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyApplication.getInstance(), ManagerAddressActivity.class));
+                startActivity(new Intent(getInstance(), ManagerAddressActivity.class));
             }
         });
 
         modifyPasswordView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MyApplication.getInstance(), ModifyPwdActivity.class));
+                startActivity(new Intent(getInstance(), ModifyPwdActivity.class));
+            }
+        });
+
+        suggestView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getInstance(), SuggestActivity.class));
+            }
+        });
+
+        aboutView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getInstance(), AboutActivity.class));
             }
         });
 

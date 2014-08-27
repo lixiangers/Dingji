@@ -75,5 +75,8 @@
     <string name="modify_pwd">修改密码</string>
     <string name="old_pwd">旧密码</string>
     <string name="new_pwd">新密码</string>
+    <string name="tell_me_your_suggest">对鼎记有什么想说的呢?告诉我们吧~</string>
+    <string name="submit">提交</string>
+    <string name="suggset">意见与建议</string>
 
 </resources>

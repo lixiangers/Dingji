@@ -98,5 +98,12 @@
         <activity
             android:name=".activity.ModifyPwdActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SuggestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>
