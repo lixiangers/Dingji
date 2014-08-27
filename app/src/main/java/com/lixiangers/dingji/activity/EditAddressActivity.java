@@ -21,6 +21,10 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
     private EditText detailEditView;
     private EditText contactEditView;
     private EditText phoneEditView;
+    private Address address;
+    private String province;
+    private String city;
+    private String county;
 
     public EditAddressActivity() {
         super(R.layout.activity_edit_address);
@@ -29,38 +33,58 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.add_address));
+        address = (Address) getIntent().getSerializableExtra(Constant.ADDRESS);
+        if (address == null)
+            setTitle(getString(R.string.add_address));
+        else
+            setTitle(R.string.modify_address);
+
         setRightText(R.string.save, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String contact = getTextFrom(contactEditView);
-                String phone = getTextFrom(phoneEditView);
-                String cityArea = getTextFrom(cityAreaEditView);
-                String detailArea = getTextFrom(detailEditView);
-
-                if (isBlank(contact) || isBlank(phone) || isBlank(cityArea) || isBlank(detailArea)) {
-                    showText(getString(R.string.data_incomplete));
-                    return;
-                }
-
-                Address address = new Address();
-                address.setPhone(phone);
-                address.setName(contact);
-                address.setAddress(cityArea + detailArea);
-                address.setDefault(false);
-
-                Intent intent = new Intent();
-                intent.putExtra(Constant.ADDRESS, address);
-                setResult(RESULT_OK, intent);
-
-                finish();
+                addOrModifyAddress();
             }
         });
 
         initView();
         initListener();
 
-        locationView.setLocation("天津", "天津", "不限");
+        if (address != null) {
+            locationView.setLocation(address.getProvince(), address.getCity(), address.getCounty());
+            contactEditView.setText(address.getName());
+            phoneEditView.setText(address.getPhone());
+            cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getCounty());
+            detailEditView.setText(address.getDetailAddress());
+        }
+    }
+
+    private void addOrModifyAddress() {
+        String contact = getTextFrom(contactEditView);
+        String phone = getTextFrom(phoneEditView);
+        String cityArea = getTextFrom(cityAreaEditView);
+        String detailArea = getTextFrom(detailEditView);
+
+        if (isBlank(contact) || isBlank(phone) || isBlank(cityArea) || isBlank(detailArea)) {
+            showText(getString(R.string.data_incomplete));
+            return;
+        }
+
+        if (address == null)
+            address = new Address();
+
+        address.setPhone(phone);
+        address.setName(contact);
+        address.setProvince(province);
+        address.setCity(city);
+        address.setCounty(county);
+        address.setDetailAddress(detailArea);
+        address.setDefault(address == null ? false : address.isDefault());
+
+        Intent intent = new Intent();
+        intent.putExtra(Constant.ADDRESS, address);
+        setResult(RESULT_OK, intent);
+
+        finish();
     }
 
     private void initView() {
@@ -76,6 +100,9 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void areaChange(String provinceString, String cityString, String countyString) {
                 cityAreaEditView.setText(provinceString + cityString + countyString);
+                province = provinceString;
+                city = cityString;
+                county = countyString;
             }
         });
     }

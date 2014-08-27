@@ -5,8 +5,11 @@ import java.io.Serializable;
 public class Address implements Serializable {
     private String name;
     private String phone;
-    private String address;
+    private String detailAddress;
     private boolean isDefault;
+    private String province;
+    private String city;
+    private String county;
 
     public String getName() {
         return name;
@@ -16,8 +19,8 @@ public class Address implements Serializable {
         return phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDetailAddress() {
+        return detailAddress;
     }
 
     public boolean isDefault() {
@@ -32,11 +35,39 @@ public class Address implements Serializable {
         this.phone = phone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 
     public void setDefault(boolean isDefault) {
         this.isDefault = isDefault;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getCompleteAddress() {
+        return String.format("%s%s%s%s", province, city, county, detailAddress);
     }
 }

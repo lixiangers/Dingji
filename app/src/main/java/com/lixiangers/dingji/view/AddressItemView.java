@@ -1,20 +1,14 @@
 package com.lixiangers.dingji.view;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
-import com.lixiangers.dingji.model.OrderItem;
 import com.lixiangers.dingji.protocol.domain.Address;
-import com.lixiangers.dingji.util.StringUtil;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class AddressItemView extends BaseItemView<Address> {
     private final Context context;
@@ -38,7 +32,7 @@ public class AddressItemView extends BaseItemView<Address> {
     @Override
     public void setModel(Address model) {
         nameTextView.setText(model.getName());
-        addressTextView.setText(model.getAddress());
+        addressTextView.setText(model.getCompleteAddress());
         phoneTextView.setText(model.getPhone());
 
         backgroundView.setActivated(model.isDefault());

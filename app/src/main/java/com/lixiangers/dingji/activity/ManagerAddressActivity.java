@@ -18,10 +18,12 @@ import java.util.List;
 
 public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
     public static final int REQUEST_CODE_ADD_ADDRESS = 1;
+    public static final int REQUEST_CODE_EDIT_ADDRESS = 2;
     private ModelListAdapter<Address> adapter;
     private ListView addressListView;
     private Button addAddressButton;
     private List<Address> addressList;
+    private int currentIndex;
 
     public ManagerAddressActivity() {
         super(R.layout.activity_manager_address);
@@ -58,6 +60,29 @@ public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
             Address address = (Address) data.getSerializableExtra(Constant.ADDRESS);
             addressList.add(address);
             adapter.setData(addressList);
+        } else if (requestCode == REQUEST_CODE_EDIT_ADDRESS) {
+            boolean isDelete = data.getBooleanExtra(Constant.IS_DELETE, false);
+            if (isDelete) {
+                addressList.remove(currentIndex);
+            } else {
+                boolean isChangeDefault = data.getBooleanExtra(Constant.IS_CHANGE_DEFAULT_ADDRESS, false);
+                Address address = (Address) data.getSerializableExtra(Constant.ADDRESS);
+                addressList.set(currentIndex, address);
+                if (isChangeDefault) {
+                    changeDefaultAddrss(address);
+                }
+            }
+
+            adapter.setData(addressList);
+        }
+    }
+
+    private void changeDefaultAddrss(Address address) {
+        for (Address address1 : addressList) {
+            if (address1.isDefault() && address1 != address) {
+                address1.setDefault(false);
+                break;
+            }
         }
     }
 
@@ -68,7 +93,10 @@ public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
         addressListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO
+                currentIndex = position;
+                Intent intent = new Intent(getApplicationContext(), AddressDetailActivity.class);
+                intent.putExtra(Constant.ADDRESS, adapter.getItem(position));
+                startActivityForResult(intent, REQUEST_CODE_EDIT_ADDRESS);
             }
         });
     }

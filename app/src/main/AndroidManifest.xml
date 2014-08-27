@@ -82,5 +82,9 @@
         <activity
             android:name=".activity.EditAddressActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.AddressDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

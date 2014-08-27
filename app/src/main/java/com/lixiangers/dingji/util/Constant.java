@@ -53,6 +53,7 @@ public class Constant {
     public static final String TAB_GOODS = "tab_goods";
     public static final String TAG_SETTING = "tag_setting";
     public static final String ADDRESS = "address";
+    public static final String IS_CHANGE_DEFAULT_ADDRESS = "is_change_default_address";
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
