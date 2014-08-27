@@ -1,0 +1,65 @@
+package com.lixiangers.dingji.activity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.lixiangers.dingji.R;
+
+import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
+import static com.lixiangers.dingji.util.StringUtil.isBlank;
+import static com.lixiangers.dingji.util.StringUtil.showText;
+
+public class RegisterActivity extends NeolixNaviagationBaseActivity {
+
+    private EditText accountEditText;
+    private EditText pwdEditText;
+    private EditText confirmPwdEditText;
+    private Button registerButton;
+
+    public RegisterActivity() {
+        super(R.layout.activity_register);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTitle(R.string.register);
+
+        initView();
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String account = getTextFrom(accountEditText);
+                String pwd = getTextFrom(pwdEditText);
+                String confirmPwd = getTextFrom(confirmPwdEditText);
+
+                if (isBlank(account) || isBlank(pwd)) {
+                    showText(R.string.data_incomplete);
+                    return;
+                }
+
+                if (!pwd.equals(confirmPwd)) {
+                    showText(getString(R.string.the_two_passwords_you_entered_do_not_match));
+                    return;
+                }
+
+                register(account, pwd);
+            }
+        });
+    }
+
+    private void register(String account, String pwd) {
+        //TODO register
+    }
+
+    private void initView() {
+        accountEditText = (EditText) findViewById(R.id.et_account);
+        pwdEditText = (EditText) findViewById(R.id.et_pwd);
+        confirmPwdEditText = (EditText) findViewById(R.id.et_confirm_pwd);
+
+        registerButton = (Button) findViewById(R.id.bt_register);
+    }
+}

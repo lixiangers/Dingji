@@ -52,5 +52,12 @@ public class LoginActivity extends NeolixBaseActivity {
                 }
             }
         });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(RegisterActivity.class);
+            }
+        });
     }
 }

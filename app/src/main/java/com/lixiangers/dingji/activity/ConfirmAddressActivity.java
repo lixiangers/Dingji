@@ -28,7 +28,7 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.comfirm_order));
+        setTitle(getString(R.string.confirm_order));
 
         initView();
         initListener();

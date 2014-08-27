@@ -33,19 +33,22 @@
             android:background="@color/transparent"
             android:hint="@string/please_input_password"
             android:padding="@dimen/edit_text_padding" />
+
+        <include layout="@layout/split_view" />
+
+        <EditText
+            android:id="@+id/et_confirm_pwd"
+            style="@style/black_text_h"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/transparent"
+            android:hint="@string/please_input_password_again"
+            android:padding="@dimen/edit_text_padding" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/bt_login"
-        style="@style/my_positive_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/view_margin_left_right_to_border"
-        android:text="@string/login" />
-
-    <Button
         android:id="@+id/bt_register"
-        style="@style/my_negative_button"
+        style="@style/my_positive_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/view_margin_left_right_to_border"
