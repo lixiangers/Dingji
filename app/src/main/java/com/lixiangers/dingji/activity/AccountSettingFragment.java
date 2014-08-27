@@ -42,6 +42,13 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
             }
         });
 
+        modifyPasswordView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyApplication.getInstance(), ModifyPwdActivity.class));
+            }
+        });
+
         return view;
     }
 }

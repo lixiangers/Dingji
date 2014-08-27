@@ -72,5 +72,8 @@
     <string name="address_info">收货信息</string>
     <string name="please_input_password_again">请再次输入密码</string>
     <string name="the_two_passwords_you_entered_do_not_match">两次输入的密码不一致</string>
+    <string name="modify_pwd">修改密码</string>
+    <string name="old_pwd">旧密码</string>
+    <string name="new_pwd">新密码</string>
 
 </resources>
