@@ -63,7 +63,7 @@ public class Constant {
         public static final String HEADER_CONTENT_TYPE = "Content-Type";
         public static final String VALUE_APPLICATION_JSON = "application/json";
         public static final String POST = "POST";
-        public static final String SERVER_ADDRESS = "http://203.195.184.208/weexpress/rpcmethod";
+        public static final String SERVER_ADDRESS = "http://112.126.66.121/appserver/gateway";
         public static final int TIME_OUT = 8 * 1000;
         public static final Charset UTF_8 = Charset.forName("UTF8");
         public static final Charset DEFAULT_CHARSET = UTF_8;

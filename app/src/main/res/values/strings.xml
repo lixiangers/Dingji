@@ -55,5 +55,7 @@
     <string name="manager_address">收货地址管理</string>
     <string name="account_manager">账号管理</string>
     <string name="add_new_address">添加新地址</string>
+    <string name="is_processing">正在处理，请稍后…</string>
+    <string name="is_loading">正在登陆</string>
 
 </resources>
