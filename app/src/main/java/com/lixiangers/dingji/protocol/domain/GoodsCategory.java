@@ -1,6 +1,7 @@
 package com.lixiangers.dingji.protocol.domain;
 
-import com.lixiangers.dingji.dao.Goods;
+
+import com.lixiangers.dingji.model.Goods;
 
 import java.util.List;
 

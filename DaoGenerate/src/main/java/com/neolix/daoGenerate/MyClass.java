@@ -1,7 +1,5 @@
 package com.neolix.daoGenerate;
 
-import java.util.ArrayList;
-
 import de.greenrobot.daogenerator.DaoGenerator;
 import de.greenrobot.daogenerator.Entity;
 import de.greenrobot.daogenerator.Schema;
@@ -22,6 +20,7 @@ public class MyClass {
         goods.addStringProperty("unit");
         goods.addIntProperty("price");
         goods.addStringProperty("imageList");
+        goods.addStringProperty("category");
 
         goods.implementsSerializable();
 

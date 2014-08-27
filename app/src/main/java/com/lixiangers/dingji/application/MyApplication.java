@@ -3,8 +3,6 @@ package com.lixiangers.dingji.application;
 import android.app.Application;
 import android.content.pm.PackageManager;
 
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechUtility;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.util.StringUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -38,6 +36,7 @@ import static android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE;
         resToastText = R.string.crash_text)
 public class MyApplication extends Application {
     private static MyApplication application;
+    private ImageLoaderConfiguration config;
 
     public static MyApplication getInstance() {
         return application;
@@ -57,6 +56,13 @@ public class MyApplication extends Application {
             desDir.mkdirs();
         }
 
+        config = new ImageLoaderConfiguration.Builder(this)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs()
+                .build();
         super.onCreate();
     }
 
@@ -71,13 +77,6 @@ public class MyApplication extends Application {
     }
 
     private void initImageLoader() {
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .denyCacheImageMultipleSizesInMemory()
-                .discCacheFileNameGenerator(new Md5FileNameGenerator())
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .writeDebugLogs()
-                .build();
         ImageLoader.getInstance().init(config);
     }
 
@@ -90,5 +89,12 @@ public class MyApplication extends Application {
         imageLoader.clearDiscCache();
         imageLoader.clearMemoryCache();
         imageLoader.destroy();
+    }
+
+    public ImageLoader getImageLoader() {
+        if (!ImageLoader.getInstance().isInited())
+            ImageLoader.getInstance().init(config);
+
+        return ImageLoader.getInstance();
     }
 }

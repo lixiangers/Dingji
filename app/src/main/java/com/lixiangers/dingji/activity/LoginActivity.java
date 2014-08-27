@@ -52,7 +52,8 @@ public class LoginActivity extends NeolixBaseActivity {
         loginButton = (Button) findViewById(R.id.bt_login);
         registerButton = (Button) findViewById(R.id.bt_register);
 
-        accountEditText.setText(TEST_USER);
+        accountEditText.setText("admin");
+        pwdEditText.setText("admin");
     }
 
     private void initListener() {

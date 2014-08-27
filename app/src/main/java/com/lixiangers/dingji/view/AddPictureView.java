@@ -35,8 +35,6 @@ public class AddPictureView extends LinearLayout {
     private final Context context;
     private GridView gridView;
     private ModelListAdapter<AddPictureItemViewModel> adapter;
-    private int[] menu_image_array;
-    private String[] menu_name_array;
     public static String currentImageUrl;
 
     private Activity activity;

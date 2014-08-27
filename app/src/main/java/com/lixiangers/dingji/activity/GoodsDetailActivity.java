@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.model.Goods;
 import com.lixiangers.dingji.model.OrderItem;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.DensityUtil;
@@ -64,7 +64,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
         pointsView = (LinearLayout) findViewById(R.id.points_view);
         selectQuantityView = (SelectQuantityView) findViewById(R.id.select_quantity_view);
 
-        int images = goods.getImageArrayList().isEmpty() ? 1 : goods.getImageArrayList().size();
+        int images = goods.getImg().isEmpty() ? 1 : goods.getImg().size();
         for (int i = 0; i < images; i++) {
             ImageView imageView = new ImageView(getApplicationContext());
             imageView.setImageResource(R.drawable.selector_point);
@@ -74,7 +74,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
             pointsView.addView(imageView);
             pointsImageList.add(imageView);
         }
-        goodsDesTextView.setText(goods.getDes());
+        goodsDesTextView.setText(goods.getDetail());
         goodsPriceTextView.setText(goods.getPriceAndUnit());
     }
 
@@ -138,7 +138,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
     class SamplePagerAdapter extends PagerAdapter {
         @Override
         public int getCount() {
-            return goods.getImageArrayList().isEmpty() ? 1 : goods.getImageArrayList().size();
+            return goods.getImg().isEmpty() ? 1 : goods.getImg().size();
         }
 
         @Override
@@ -147,8 +147,8 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
             photoView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-            imageLoader.displayImage(goods.getImageArrayList().isEmpty() ?
-                    "" : goods.getImageArrayList().get(position), photoView, options);
+            imageLoader.displayImage(goods.getImg().isEmpty() ?
+                    "" : goods.getImg().get(position), photoView, options);
             return photoView;
         }
 

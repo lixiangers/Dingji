@@ -6,25 +6,39 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.dao.Goods;
-import com.lixiangers.dingji.database.RunTimeDatabaseHelper;
+import com.lixiangers.dingji.application.MyApplication;
+import com.lixiangers.dingji.model.Goods;
+import com.lixiangers.dingji.protocol.domain.AddGoodsRequest;
+import com.lixiangers.dingji.protocol.domain.UploadImageRequest;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.LocalTextWatcher;
+import com.lixiangers.dingji.util.StringUtil;
 import com.lixiangers.dingji.view.AddPictureView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.joda.time.DateTime;
-
+import java.io.File;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.isNotBlank;
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     private EditText nameEditText;
@@ -35,9 +49,9 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     public List<Goods> addGoodsList;
     private AddPictureView pictureView;
     private ArrayList<String> bitmapList;
-    private RunTimeDatabaseHelper databaseHelper;
     private EditText goodsDesEditText;
     private Goods goods;
+    private EditText catetoryEditText;
 
     public AddGoodsActivity() {
         super(R.layout.activity_add_goods);
@@ -70,17 +84,14 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
             case Constant.PHOTO_PICKED:
                 if (data == null)
                     return;
-
-                bitmapList.add(AddPictureView.currentImageUrl);
-                pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+                uploadImage();
                 break;
             case Constant.TAKE_PHONE:
                 cropImageUri(Uri.parse(AddPictureView.currentImageUrl),
                         Constant.GOODS_PICTURE_WIDTH, Constant.GOODS_PICTURE_HEIGHT, Constant.REQUEST_CROP_IMAGE);
                 break;
             case Constant.REQUEST_CROP_IMAGE:
-                bitmapList.add(AddPictureView.currentImageUrl);
-                pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+                uploadImage();
                 break;
         }
     }
@@ -92,6 +103,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
                 super.onTextChanged(charSequence, i, i2, i3);
                 doneButton.setEnabled(isNotBlank(getTextFrom(nameEditText)) &&
                         isNotBlank(getTextFrom(priceEditText)) &&
+                        isNotBlank(getTextFrom(catetoryEditText)) &&
                         isNotBlank(getTextFrom(unitEditText)));
             }
         };
@@ -99,6 +111,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         nameEditText.addTextChangedListener(textWatcher);
         goodsDesEditText.addTextChangedListener(textWatcher);
         unitEditText.addTextChangedListener(textWatcher);
+        catetoryEditText.addTextChangedListener(textWatcher);
         priceEditText.addTextChangedListener(new LocalTextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
@@ -144,89 +157,38 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void initData() {
-        databaseHelper = RunTimeDatabaseHelper.initial(getApplicationContext());
         addGoodsList = new ArrayList<Goods>();
         bitmapList = new ArrayList<String>();
 
         if (goods != null) {
             unitEditText.setText(goods.getUnit());
             nameEditText.setText(goods.getName());
-            goodsDesEditText.setText(goods.getDes());
+            goodsDesEditText.setText(goods.getDetail());
             priceEditText.setText(String.valueOf(goods.getPriceOfYuan()));
-            bitmapList = goods.getImageArrayList();
+            catetoryEditText.setText(goods.getCategory());
+            bitmapList = goods.getImg();
         }
         pictureView.setImageList(AddGoodsActivity.this, bitmapList);
     }
 
     private void saveGoods() {
-        //TODO add goods
         String name = getTextFrom(nameEditText);
         String des = getTextFrom(goodsDesEditText);
         String price = getTextFrom(priceEditText);
         String unit = getTextFrom(unitEditText);
+        String category = getTextFrom(catetoryEditText);
         float realPrice = Float.parseFloat(price);
 
         if (goods == null)
             goods = new Goods();
 
-        goods.setId(DateTime.now().getMillis() + "");
         goods.setPrice((int) (realPrice * 100));
         goods.setName(name);
-        goods.setDes(des);
+        goods.setDetail(des);
         goods.setUnit(unit);
-        goods.setImageArrayList(bitmapList);
+        goods.setCategory(category);
 
-        Intent intent = new Intent();
-        intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
-        setResult(RESULT_OK, intent);
-        finish();
-
-//                EditGoodsReqHttpEntity params = new EditGoodsReqHttpEntity(getUserID(), goods);
-//        HttpRequest httpRequest = new HttpRequest(
-//                RequestType.add_goods, params);
-//
-//        Type type = new TypeToken<HttpResponseNew<EditGoodsResponse>>() {
-//        }.getType();
-//
-//        RequestServerAsyncTaskNew<HttpResponseNew<EditGoodsResponse>> task =
-//                new RequestServerAsyncTaskNew<HttpResponseNew<EditGoodsResponse>>(type) {
-//
-//                    @Override
-//                    public void OnResponse(HttpResponseNew<EditGoodsResponse> httpResponse) {
-//                        if (httpResponse.noErrorMessage()) {
-//                            Goods resultGoods = new Goods(getUserID(),
-//                                    nameEditText.getText().toString(),
-//                                    Float.parseFloat(priceEditText.getText().toString()),
-//                                    unitEditText.getText().toString());
-//
-//                            ArrayList<String> tempList = new ArrayList<String>();
-//                            if (bitmapList != null)
-//                                tempList.addAll(bitmapList);
-//                            resultGoods.setImages(tempList);
-//
-//                            //把原来没有上传的记录标记为已上传(因为要删除对应的文件，所以不能直接删除对应的记录)
-//                            GoodsPictureRecord oldRecord = databaseHelper.loadNotUploadPictureRecordByUserIdBarcode(resultGoods.getBarcode(), getUserID());
-//                            if (oldRecord != null) {
-//                                oldRecord.setUpload(true);
-//                                databaseHelper.updatePictureRecordState(oldRecord);
-//                            }
-//
-//                            GoodsPictureRecord record = new GoodsPictureRecord(getUserID(), resultGoods.getBarcode(), getImageUrls(), DateTime.now(), null, false);
-//                            databaseHelper.insertPictureRecords(asList(record));
-//
-//                            nameEditText.setText(EMPTY);
-//                            priceEditText.setText(EMPTY);
-//                            unitEditText.setText(EMPTY);
-//                            nameEditText.requestFocus();
-//                            addGoodsList.add(resultGoods);
-//                            bitmapList.clear();
-//                            pictureView.setImageList(AddGoodsActivity.this, bitmapList);
-//                            showText(getString(R.string.add_goods_success));
-//                        } else
-//                            showText(httpResponse.getError().getMessage());
-//                    }
-//                };
-//        task.sendRequest(httpRequest);
+        AddGoods(goods);
     }
 
     private void initView() {
@@ -234,6 +196,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         priceEditText = (EditText) findViewById(R.id.et_goods_price);
         unitEditText = (EditText) findViewById(R.id.et_goods_unit);
         goodsDesEditText = (EditText) findViewById(R.id.et_goods_des);
+        catetoryEditText = (EditText) findViewById(R.id.et_goods_category);
 
         deleteButton = (Button) findViewById(R.id.negative_button);
         doneButton = (Button) findViewById(R.id.positive_button);
@@ -266,19 +229,6 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         startActivityForResult(intent, requestCode);
     }
 
-    private String getImageUrls() {
-        String urls = "";
-        if (bitmapList != null) {
-            for (int i = 0; i < bitmapList.size(); i++) {
-                urls += bitmapList.get(i);
-
-                if (i < bitmapList.size() - 1)
-                    urls += Constant.PICTURE_IMAGE_URL_SPLIT;
-            }
-        }
-        return urls;
-    }
-
     private void removeBitmap(List<String> list, String bitmap) {
         Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
@@ -286,5 +236,89 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
                 iterator.remove();
             }
         }
+    }
+
+    private void uploadImage() {
+        showRequestDialog(AddGoodsActivity.this, getString(R.string.is_upload_image));
+        Log.d(Constant.HttpConstant.TAG, "currentImagurl:" + AddPictureView.currentImageUrl);
+        UploadImageRequest params = new UploadImageRequest(getBase64(AddPictureView.currentImageUrl));
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.upload_img, params);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            deleteOriginImagePath(AddPictureView.currentImageUrl);
+                            bitmapList.add(httpResponse.getResponseParams());
+                            pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
+    }
+
+    private void AddGoods(final Goods goods) {
+        showRequestDialog(AddGoodsActivity.this, getString(R.string.is_add_goods));
+        String[] toBeStored = new String[]{};
+        AddGoodsRequest params = new AddGoodsRequest(goods.getName(), goods.getUnit(),
+                goods.getPrice(), bitmapList.get(0), bitmapList.toArray(toBeStored),
+                goods.getCategory(), goods.getDetail());
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.add_product, params);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
+    }
+
+    private String getBase64(String url) {
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoader imageLoader = MyApplication.getInstance().getImageLoader();
+        Bitmap bitmap = imageLoader.loadImageSync(url, options);
+        return StringUtil.bitmapToBase64(bitmap);
+    }
+
+    private void deleteOriginImagePath(String originHeadImagePath1) {
+        if (isNotBlank(originHeadImagePath1)) {
+            String path = getPath(originHeadImagePath1);
+            File deleteFile = new File(path);
+            if (deleteFile.exists()) {
+                deleteFile.delete();
+            }
+        }
+    }
+
+    private String getPath(String url) {
+        //file:///sdcard/wepayGoods//20140504170125.jpg
+        if (url.length() < 7)
+            return "";
+        return url.substring(7, url.length());
     }
 }

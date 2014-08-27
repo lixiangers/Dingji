@@ -7,11 +7,9 @@ import android.widget.ListView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.ModelListAdapter;
-import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.model.Goods;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
-
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +39,6 @@ public class GoodsManagerActivity extends NeolixNaviagationBaseActivity {
         initView();
         initListView();
         initListener();
-
-        addTestData();
     }
 
     @Override
@@ -74,26 +70,6 @@ public class GoodsManagerActivity extends NeolixNaviagationBaseActivity {
             }
             listAdapter.setData(models);
         }
-    }
-
-    private void addTestData() {
-        GoodsItemViewModel viewModel = getTestGoodsItemViewModel("鼎记羊肉", "美味无穷", 5698, "500g");
-        GoodsItemViewModel viewModel2 = getTestGoodsItemViewModel("鼎记鸡肉", "美味无穷", 1234, "500g");
-        GoodsItemViewModel viewModel3 = getTestGoodsItemViewModel("鼎记牛肉", "美味无穷", 7823, "500g");
-        GoodsItemViewModel viewModel4 = getTestGoodsItemViewModel("鼎记兔肉", "美味无穷", 1342, "500g");
-        models.add(viewModel);
-        models.add(viewModel2);
-        models.add(viewModel3);
-        models.add(viewModel4);
-        loadGoods();
-    }
-
-    private GoodsItemViewModel getTestGoodsItemViewModel(String name, String des, int price, String unit) {
-        final GoodsItemViewModel viewModel = new GoodsItemViewModel();
-        Goods goods = new Goods(DateTime.now().getMillis() + "", name, des, unit, price, "");
-        viewModel.setGoods(goods);
-        setViewModelListener(viewModel);
-        return viewModel;
     }
 
     private void setViewModelListener(final GoodsItemViewModel viewModel) {

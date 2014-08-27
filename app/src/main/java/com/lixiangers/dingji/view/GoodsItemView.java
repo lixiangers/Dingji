@@ -54,8 +54,8 @@ public class GoodsItemView extends BaseItemView<GoodsItemViewModel> {
         rightView.setOnClickListener(model.getOnClickListener());
 
         String uri;
-        uri = model.getGoods().getImageArrayList() == null || model.getGoods().getImageArrayList().isEmpty() ?
-                "" : model.getGoods().getImageArrayList().get(0);
+        uri = model.getGoods().getImg() == null || model.getGoods().getImg().isEmpty() ?
+                "" : model.getGoods().getImg().get(0);
 
         imageLoader.displayImage(uri, goodsImage, options);
     }

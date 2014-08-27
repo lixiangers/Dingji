@@ -20,10 +20,29 @@
             android:layout_marginTop="15dp" />
 
         <TextView
-            android:id="@+id/tv_modify_good_name"
+            android:id="@+id/tv_goods_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/add_picture_view"
+            android:layout_marginTop="10dp"
+            android:text="@string/goods_category"
+            android:textColor="@color/my_black"
+            android:textSize="@dimen/text_size_h" />
+
+        <EditText
+            android:id="@+id/et_goods_category"
+            style="@style/my_edit_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_goods_category"
+            android:layout_marginTop="10dp"
+            android:maxLength="20" />
+
+        <TextView
+            android:id="@+id/tv_modify_good_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_goods_category"
             android:layout_marginTop="10dp"
             android:text="@string/goods_name"
             android:textColor="@color/my_black"
@@ -98,7 +117,7 @@
                 style="@style/my_edit_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 

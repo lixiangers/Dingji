@@ -1,5 +1,5 @@
 package com.lixiangers.dingji.protocol.http;
 
 public enum RequestType {
-    user_login, user_register
+    user_login, upload_img, add_product, user_register
 }
