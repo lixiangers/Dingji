@@ -24,6 +24,7 @@ public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
     private Button addAddressButton;
     private List<Address> addressList;
     private int currentIndex;
+    private boolean isSelectAddress;
 
     public ManagerAddressActivity() {
         super(R.layout.activity_manager_address);
@@ -47,6 +48,7 @@ public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
         });
 
         addressList = new ArrayList<Address>();
+        isSelectAddress = getIntent().getBooleanExtra(Constant.IS_SELECT_ADDRESS, false);
         loadData();
     }
 
@@ -93,10 +95,17 @@ public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
         addressListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                currentIndex = position;
-                Intent intent = new Intent(getApplicationContext(), AddressDetailActivity.class);
-                intent.putExtra(Constant.ADDRESS, adapter.getItem(position));
-                startActivityForResult(intent, REQUEST_CODE_EDIT_ADDRESS);
+                if (isSelectAddress) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Constant.ADDRESS, adapter.getItem(position));
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
+                    currentIndex = position;
+                    Intent intent = new Intent(getApplicationContext(), AddressDetailActivity.class);
+                    intent.putExtra(Constant.ADDRESS, adapter.getItem(position));
+                    startActivityForResult(intent, REQUEST_CODE_EDIT_ADDRESS);
+                }
             }
         });
     }

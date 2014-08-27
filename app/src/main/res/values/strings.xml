@@ -65,5 +65,10 @@
     <string name="address_detail">收货地址</string>
     <string name="modify">修改</string>
     <string name="modify_address">修改地址</string>
+    <string name="comfirm_order">订单确认</string>
+    <string name="submit_order">确认下单</string>
+    <string name="you_can_select">您也可以选择</string>
+    <string name="other_address"><u>其他收货地址</u></string>
+    <string name="address_info">收货信息</string>
 
 </resources>

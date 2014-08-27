@@ -1,5 +1,6 @@
 package com.lixiangers.dingji.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,15 @@ import com.lixiangers.dingji.view.SelectQuantityView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.lixiangers.dingji.util.StringUtil.showText;
+
 public class ShoppingCartFragment extends android.support.v4.app.Fragment {
     public static List<OrderItem> orderItemList = new ArrayList<OrderItem>();
     private ModelListAdapter<OrderItem> adapter;
     private ListView goodsListView;
     private TextView totalAmountTextView;
     private Button commitButton;
+    private int totalAmount;
 
     public static void addGoods(OrderItem item) {
         boolean isExits = false;
@@ -54,6 +58,17 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
         goodsListView.setAdapter(adapter);
 
         addNumberChangeListener();
+        commitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (totalAmount < 0) {
+                    showText("您没有购买任何商品");
+                    return;
+                }
+
+                startActivity(new Intent(MyApplication.getInstance(), ConfirmAddressActivity.class));
+            }
+        });
         loadData();
         return view;
     }
@@ -84,7 +99,7 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
     }
 
     private void calcTotalAmount() {
-        int totalAmount = 0;
+        totalAmount = 0;
         for (OrderItem orderItem : orderItemList) {
             totalAmount += orderItem.getTotalAmount();
         }

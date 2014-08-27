@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_white">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/view_margin_left_right_to_border">
+
+            <TextView
+                style="@style/black_text_xh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/address_info" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    style="@style/gray_text_h"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contacts" />
+
+                <EditText
+                    android:id="@+id/et_contact"
+                    style="@style/my_edit_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    style="@style/gray_text_h"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone" />
+
+                <EditText
+                    android:id="@+id/et_phone"
+                    style="@style/my_edit_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:inputType="phone" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/detail_address" />
+
+            <com.lixiangers.dingji.view.LocationPopupWindow
+                android:id="@+id/location_view"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/et_city_area"
+                style="@style/my_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:enabled="false" />
+
+            <EditText
+                android:id="@+id/et_detail_area"
+                style="@style/my_edit_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:singleLine="false" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/red_text_h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/you_can_select" />
+
+                <TextView
+                    android:id="@+id/tv_other_address"
+                    style="@style/red_text_h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/other_address" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/bt_submit_order"
+            style="@style/my_positive_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/submit_order" />
+
+    </LinearLayout>
+</ScrollView>
