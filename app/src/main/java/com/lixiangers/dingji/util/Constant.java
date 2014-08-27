@@ -52,6 +52,7 @@ public class Constant {
     public static final String TAB_SHOPPING_CART = "tab_shopping_cart";
     public static final String TAB_GOODS = "tab_goods";
     public static final String TAG_SETTING = "tag_setting";
+    public static final String ADDRESS = "address";
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;

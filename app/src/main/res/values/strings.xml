@@ -55,5 +55,10 @@
     <string name="manager_address">收货地址管理</string>
     <string name="account_manager">账号管理</string>
     <string name="add_new_address">添加新地址</string>
+    <string name="contacts">联系人</string>
+    <string name="phone">联系电话</string>
+    <string name="detail_address">详细地址</string>
+    <string name="add_address">新增地址</string>
+    <string name="data_incomplete">数据填写不去</string>
 
 </resources>

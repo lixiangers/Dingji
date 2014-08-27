@@ -48,7 +48,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingRight="@dimen/view_margin_left_right_to_border"
-            style="@style/red_text_h" />
+            style="@style/red_text_m" />
     </RelativeLayout>
 
     <include layout="@layout/split_view" />

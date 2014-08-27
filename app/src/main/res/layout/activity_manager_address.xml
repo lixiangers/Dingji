@@ -10,7 +10,9 @@
         android:id="@+id/lv_address"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:divider="@color/split_color"
+        android:dividerHeight="@dimen/split_width" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,6 +1,8 @@
 package com.lixiangers.dingji.protocol.domain;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String name;
     private String phone;
     private String address;
@@ -20,5 +22,21 @@ public class Address {
 
     public boolean isDefault() {
         return isDefault;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
     }
 }

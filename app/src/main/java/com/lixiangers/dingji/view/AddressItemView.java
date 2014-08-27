@@ -16,20 +16,20 @@ import com.lixiangers.dingji.util.StringUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class AddrssItemView extends BaseItemView<Address> {
+public class AddressItemView extends BaseItemView<Address> {
     private final Context context;
     private TextView nameTextView;
     private TextView addressTextView;
     private TextView phoneTextView;
     private View backgroundView;
 
-    public AddrssItemView(Context context) {
+    public AddressItemView(Context context) {
         super(context);
         this.context = context;
         initUi();
     }
 
-    public AddrssItemView(Context context, AttributeSet attrs) {
+    public AddressItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         initUi();
