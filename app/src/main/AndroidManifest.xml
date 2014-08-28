@@ -62,7 +62,7 @@
             android:theme="@style/my_dialog" />
 
         <activity
-            android:name=".activity.AddGoodsActivity"
+            android:name=".activity.EditGoodsActivity"
             android:screenOrientation="portrait" />
 
         <activity

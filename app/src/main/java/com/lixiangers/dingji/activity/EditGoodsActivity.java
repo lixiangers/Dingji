@@ -16,6 +16,8 @@ import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.model.Goods;
 import com.lixiangers.dingji.protocol.domain.AddGoodsRequest;
+import com.lixiangers.dingji.protocol.domain.DeleteProductRequest;
+import com.lixiangers.dingji.protocol.domain.EditGoodsRequest;
 import com.lixiangers.dingji.protocol.domain.UploadImageRequest;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
@@ -40,7 +42,7 @@ import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.isNotBlank;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 
-public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
+public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
     private EditText nameEditText;
     private EditText priceEditText;
     private Button deleteButton;
@@ -53,8 +55,8 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     private Goods goods;
     private EditText catetoryEditText;
 
-    public AddGoodsActivity() {
-        super(R.layout.activity_add_goods);
+    public EditGoodsActivity() {
+        super(R.layout.activity_edit_goods);
     }
 
     @Override
@@ -68,11 +70,6 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         initView();
         initListener();
         initData();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     @Override
@@ -151,7 +148,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void onDelete(String bitmap) {
                 removeBitmap(bitmapList, bitmap);
-                pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+                pictureView.setImageList(EditGoodsActivity.this, bitmapList);
             }
         });
     }
@@ -168,7 +165,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
             catetoryEditText.setText(goods.getCategory());
             bitmapList = goods.getImg();
         }
-        pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+        pictureView.setImageList(EditGoodsActivity.this, bitmapList);
     }
 
     private void saveGoods() {
@@ -178,9 +175,11 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         String unit = getTextFrom(unitEditText);
         String category = getTextFrom(catetoryEditText);
         float realPrice = Float.parseFloat(price);
-
-        if (goods == null)
+        boolean isAddGoods = false;
+        if (goods == null) {
             goods = new Goods();
+            isAddGoods = true;
+        }
 
         goods.setPrice((int) (realPrice * 100));
         goods.setName(name);
@@ -188,7 +187,13 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         goods.setUnit(unit);
         goods.setCategory(category);
 
-        AddGoods(goods);
+        goods.setImg(bitmapList);
+        goods.setMain_img(bitmapList.isEmpty() ? "" : bitmapList.get(0));
+
+        if (isAddGoods)
+            AddGoods(goods);
+        else
+            modifyGoods(goods);
     }
 
     private void initView() {
@@ -202,15 +207,35 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
         doneButton = (Button) findViewById(R.id.positive_button);
 
         pictureView = (AddPictureView) findViewById(R.id.add_picture_view);
+
+        deleteButton.setVisibility(goods == null ? View.GONE : View.VISIBLE);
     }
 
     private void deleteGoods() {
-        //TODO delete goods
-        Intent intent = new Intent();
-        intent.putExtra(Constant.IS_DELETE, true);
-        intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
-        setResult(RESULT_OK, intent);
-        finish();
+        showRequestDialog(this, getString(R.string.is_delete_goods));
+        DeleteProductRequest params = new DeleteProductRequest(goods.getid());
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.del_product, params);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.IS_DELETE, true);
+                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 
     private void cropImageUri(Uri uri, int outputX, int outputY, int requestCode) {
@@ -239,7 +264,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void uploadImage() {
-        showRequestDialog(AddGoodsActivity.this, getString(R.string.is_upload_image));
+        showRequestDialog(EditGoodsActivity.this, getString(R.string.is_upload_image));
         Log.d(Constant.HttpConstant.TAG, "currentImagurl:" + pictureView.getCurrentImageUrl());
         UploadImageRequest params = new UploadImageRequest(getBase64(pictureView.getCurrentImageUrl()));
         final HttpRequest httpRequest = new HttpRequest(
@@ -256,7 +281,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
                         if (httpResponse.noErrorMessage()) {
                             deleteOriginImagePath(pictureView.getCurrentImageUrl());
                             bitmapList.add(httpResponse.getResponseParams());
-                            pictureView.setImageList(AddGoodsActivity.this, bitmapList);
+                            pictureView.setImageList(EditGoodsActivity.this, bitmapList);
                         } else
                             showText(httpResponse.getError().getMessage());
                     }
@@ -265,13 +290,43 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void AddGoods(final Goods goods) {
-        showRequestDialog(AddGoodsActivity.this, getString(R.string.is_add_goods));
+        showRequestDialog(EditGoodsActivity.this, getString(R.string.is_add_goods));
         String[] toBeStored = new String[]{};
         AddGoodsRequest params = new AddGoodsRequest(goods.getName(), goods.getUnit(),
-                goods.getPrice(), bitmapList.get(0), bitmapList.toArray(toBeStored),
+                goods.getPrice(), goods.getMain_img(), goods.getImg().toArray(toBeStored),
                 goods.getCategory(), goods.getDetail());
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.add_product, params);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            goods.setid(httpResponse.getResponseParams());
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
+    }
+
+    private void modifyGoods(final Goods goods) {
+        showRequestDialog(EditGoodsActivity.this, getString(R.string.is_modify_goods));
+        String[] toBeStored = new String[]{};
+        EditGoodsRequest params = new EditGoodsRequest(goods.getid(), goods.getName(), goods.getUnit(),
+                goods.getPrice(), goods.getMain_img(), goods.getImg().toArray(toBeStored),
+                goods.getCategory(), goods.getDetail());
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.edit_product, params);
 
         Type type = new TypeToken<HttpResponse<String>>() {
         }.getType();

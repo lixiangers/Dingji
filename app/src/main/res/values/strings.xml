@@ -83,5 +83,8 @@
     <string name="is_upload_image">正在上传图片</string>
     <string name="goods_category">商品类型</string>
     <string name="is_add_goods">正在添加商品</string>
+    <string name="is_query_goods">正在查询商品</string>
+    <string name="is_modify_goods">正在修改商品</string>
+    <string name="is_delete_goods">正在删除商品</string>
 
 </resources>
