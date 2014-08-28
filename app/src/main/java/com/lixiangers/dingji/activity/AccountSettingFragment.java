@@ -7,10 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.view.NavigationBar;
 
+import java.lang.reflect.Type;
+
 import static com.lixiangers.dingji.application.MyApplication.getInstance;
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class AccountSettingFragment extends android.support.v4.app.Fragment {
 
@@ -21,6 +31,7 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
     private View suggestView;
     private View problemView;
     private View modifyPasswordView;
+    private View logoutButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +46,14 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
         suggestView = view.findViewById(R.id.view_suggest);
         problemView = view.findViewById(R.id.view_problem);
         modifyPasswordView = view.findViewById(R.id.view_modify_password);
+        logoutButton = view.findViewById(R.id.bt_logout);
 
+        initListener();
+
+        return view;
+    }
+
+    private void initListener() {
         manangerAddressView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +82,34 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        return view;
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+    }
+
+    private void logout() {
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.user_logout, null);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        showRequestDialog(getActivity(), getInstance().getString(R.string.is_logout));
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            getInstance().logoutApp();
+                            startActivity(new Intent(getInstance(), LoginActivity.class));
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 }

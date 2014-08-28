@@ -113,6 +113,7 @@
                     style="@style/red_text_h"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:text="@string/you_can_select" />
 
                 <TextView

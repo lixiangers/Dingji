@@ -1,239 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/my_white"
-    android:orientation="vertical">
+    android:background="@color/my_white">
 
-    <com.lixiangers.dingji.view.NavigationBar
-        android:id="@+id/navigation_bar"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            android:id="@+id/tv_account"
-            style="@style/black_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/account" />
-
-        <TextView
-            style="@style/black_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="XXXX" />
-    </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-    <LinearLayout
-        android:id="@+id/view_history_order"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            style="@style/gray_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/history_order" />
+        <com.lixiangers.dingji.view.NavigationBar
+            android:id="@+id/navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_account"
+                style="@style/black_text_h"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_bg_back"
-                android:gravity="right" />
+                android:layout_weight="1"
+                android:text="@string/account" />
+
+            <TextView
+                style="@style/black_text_h"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="XXXX" />
         </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-    <LinearLayout
-        android:id="@+id/view_manager_address"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            style="@style/gray_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/manager_address" />
+        <include layout="@layout/split_view" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:id="@+id/view_history_order"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_bg_back"
-                android:gravity="right" />
+                android:layout_weight="1"
+                android:text="@string/history_order" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_back"
+                    android:gravity="right" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-    <LinearLayout
-        android:id="@+id/view_modify_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            style="@style/gray_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/modify_password" />
+        <include layout="@layout/split_view" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:id="@+id/view_manager_address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_bg_back"
-                android:gravity="right" />
+                android:layout_weight="1"
+                android:text="@string/manager_address" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_back"
+                    android:gravity="right" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-    <LinearLayout
-        android:id="@+id/view_problem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            style="@style/gray_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/problem" />
+        <include layout="@layout/split_view" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:id="@+id/view_modify_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_bg_back"
-                android:gravity="right" />
+                android:layout_weight="1"
+                android:text="@string/modify_password" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_back"
+                    android:gravity="right" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-    <LinearLayout
-        android:id="@+id/view_about"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            style="@style/gray_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/about_ding_ji" />
+        <include layout="@layout/split_view" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:id="@+id/view_problem"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_bg_back"
-                android:gravity="right" />
+                android:layout_weight="1"
+                android:text="@string/problem" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_back"
+                    android:gravity="right" />
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
-
-        <TextView
-            android:id="@+id/view_suggest"
-            style="@style/gray_text_h"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/suggest" />
+        <include layout="@layout/split_view" />
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right">
+            android:id="@+id/view_about"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_bg_back"
-                android:gravity="right" />
+                android:layout_weight="1"
+                android:text="@string/about_ding_ji" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_back"
+                    android:gravity="right" />
+            </LinearLayout>
+
         </LinearLayout>
 
+        <include layout="@layout/split_view" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
+
+            <TextView
+                android:id="@+id/view_suggest"
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/suggest" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_bg_back"
+                    android:gravity="right" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/split_view" />
+
+        <Button
+            android:id="@+id/bt_logout"
+            style="@style/my_positive_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/logout" />
+
     </LinearLayout>
-
-    <include layout="@layout/split_view" />
-
-</LinearLayout>
+</ScrollView>

@@ -4,8 +4,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.protocol.domain.ModifyPwdRequest;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 
+import java.lang.reflect.Type;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.isBlank;
 import static com.lixiangers.dingji.util.StringUtil.showText;
@@ -50,7 +60,27 @@ public class ModifyPwdActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void modifyPwd(String oldPwd, String pwd) {
-        //TODO modify pwd
+        ModifyPwdRequest params = new ModifyPwdRequest(pwd, oldPwd);
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.change_passwd, params);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        showRequestDialog(ModifyPwdActivity.this, getString(R.string.is_modify_pwd));
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            showText(getString(R.string.modify_pwd_success));
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 
     private void initView() {

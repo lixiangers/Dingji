@@ -21,6 +21,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:hint="@string/old_pwd"
+            android:password="true"
             android:padding="@dimen/edit_text_padding" />
 
         <include layout="@layout/split_view" />
@@ -32,6 +33,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:hint="@string/new_pwd"
+            android:password="true"
             android:padding="@dimen/edit_text_padding" />
 
         <include layout="@layout/split_view" />
@@ -43,6 +45,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:hint="@string/please_input_password_again"
+            android:password="true"
             android:padding="@dimen/edit_text_padding" />
     </LinearLayout>
 
