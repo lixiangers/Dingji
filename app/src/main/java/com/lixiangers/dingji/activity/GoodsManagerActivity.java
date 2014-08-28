@@ -39,6 +39,7 @@ public class GoodsManagerActivity extends NeolixNaviagationBaseActivity {
         initView();
         initListView();
         initListener();
+        loadGoods();
     }
 
     @Override

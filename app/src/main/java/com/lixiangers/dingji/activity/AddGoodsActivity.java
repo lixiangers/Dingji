@@ -87,7 +87,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
                 uploadImage();
                 break;
             case Constant.TAKE_PHONE:
-                cropImageUri(Uri.parse(AddPictureView.currentImageUrl),
+                cropImageUri(Uri.parse(pictureView.getCurrentImageUrl()),
                         Constant.GOODS_PICTURE_WIDTH, Constant.GOODS_PICTURE_HEIGHT, Constant.REQUEST_CROP_IMAGE);
                 break;
             case Constant.REQUEST_CROP_IMAGE:
@@ -240,8 +240,8 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
 
     private void uploadImage() {
         showRequestDialog(AddGoodsActivity.this, getString(R.string.is_upload_image));
-        Log.d(Constant.HttpConstant.TAG, "currentImagurl:" + AddPictureView.currentImageUrl);
-        UploadImageRequest params = new UploadImageRequest(getBase64(AddPictureView.currentImageUrl));
+        Log.d(Constant.HttpConstant.TAG, "currentImagurl:" + pictureView.getCurrentImageUrl());
+        UploadImageRequest params = new UploadImageRequest(getBase64(pictureView.getCurrentImageUrl()));
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.upload_img, params);
 
@@ -254,7 +254,7 @@ public class AddGoodsActivity extends NeolixNaviagationBaseActivity {
                     public void OnResponse(HttpResponse<String> httpResponse) {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
-                            deleteOriginImagePath(AddPictureView.currentImageUrl);
+                            deleteOriginImagePath(pictureView.getCurrentImageUrl());
                             bitmapList.add(httpResponse.getResponseParams());
                             pictureView.setImageList(AddGoodsActivity.this, bitmapList);
                         } else

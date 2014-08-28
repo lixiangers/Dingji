@@ -20,6 +20,7 @@ public class WelcomeActivity extends Activity {
             @Override
             public void run() {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
         }, DELAY_MILLIS);
     }

@@ -35,7 +35,7 @@ public class AddPictureView extends LinearLayout {
     private final Context context;
     private GridView gridView;
     private ModelListAdapter<AddPictureItemViewModel> adapter;
-    public static String currentImageUrl;
+    private String currentImageUrl;
 
     private Activity activity;
     private List<AddPictureItemViewModel> models;
@@ -73,6 +73,10 @@ public class AddPictureView extends LinearLayout {
                 models.add(getAddPictureViewModel());
         }
         adapter.setData(models);
+    }
+
+    public String getCurrentImageUrl() {
+        return currentImageUrl;
     }
 
     private AddPictureItemViewModel getPictureItemViewModel(final String bitmapUrl, final int index) {

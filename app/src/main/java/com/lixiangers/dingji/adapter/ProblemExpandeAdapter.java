@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.model.Goods;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
 import com.lixiangers.dingji.view.GoodsItemView;
 import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
