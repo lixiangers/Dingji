@@ -140,6 +140,10 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (bitmapList.isEmpty()) {
+                    showText(getString(R.string.please_add_picture));
+                    return;
+                }
                 saveGoods();
             }
         });

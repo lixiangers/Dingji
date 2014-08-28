@@ -60,10 +60,10 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void fillData(Address address) {
-        locationView.setLocation(address.getProvince(), address.getCity(), address.getCounty());
+        locationView.setLocation(address.getProvince(), address.getCity(), address.getDistrict());
         contactEditView.setText(address.getName());
         phoneEditView.setText(address.getPhone());
-        cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getCounty());
+        cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getDistrict());
         detailEditView.setText(address.getDetail_address());
     }
 
@@ -93,7 +93,8 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
                             Address address1 = httpResponse.getResponseParams();
-                            fillData(address1);
+                            if (address1 != null)
+                                fillData(address1);
                         } else
                             showText(httpResponse.getError().getMessage());
                     }

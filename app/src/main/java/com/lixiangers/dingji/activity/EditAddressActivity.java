@@ -8,6 +8,7 @@ import android.widget.EditText;
 import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.protocol.domain.Address;
+import com.lixiangers.dingji.protocol.domain.AddressRequestAndReponse;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
@@ -59,10 +60,10 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
         initListener();
 
         if (address != null) {
-            locationView.setLocation(address.getProvince(), address.getCity(), address.getCounty());
+            locationView.setLocation(address.getProvince(), address.getCity(), address.getDistrict());
             contactEditView.setText(address.getName());
             phoneEditView.setText(address.getPhone());
-            cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getCounty());
+            cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getDistrict());
             detailEditView.setText(address.getDetail_address());
         }
     }
@@ -89,7 +90,7 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
         address.setName(contact);
         address.setProvince(province);
         address.setCity(city);
-        address.setCounty(county);
+        address.setDistrict(county);
         address.setDetail_address(detailArea);
         address.setDefault(isAdd ? false : address.isDefault());
 
@@ -121,10 +122,12 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
 
     private void addAddress(final Address address1) {
         showRequestDialog(EditAddressActivity.this, getString(R.string.is_add_address));
+        AddressRequestAndReponse addressRequestAndReponse = address1.getAddressRequestAndReponse();
+        addressRequestAndReponse.setAddress_id(null);
         final HttpRequest httpRequest = new HttpRequest(
-                RequestType.add_address, address1);
+                RequestType.add_address, addressRequestAndReponse);
 
-        Type type = new TypeToken<HttpResponse<String>>() {
+        Type type = new TypeToken<HttpResponse<Address>>() {
         }.getType();
 
         RequestServerAsyncTask<HttpResponse<Address>> task =
@@ -133,9 +136,9 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
                     public void OnResponse(HttpResponse<Address> httpResponse) {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
-                            address1.setAddress_id(httpResponse.getResponseParams().getId());
+                            address1.setId(httpResponse.getResponseParams().getId());
                             Intent intent = new Intent();
-                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, address1);
+                            intent.putExtra(Constant.ADDRESS, address1);
                             setResult(RESULT_OK, intent);
                             finish();
                         } else
@@ -148,8 +151,11 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
     private void modifyAddress(final Address address1) {
         showRequestDialog(EditAddressActivity.this, getString(R.string.is_modify_address));
         address1.setAddress_id(address1.getId());
+        AddressRequestAndReponse addressRequestAndReponse = address1.getAddressRequestAndReponse();
+        addressRequestAndReponse.setId(null);
+
         final HttpRequest httpRequest = new HttpRequest(
-                RequestType.edit_address, address1);
+                RequestType.edit_address, addressRequestAndReponse);
 
         Type type = new TypeToken<HttpResponse<Address>>() {
         }.getType();
@@ -161,7 +167,7 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
                             Intent intent = new Intent();
-                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, address1);
+                            intent.putExtra(Constant.ADDRESS, address1);
                             setResult(RESULT_OK, intent);
                             finish();
                         } else

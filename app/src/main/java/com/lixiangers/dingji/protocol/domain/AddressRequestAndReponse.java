@@ -12,7 +12,7 @@ public class AddressRequestAndReponse extends HttpRequestParams implements Seria
     private String detail_address;
     private String province;
     private String city;
-    private String county;
+    private String district;
 
     public String getAddress_id() {
         return address_id;
@@ -74,15 +74,15 @@ public class AddressRequestAndReponse extends HttpRequestParams implements Seria
         this.city = city;
     }
 
-    public String getCounty() {
-        return county;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getCompleteAddress() {
-        return String.format("%s%s%s%s", province, city, county, detail_address);
+        return String.format("%s%s%s%s", province, city, district, detail_address);
     }
 }

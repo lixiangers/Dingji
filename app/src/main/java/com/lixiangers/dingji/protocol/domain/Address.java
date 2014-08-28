@@ -11,11 +11,11 @@ public class Address extends HttpRequestParams implements Serializable {
 
     private String name;
     private String mobile;
-    private Boolean isDefault;
+    private boolean isDefault;
     private String detail_address;
     private String province;
     private String city;
-    private String county;
+    private String district;
 
     public String getAddress_id() {
         return address_id;
@@ -82,15 +82,28 @@ public class Address extends HttpRequestParams implements Serializable {
         this.city = city;
     }
 
-    public String getCounty() {
-        return county;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setCounty(String county) {
-        this.county = county;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getCompleteAddress() {
-        return String.format("%s%s%s%s", province, city, county, detail_address);
+        return String.format("%s%s%s%s", province, city, district, detail_address);
+    }
+
+    public AddressRequestAndReponse getAddressRequestAndReponse() {
+        AddressRequestAndReponse requestAndReponse = new AddressRequestAndReponse();
+        requestAndReponse.setId(getId());
+        requestAndReponse.setAddress_id(getId());
+        requestAndReponse.setDistrict(getDistrict());
+        requestAndReponse.setCity(getCity());
+        requestAndReponse.setProvince(getProvince());
+        requestAndReponse.setDetail_address(getDetail_address());
+        requestAndReponse.setName(getName());
+        requestAndReponse.setPhone(getPhone());
+        return requestAndReponse;
     }
 }

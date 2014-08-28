@@ -107,7 +107,7 @@ public class AddressDetailActivity extends NeolixNaviagationBaseActivity {
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.del_address, requset);
 
-        Type type = new TypeToken<HttpResponse<Address>>() {
+        Type type = new TypeToken<HttpResponse<String>>() {
         }.getType();
 
         RequestServerAsyncTask<HttpResponse<String>> task =
@@ -131,10 +131,11 @@ public class AddressDetailActivity extends NeolixNaviagationBaseActivity {
     private void setDefaultAddress(final Address address1) {
         showRequestDialog(AddressDetailActivity.this, getString(R.string.is_set_address));
         address1.setAddress_id(address1.getId());
+        DeleteAddressRequset requset = new DeleteAddressRequset(address1.getId());
         final HttpRequest httpRequest = new HttpRequest(
-                RequestType.set_default_address, address1);
+                RequestType.set_default_address, requset);
 
-        Type type = new TypeToken<HttpResponse<Address>>() {
+        Type type = new TypeToken<HttpResponse<String>>() {
         }.getType();
 
         RequestServerAsyncTask<HttpResponse<String>> task =
