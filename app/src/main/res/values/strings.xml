@@ -100,5 +100,7 @@
     <string name="modify_pwd_success">密码修改成功</string>
     <string name="logout">退出登录</string>
     <string name="is_logout">正在登出</string>
+    <string name="is_upload">正在上传</string>
+    <string name="submit_success">提交成功</string>
 
 </resources>

@@ -4,8 +4,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.protocol.domain.SuggestRequest;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 
+import java.lang.reflect.Type;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.isBlank;
 import static com.lixiangers.dingji.util.StringUtil.showText;
@@ -42,6 +52,26 @@ public class SuggestActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void submitSuggest(String suggest) {
-        //TODO submit suggest
+        SuggestRequest request = new SuggestRequest(suggest);
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.feedback, request);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        showRequestDialog(SuggestActivity.this, getString(R.string.is_upload));
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            showText(getString(R.string.submit_success));
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 }
