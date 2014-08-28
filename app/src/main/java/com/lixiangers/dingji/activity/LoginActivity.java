@@ -14,12 +14,14 @@ import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
 import com.lixiangers.dingji.protocol.http.RequestType;
+import com.lixiangers.dingji.util.SharedPreferencesUtil;
 
 import java.lang.reflect.Type;
 
 import static com.lixiangers.dingji.application.MyApplication.getInstance;
 import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
 import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.SharedPreferencesUtil.savePwd;
 import static com.lixiangers.dingji.util.SharedPreferencesUtil.saveToken;
 import static com.lixiangers.dingji.util.SharedPreferencesUtil.saveUserPhone;
 import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
@@ -28,7 +30,6 @@ import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class LoginActivity extends NeolixBaseActivity {
 
-    public static final String TEST_USER = "lixiang";
     private EditText accountEditText;
     private EditText pwdEditText;
     private Button loginButton;
@@ -52,8 +53,8 @@ public class LoginActivity extends NeolixBaseActivity {
         loginButton = (Button) findViewById(R.id.bt_login);
         registerButton = (Button) findViewById(R.id.bt_register);
 
-        accountEditText.setText("test01");
-        pwdEditText.setText("123456");
+        accountEditText.setText(SharedPreferencesUtil.getUserPhone());
+        pwdEditText.setText(SharedPreferencesUtil.getPwd());
     }
 
     private void initListener() {
@@ -64,13 +65,13 @@ public class LoginActivity extends NeolixBaseActivity {
                 String pwd = getTextFrom(pwdEditText);
 
                 if (isBlank(userName)) {
-                    showText("请输入账号");
+                    showText(getString(R.string.please_input_accoutn));
                     accountEditText.requestFocus();
                     return;
                 }
 
                 if (isBlank(pwd)) {
-                    showText("请输入密码");
+                    showText(getString(R.string.plesase_input_pwd));
                     pwdEditText.requestFocus();
                     return;
                 }
@@ -86,7 +87,7 @@ public class LoginActivity extends NeolixBaseActivity {
         });
     }
 
-    private void login(final String userName, String password) {
+    private void login(final String userName, final String password) {
         LoginRequest params = new LoginRequest(userName, password);
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.user_login, params);
@@ -104,6 +105,7 @@ public class LoginActivity extends NeolixBaseActivity {
                             getInstance().loginApp();
                             saveToken(httpResponse.getResponseParams().getToken());
                             saveUserPhone(userName);
+                            savePwd(password);
                             boolean isAdmin = httpResponse.getResponseParams().is_superuser();
                             startActivity(new Intent(getInstance(), isAdmin ? ManagerMainActivity.class : MainActivity.class));
                         } else

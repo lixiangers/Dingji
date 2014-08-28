@@ -54,4 +54,16 @@ public class SharedPreferencesUtil {
         SharedPreferences preference = getInstance().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         return preference.getString(USER_PHONE, "");
     }
+
+    public static void savePwd(String password) {
+        SharedPreferences preference = getInstance().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor edit = preference.edit();
+        edit.putString(PASSWORD, password);
+        edit.commit();
+    }
+
+    public static String getPwd() {
+        SharedPreferences preference = getInstance().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        return preference.getString(PASSWORD, "");
+    }
 }

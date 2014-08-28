@@ -20,6 +20,7 @@ import java.lang.reflect.Type;
 
 import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
 import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.isNotBlank;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
@@ -93,7 +94,7 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
                             Address address1 = httpResponse.getResponseParams();
-                            if (address1 != null)
+                            if (address1 != null && isNotBlank(address1.getId()))
                                 fillData(address1);
                         } else
                             showText(httpResponse.getError().getMessage());

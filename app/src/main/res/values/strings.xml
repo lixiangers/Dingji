@@ -93,5 +93,8 @@
     <string name="is_modify_address">正在修改地址</string>
     <string name="is_get_default_address">正在获取默认地址</string>
     <string name="please_add_picture">请添加图片</string>
+    <string name="is_register">正在注册</string>
+    <string name="please_input_accoutn">请输入账号</string>
+    <string name="plesase_input_pwd">请输入密码</string>
 
 </resources>
