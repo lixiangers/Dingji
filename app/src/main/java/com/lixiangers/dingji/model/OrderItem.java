@@ -1,6 +1,5 @@
 package com.lixiangers.dingji.model;
 
-import com.lixiangers.dingji.dao.Goods;
 import com.lixiangers.dingji.view.SelectQuantityView;
 
 public class OrderItem {

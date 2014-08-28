@@ -21,6 +21,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:hint="@string/please_input_account"
+            android:singleLine="true"
             android:padding="@dimen/edit_text_padding" />
 
         <include layout="@layout/split_view" />
@@ -32,6 +33,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:hint="@string/please_input_password"
+            android:singleLine="true"
             android:padding="@dimen/edit_text_padding" />
     </LinearLayout>
 

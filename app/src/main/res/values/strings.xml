@@ -78,5 +78,10 @@
     <string name="tell_me_your_suggest">对鼎记有什么想说的呢?告诉我们吧~</string>
     <string name="submit">提交</string>
     <string name="suggset">意见与建议</string>
+    <string name="is_processing">正在处理，请稍后…</string>
+    <string name="is_loading">正在登陆</string>
+    <string name="is_upload_image">正在上传图片</string>
+    <string name="goods_category">商品类型</string>
+    <string name="is_add_goods">正在添加商品</string>
 
 </resources>

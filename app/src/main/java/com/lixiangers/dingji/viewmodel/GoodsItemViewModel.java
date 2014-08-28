@@ -2,7 +2,7 @@ package com.lixiangers.dingji.viewmodel;
 
 import android.view.View;
 
-import com.lixiangers.dingji.dao.Goods;
+import com.lixiangers.dingji.model.Goods;
 
 import java.io.Serializable;
 

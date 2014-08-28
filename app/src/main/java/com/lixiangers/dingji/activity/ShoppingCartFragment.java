@@ -33,7 +33,7 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
     public static void addGoods(OrderItem item) {
         boolean isExits = false;
         for (OrderItem orderItem : orderItemList) {
-            if (orderItem.getGoods().getId().equals(item.getGoods().getId())) {
+            if (orderItem.getGoods().getid().equals(item.getGoods().getid())) {
                 isExits = true;
                 orderItem.setQuantity(orderItem.getQuantity() + item.getQuantity());
                 break;

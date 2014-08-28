@@ -5,6 +5,8 @@ import android.util.Base64;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lixiangers.dingji.application.MyApplication;
+
 import org.joda.time.DateTime;
 
 import java.io.ByteArrayOutputStream;
@@ -137,7 +139,7 @@ public final class StringUtil {
 
 
     public static String getGoodsImagePath() {
-        return "/sdcard/neolixExpress/";
+        return MyApplication.getInstance().getExternalFilesDir("image").getAbsolutePath();
     }
 
     public static String getGoodsImageName() {
