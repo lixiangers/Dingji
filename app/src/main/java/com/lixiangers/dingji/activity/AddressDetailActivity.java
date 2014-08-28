@@ -6,9 +6,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.protocol.domain.Address;
+import com.lixiangers.dingji.protocol.domain.DeleteAddressRequset;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
+
+import java.lang.reflect.Type;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class AddressDetailActivity extends NeolixNaviagationBaseActivity {
 
@@ -66,24 +78,14 @@ public class AddressDetailActivity extends NeolixNaviagationBaseActivity {
         deleteAddressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(Constant.IS_DELETE, true);
-                setResult(RESULT_OK, intent);
-                finish();
+                deleteAddress(address);
             }
         });
 
         setDefaultButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO set default address
-
-                address.setDefault(true);
-                Intent intent = new Intent();
-                intent.putExtra(Constant.ADDRESS, address);
-                intent.putExtra(Constant.IS_CHANGE_DEFAULT_ADDRESS, true);
-                setResult(RESULT_OK, intent);
-                finish();
+                setDefaultAddress(address);
             }
         });
     }
@@ -95,5 +97,62 @@ public class AddressDetailActivity extends NeolixNaviagationBaseActivity {
         detailTextView.setText(address.getCompleteAddress());
 
         setDefaultButton.setVisibility(address.isDefault() ? View.GONE : View.VISIBLE);
+    }
+
+    private void deleteAddress(final Address address1) {
+        showRequestDialog(AddressDetailActivity.this, getString(R.string.is_delete_address));
+        address1.setAddress_id(address1.getId());
+
+        DeleteAddressRequset requset = new DeleteAddressRequset(address1.getId());
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.del_address, requset);
+
+        Type type = new TypeToken<HttpResponse<Address>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.IS_DELETE, true);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
+    }
+
+
+    private void setDefaultAddress(final Address address1) {
+        showRequestDialog(AddressDetailActivity.this, getString(R.string.is_set_address));
+        address1.setAddress_id(address1.getId());
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.set_default_address, address1);
+
+        Type type = new TypeToken<HttpResponse<Address>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<String>> task =
+                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<String> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            address.setDefault(true);
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.ADDRESS, address);
+                            intent.putExtra(Constant.IS_CHANGE_DEFAULT_ADDRESS, true);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 }

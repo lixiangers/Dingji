@@ -4,14 +4,11 @@ import com.lixiangers.dingji.protocol.http.HttpRequestParams;
 
 import java.io.Serializable;
 
-public class Address extends HttpRequestParams implements Serializable {
+public class AddressRequestAndReponse extends HttpRequestParams implements Serializable {
     private String id;
-
     private String address_id;
-
     private String name;
     private String mobile;
-    private Boolean isDefault;
     private String detail_address;
     private String province;
     private String city;
@@ -46,10 +43,6 @@ public class Address extends HttpRequestParams implements Serializable {
         return detail_address;
     }
 
-    public boolean isDefault() {
-        return isDefault;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -63,7 +56,6 @@ public class Address extends HttpRequestParams implements Serializable {
     }
 
     public void setDefault(boolean isDefault) {
-        this.isDefault = isDefault;
     }
 
     public String getProvince() {

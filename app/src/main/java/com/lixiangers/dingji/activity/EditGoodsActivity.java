@@ -298,16 +298,16 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.add_product, params);
 
-        Type type = new TypeToken<HttpResponse<String>>() {
+        Type type = new TypeToken<HttpResponse<Goods>>() {
         }.getType();
 
-        RequestServerAsyncTask<HttpResponse<String>> task =
-                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+        RequestServerAsyncTask<HttpResponse<Goods>> task =
+                new RequestServerAsyncTask<HttpResponse<Goods>>(type) {
                     @Override
-                    public void OnResponse(HttpResponse<String> httpResponse) {
+                    public void OnResponse(HttpResponse<Goods> httpResponse) {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
-                            goods.setid(httpResponse.getResponseParams());
+                            goods.setid(httpResponse.getResponseParams().getid());
                             Intent intent = new Intent();
                             intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, goods);
                             setResult(RESULT_OK, intent);
@@ -328,13 +328,13 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.edit_product, params);
 
-        Type type = new TypeToken<HttpResponse<String>>() {
+        Type type = new TypeToken<HttpResponse<Goods>>() {
         }.getType();
 
-        RequestServerAsyncTask<HttpResponse<String>> task =
-                new RequestServerAsyncTask<HttpResponse<String>>(type) {
+        RequestServerAsyncTask<HttpResponse<Goods>> task =
+                new RequestServerAsyncTask<HttpResponse<Goods>>(type) {
                     @Override
-                    public void OnResponse(HttpResponse<String> httpResponse) {
+                    public void OnResponse(HttpResponse<Goods> httpResponse) {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
                             Intent intent = new Intent();

@@ -5,11 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.protocol.domain.Address;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.view.LocationPopupWindow;
 
+import java.lang.reflect.Type;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.isBlank;
 import static com.lixiangers.dingji.util.StringUtil.showText;
@@ -54,7 +63,7 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
             contactEditView.setText(address.getName());
             phoneEditView.setText(address.getPhone());
             cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getCounty());
-            detailEditView.setText(address.getDetailAddress());
+            detailEditView.setText(address.getDetail_address());
         }
     }
 
@@ -63,28 +72,31 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
         String phone = getTextFrom(phoneEditView);
         String cityArea = getTextFrom(cityAreaEditView);
         String detailArea = getTextFrom(detailEditView);
+        boolean isAdd = false;
 
         if (isBlank(contact) || isBlank(phone) || isBlank(cityArea) || isBlank(detailArea)) {
             showText(getString(R.string.data_incomplete));
             return;
         }
 
-        if (address == null)
+
+        if (address == null) {
+            isAdd = true;
             address = new Address();
+        }
 
         address.setPhone(phone);
         address.setName(contact);
         address.setProvince(province);
         address.setCity(city);
         address.setCounty(county);
-        address.setDetailAddress(detailArea);
-        address.setDefault(address == null ? false : address.isDefault());
+        address.setDetail_address(detailArea);
+        address.setDefault(isAdd ? false : address.isDefault());
 
-        Intent intent = new Intent();
-        intent.putExtra(Constant.ADDRESS, address);
-        setResult(RESULT_OK, intent);
-
-        finish();
+        if (isAdd)
+            addAddress(address);
+        else
+            modifyAddress(address);
     }
 
     private void initView() {
@@ -105,5 +117,57 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
                 county = countyString;
             }
         });
+    }
+
+    private void addAddress(final Address address1) {
+        showRequestDialog(EditAddressActivity.this, getString(R.string.is_add_address));
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.add_address, address1);
+
+        Type type = new TypeToken<HttpResponse<String>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<Address>> task =
+                new RequestServerAsyncTask<HttpResponse<Address>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<Address> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            address1.setAddress_id(httpResponse.getResponseParams().getId());
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, address1);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
+    }
+
+    private void modifyAddress(final Address address1) {
+        showRequestDialog(EditAddressActivity.this, getString(R.string.is_modify_address));
+        address1.setAddress_id(address1.getId());
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.edit_address, address1);
+
+        Type type = new TypeToken<HttpResponse<Address>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<Address>> task =
+                new RequestServerAsyncTask<HttpResponse<Address>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<Address> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            Intent intent = new Intent();
+                            intent.putExtra(Constant.GOODS_ITEM_VIEW_MODEL, address1);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 }

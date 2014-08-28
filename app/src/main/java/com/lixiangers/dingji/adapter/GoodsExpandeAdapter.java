@@ -50,7 +50,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return data.get(groupPosition).getGoodsList().size();
+        return data.get(groupPosition).getData().size();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Goods getChild(int groupPosition, int childPosition) {
-        return data.get(groupPosition).getGoodsList().get(childPosition);
+        return data.get(groupPosition).getData().get(childPosition);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
         }
         TextView groupName = (TextView) convertView
                 .findViewById(R.id.group_name);
-        groupName.setText(data.get(groupPosition).getCategoryName());
+        groupName.setText(data.get(groupPosition).getCategory());
 
         ImageView group_indicator_image = (ImageView) convertView.findViewById(R.id.iv_group_indicator);
         group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_back_hl : R.drawable.ic_back);

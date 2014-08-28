@@ -6,10 +6,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.protocol.domain.Address;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.view.LocationPopupWindow;
+
+import java.lang.reflect.Type;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
     public static final int REQUEST_CODE_SELECT_ADDRESS = 1;
@@ -53,7 +64,7 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         contactEditView.setText(address.getName());
         phoneEditView.setText(address.getPhone());
         cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getCounty());
-        detailEditView.setText(address.getDetailAddress());
+        detailEditView.setText(address.getDetail_address());
     }
 
     private void initView() {
@@ -68,8 +79,26 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void getDefaultAddress() {
-        //TODO get default address
-//        fillData();
+        showRequestDialog(this, getString(R.string.is_get_default_address));
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.get_default_address, null);
+
+        Type type = new TypeToken<HttpResponse<Address>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<Address>> task =
+                new RequestServerAsyncTask<HttpResponse<Address>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<Address> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            Address address1 = httpResponse.getResponseParams();
+                            fillData(address1);
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 
     private void initListener() {
@@ -96,4 +125,5 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
             }
         });
     }
+
 }

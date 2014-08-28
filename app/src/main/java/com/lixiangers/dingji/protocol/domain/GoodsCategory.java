@@ -6,22 +6,22 @@ import com.lixiangers.dingji.model.Goods;
 import java.util.List;
 
 public class GoodsCategory {
-    private String categoryName;
-    private List<Goods> goodsList;
+    private String category;
+    private List<Goods> data;
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public List<Goods> getGoodsList() {
-        return goodsList;
+    public List<Goods> getData() {
+        return data;
     }
 
-    public void setGoodsList(List<Goods> goodsList) {
-        this.goodsList = goodsList;
+    public void setData(List<Goods> data) {
+        this.data = data;
     }
 }

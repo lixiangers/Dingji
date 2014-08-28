@@ -8,13 +8,24 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.ModelListAdapter;
 import com.lixiangers.dingji.protocol.domain.Address;
+import com.lixiangers.dingji.protocol.domain.AddressListReponse;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
     public static final int REQUEST_CODE_ADD_ADDRESS = 1;
@@ -111,6 +122,36 @@ public class ManagerAddressActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void loadData() {
-        //TODO get address list
+        queryAddress();
+    }
+
+    private void queryAddress() {
+        showRequestDialog(ManagerAddressActivity.this, getString(R.string.is_get_addrss));
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.list_address, null);
+
+        Type type = new TypeToken<HttpResponse<AddressListReponse>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<AddressListReponse>> task =
+                new RequestServerAsyncTask<HttpResponse<AddressListReponse>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<AddressListReponse> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            addressList = httpResponse.getResponseParams().getAddress_list();
+                            String defaultAddressId = httpResponse.getResponseParams().getDefault_address_id();
+                            for (Address address : addressList) {
+                                if (address.getId().equals(defaultAddressId)) {
+                                    address.setDefault(true);
+                                    break;
+                                }
+                            }
+                            adapter.setData(addressList);
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
 }

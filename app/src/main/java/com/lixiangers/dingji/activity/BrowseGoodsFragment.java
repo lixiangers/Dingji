@@ -8,18 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.GoodsExpandeAdapter;
 import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.model.Goods;
 import com.lixiangers.dingji.model.OrderItem;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
+import com.lixiangers.dingji.protocol.http.HttpRequest;
+import com.lixiangers.dingji.protocol.http.HttpResponse;
+import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
+import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.StringUtil;
 import com.lixiangers.dingji.view.NavigationBar;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class BrowseGoodsFragment extends Fragment {
 
@@ -77,7 +87,27 @@ public class BrowseGoodsFragment extends Fragment {
     }
 
     private void loadData() {
-        adapter.setData(goodsCategories);
-        goodsListView.expandGroup(0, true);
+        showRequestDialog(getActivity(), getString(R.string.is_query_goods));
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.list_product_in_group, null);
+
+        Type type = new TypeToken<HttpResponse<List<GoodsCategory>>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<List<GoodsCategory>>> task =
+                new RequestServerAsyncTask<HttpResponse<List<GoodsCategory>>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<List<GoodsCategory>> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            goodsCategories = httpResponse.getResponseParams();
+                            adapter.setData(goodsCategories);
+                            goodsListView.expandGroup(0, true);
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
     }
+
 }
