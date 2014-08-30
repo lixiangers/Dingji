@@ -23,7 +23,7 @@ import java.util.List;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class ShoppingCartFragment extends android.support.v4.app.Fragment {
-    public static List<OrderItem> orderItemList = new ArrayList<OrderItem>();
+    private static List<OrderItem> orderItemList = new ArrayList<OrderItem>();
     private ModelListAdapter<OrderItem> adapter;
     private ListView goodsListView;
     private TextView totalAmountTextView;
@@ -42,6 +42,14 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
 
         if (!isExits)
             orderItemList.add(item);
+    }
+
+    public static List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public static void clearShoppingCat() {
+        orderItemList.clear();
     }
 
     @Override

@@ -102,5 +102,7 @@
     <string name="is_logout">正在登出</string>
     <string name="is_upload">正在上传</string>
     <string name="submit_success">提交成功</string>
+    <string name="is_submit_order">正在提交订单</string>
+    <string name="submit_order_success">订单提交成功</string>
 
 </resources>

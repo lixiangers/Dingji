@@ -8,7 +8,9 @@ import android.widget.EditText;
 
 import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.model.OrderItem;
 import com.lixiangers.dingji.protocol.domain.Address;
+import com.lixiangers.dingji.protocol.domain.SubmitOrderRequest;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
@@ -17,9 +19,14 @@ import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.view.LocationPopupWindow;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
 import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
+import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
+import static com.lixiangers.dingji.util.StringUtil.isBlank;
 import static com.lixiangers.dingji.util.StringUtil.isNotBlank;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 
@@ -32,6 +39,10 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
     private EditText phoneEditView;
     private Button submitOrderButton;
     private View otherAddressView;
+
+    private String province;
+    private String city;
+    private String county;
 
     public ConfirmAddressActivity() {
         super(R.layout.activity_confirm_address);
@@ -108,13 +119,16 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void areaChange(String provinceString, String cityString, String countyString) {
                 cityAreaEditView.setText(provinceString + cityString + countyString);
+                province = provinceString;
+                city = cityString;
+                county = countyString;
             }
         });
 
         submitOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO submit order
+                submitOrder();
             }
         });
 
@@ -128,4 +142,63 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         });
     }
 
+
+    private void submitOrder() {
+        List<OrderItem> orderItemList = ShoppingCartFragment.getOrderItemList();
+        if (orderItemList == null || orderItemList.isEmpty())
+            return;
+
+        String name = getTextFrom(contactEditView);
+        String phone = getTextFrom(phoneEditView);
+        String detailArea = getTextFrom(detailEditView);
+        int totalAmount = 0;
+        List<SubmitOrderRequest.Product> products = new ArrayList<SubmitOrderRequest.Product>();
+
+        if (isBlank(name) || isBlank(phone)
+                || isBlank(getTextFrom(cityAreaEditView)) || isBlank(detailArea)) {
+            showText(R.string.data_incomplete);
+            return;
+        }
+
+        SubmitOrderRequest request = new SubmitOrderRequest();
+        request.setReceiver_name(name);
+        request.setReceiver_mobile(phone);
+        request.setReceiver_province(province);
+        request.setReceiver_city(city);
+        request.setReceiver_district(county);
+        request.setReceiver_detail_address(detailArea);
+
+        for (OrderItem orderItem : orderItemList) {
+            totalAmount += orderItem.getTotalAmount();
+            SubmitOrderRequest.Product product = new SubmitOrderRequest.Product();
+            product.setCount(orderItem.getQuantity());
+            product.setProduct_id(orderItem.getGoods().getid());
+            products.add(product);
+        }
+
+        request.setTotal_price(totalAmount);
+        request.setProducts(products);
+
+        showRequestDialog(this, getString(R.string.is_submit_order));
+        final HttpRequest httpRequest = new HttpRequest(
+                RequestType.submit_order, request);
+
+        Type type = new TypeToken<HttpResponse<Objects>>() {
+        }.getType();
+
+        RequestServerAsyncTask<HttpResponse<Objects>> task =
+                new RequestServerAsyncTask<HttpResponse<Objects>>(type) {
+                    @Override
+                    public void OnResponse(HttpResponse<Objects> httpResponse) {
+                        hideRequestDialog();
+                        if (httpResponse.noErrorMessage()) {
+                            showText(getString(R.string.submit_order_success));
+                            ShoppingCartFragment.clearShoppingCat();
+                            goToNextWithBundle(Constant.TAB_GOODS, MainActivity.class, Constant.TAB_TAG);
+                        } else
+                            showText(httpResponse.getError().getMessage());
+                    }
+                };
+        task.sendRequest(httpRequest, true);
+    }
 }
