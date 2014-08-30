@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.ModelListAdapter;
 import com.lixiangers.dingji.application.MyApplication;
-import com.lixiangers.dingji.model.OrderItem;
+import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.util.CommonHelper;
 import com.lixiangers.dingji.view.NavigationBar;
 import com.lixiangers.dingji.view.SelectQuantityView;
@@ -23,33 +23,33 @@ import java.util.List;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class ShoppingCartFragment extends android.support.v4.app.Fragment {
-    private static List<OrderItem> orderItemList = new ArrayList<OrderItem>();
-    private ModelListAdapter<OrderItem> adapter;
+    private static List<ShoppingItem> shoppingItemList = new ArrayList<ShoppingItem>();
+    private ModelListAdapter<ShoppingItem> adapter;
     private ListView goodsListView;
     private TextView totalAmountTextView;
     private Button commitButton;
     private int totalAmount;
 
-    public static void addGoods(OrderItem item) {
+    public static void addGoods(ShoppingItem item) {
         boolean isExits = false;
-        for (OrderItem orderItem : orderItemList) {
-            if (orderItem.getGoods().getid().equals(item.getGoods().getid())) {
+        for (ShoppingItem shoppingItem : shoppingItemList) {
+            if (shoppingItem.getGoods().getid().equals(item.getGoods().getid())) {
                 isExits = true;
-                orderItem.setQuantity(orderItem.getQuantity() + item.getQuantity());
+                shoppingItem.setQuantity(shoppingItem.getQuantity() + item.getQuantity());
                 break;
             }
         }
 
         if (!isExits)
-            orderItemList.add(item);
+            shoppingItemList.add(item);
     }
 
-    public static List<OrderItem> getOrderItemList() {
-        return orderItemList;
+    public static List<ShoppingItem> getShoppingItemList() {
+        return shoppingItemList;
     }
 
     public static void clearShoppingCat() {
-        orderItemList.clear();
+        shoppingItemList.clear();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
         totalAmountTextView = (TextView) view.findViewById(R.id.tv_amount);
         commitButton = (Button) view.findViewById(R.id.bt_commit);
 
-        adapter = new ModelListAdapter<OrderItem>(MyApplication.getInstance());
+        adapter = new ModelListAdapter<ShoppingItem>(MyApplication.getInstance());
         goodsListView.setAdapter(adapter);
 
         addNumberChangeListener();
@@ -82,19 +82,19 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
     }
 
     private void loadData() {
-        adapter.setData(orderItemList);
-        goodsListView.setVisibility(orderItemList.isEmpty() ? View.GONE : View.VISIBLE);
+        adapter.setData(shoppingItemList);
+        goodsListView.setVisibility(shoppingItemList.isEmpty() ? View.GONE : View.VISIBLE);
         goodsListView.setItemsCanFocus(true);
         calcTotalAmount();
         CommonHelper.setListViewHeightBasedOnChildren(goodsListView);
     }
 
     private void addNumberChangeListener() {
-        for (final OrderItem orderItem : orderItemList) {
-            orderItem.setOnNumberChangeListener(new SelectQuantityView.onNumberChangeListener() {
+        for (final ShoppingItem shoppingItem : shoppingItemList) {
+            shoppingItem.setOnNumberChangeListener(new SelectQuantityView.onNumberChangeListener() {
                 @Override
                 public void onNumberChange(int number) {
-                    orderItem.setQuantity(number);
+                    shoppingItem.setQuantity(number);
 //                    if (number == 0) {
 //                        orderItemList.remove(orderItem);
 //                        loadData();
@@ -108,8 +108,8 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
 
     private void calcTotalAmount() {
         totalAmount = 0;
-        for (OrderItem orderItem : orderItemList) {
-            totalAmount += orderItem.getTotalAmount();
+        for (ShoppingItem shoppingItem : shoppingItemList) {
+            totalAmount += shoppingItem.getTotalAmount();
         }
         totalAmountTextView.setText(String.format("%.2f", totalAmount / 100f));
     }

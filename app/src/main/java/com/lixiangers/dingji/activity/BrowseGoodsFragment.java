@@ -13,7 +13,7 @@ import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.GoodsExpandeAdapter;
 import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.model.Goods;
-import com.lixiangers.dingji.model.OrderItem;
+import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.protocol.domain.GoodsCategory;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
@@ -58,10 +58,10 @@ public class BrowseGoodsFragment extends Fragment {
             @Override
             public void OnByGoods(Goods goods) {
                 StringUtil.showText(goods.getName());
-                OrderItem orderItem = new OrderItem();
-                orderItem.setGoods(goods);
-                orderItem.setQuantity(1);
-                ShoppingCartFragment.addGoods(orderItem);
+                ShoppingItem shoppingItem = new ShoppingItem();
+                shoppingItem.setGoods(goods);
+                shoppingItem.setQuantity(1);
+                ShoppingCartFragment.addGoods(shoppingItem);
             }
         });
     }

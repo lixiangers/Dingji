@@ -2,7 +2,7 @@ package com.lixiangers.dingji.model;
 
 import com.lixiangers.dingji.view.SelectQuantityView;
 
-public class OrderItem {
+public class ShoppingItem {
     private Goods goods;
     private int quantity;
 

@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
-import com.lixiangers.dingji.model.OrderItem;
+import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.protocol.domain.Address;
 import com.lixiangers.dingji.protocol.domain.SubmitOrderRequest;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
@@ -144,8 +144,8 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
 
 
     private void submitOrder() {
-        List<OrderItem> orderItemList = ShoppingCartFragment.getOrderItemList();
-        if (orderItemList == null || orderItemList.isEmpty())
+        List<ShoppingItem> shoppingItemList = ShoppingCartFragment.getShoppingItemList();
+        if (shoppingItemList == null || shoppingItemList.isEmpty())
             return;
 
         String name = getTextFrom(contactEditView);
@@ -168,11 +168,11 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         request.setReceiver_district(county);
         request.setReceiver_detail_address(detailArea);
 
-        for (OrderItem orderItem : orderItemList) {
-            totalAmount += orderItem.getTotalAmount();
+        for (ShoppingItem shoppingItem : shoppingItemList) {
+            totalAmount += shoppingItem.getTotalAmount();
             SubmitOrderRequest.Product product = new SubmitOrderRequest.Product();
-            product.setCount(orderItem.getQuantity());
-            product.setProduct_id(orderItem.getGoods().getid());
+            product.setCount(shoppingItem.getQuantity());
+            product.setProduct_id(shoppingItem.getGoods().getid());
             products.add(product);
         }
 

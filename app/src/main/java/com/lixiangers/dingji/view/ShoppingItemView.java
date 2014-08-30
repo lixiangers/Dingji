@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
-import com.lixiangers.dingji.model.OrderItem;
+import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.util.StringUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class OrderItemView extends BaseItemView<OrderItem> {
+public class ShoppingItemView extends BaseItemView<ShoppingItem> {
     private final Context context;
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
@@ -24,23 +24,23 @@ public class OrderItemView extends BaseItemView<OrderItem> {
 
     private SelectQuantityView selectQuantityView;
     private TextView amountTextView;
-    private OrderItem orderItem;
+    private ShoppingItem shoppingItem;
 
-    public OrderItemView(Context context) {
+    public ShoppingItemView(Context context) {
         super(context);
         this.context = context;
         initUi();
     }
 
-    public OrderItemView(Context context, AttributeSet attrs) {
+    public ShoppingItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
         initUi();
     }
 
     @Override
-    public void setModel(OrderItem model) {
-        this.orderItem = model;
+    public void setModel(ShoppingItem model) {
+        this.shoppingItem = model;
         super.setModel(model);
         goodsNameTextView.setText(model.getGoods().getName());
         goodsPriceTextView.setText(model.getGoods().getPriceAndUnit());
@@ -55,7 +55,7 @@ public class OrderItemView extends BaseItemView<OrderItem> {
 
     private void initUi() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.view_order_item, this);
+        inflater.inflate(R.layout.view_shopping_item, this);
         goodsImage = (ImageView) findViewById(R.id.iv_goods_image);
         goodsNameTextView = (TextView) findViewById(R.id.goods_name);
         goodsPriceTextView = (TextView) findViewById(R.id.goods_price);
@@ -77,9 +77,9 @@ public class OrderItemView extends BaseItemView<OrderItem> {
         selectQuantityView.setOnNumberChangeListener(new SelectQuantityView.onNumberChangeListener() {
             @Override
             public void onNumberChange(int number) {
-                orderItem.setQuantity(number);
-                amountTextView.setText(StringUtil.formatTemplateString(R.string.amount_yuan, orderItem == null ? 0 : orderItem.getTotalAmount() / 100f));
-                orderItem.getOnNumberChangeListener().onNumberChange(number);
+                shoppingItem.setQuantity(number);
+                amountTextView.setText(StringUtil.formatTemplateString(R.string.amount_yuan, shoppingItem == null ? 0 : shoppingItem.getTotalAmount() / 100f));
+                shoppingItem.getOnNumberChangeListener().onNumberChange(number);
             }
         });
     }

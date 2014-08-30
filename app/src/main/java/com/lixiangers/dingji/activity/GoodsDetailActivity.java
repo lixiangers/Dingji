@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.model.Goods;
-import com.lixiangers.dingji.model.OrderItem;
+import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.DensityUtil;
 import com.lixiangers.dingji.view.SelectQuantityView;
@@ -85,10 +85,10 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
                 if (selectQuantityView.getNumber() < 1)
                     showText(getString(R.string.quantity_must_greater_than_0));
 
-                OrderItem orderItem = new OrderItem();
-                orderItem.setGoods(goods);
-                orderItem.setQuantity(selectQuantityView.getNumber());
-                ShoppingCartFragment.addGoods(orderItem);
+                ShoppingItem shoppingItem = new ShoppingItem();
+                shoppingItem.setGoods(goods);
+                shoppingItem.setQuantity(selectQuantityView.getNumber());
+                ShoppingCartFragment.addGoods(shoppingItem);
 
                 goToNextWithBundle(Constant.TAB_SHOPPING_CART, MainActivity.class, Constant.TAB_TAG);
                 finish();
