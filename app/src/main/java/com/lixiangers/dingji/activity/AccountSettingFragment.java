@@ -88,6 +88,13 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
                 logout();
             }
         });
+
+        historyOrderView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getInstance(), QueryOrderActivity.class));
+            }
+        });
     }
 
     private void logout() {

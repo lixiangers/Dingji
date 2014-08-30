@@ -104,5 +104,6 @@
     <string name="submit_success">提交成功</string>
     <string name="is_submit_order">正在提交订单</string>
     <string name="submit_order_success">订单提交成功</string>
+    <string name="my_order">我的订单</string>
 
 </resources>
