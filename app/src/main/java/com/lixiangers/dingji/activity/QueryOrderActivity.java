@@ -1,5 +1,6 @@
 package com.lixiangers.dingji.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -61,7 +62,7 @@ public class QueryOrderActivity extends NeolixNaviagationBaseActivity {
                 String keyword = getTextFrom(keywordEditView);
                 startIndex = 0;
                 orderList.clear();
-                queryGoods(keyword);
+                queryOrder(keyword);
             }
         });
 
@@ -80,24 +81,27 @@ public class QueryOrderActivity extends NeolixNaviagationBaseActivity {
         orderPullListView.getRefreshableView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO
+                Intent intent = new Intent(getApplicationContext(), OrderDetailActivity.class);
+                intent.putExtra(Constant.ORDER_ID, adapter.getItem(i).getId());
+                intent.putExtra(Constant.ORDER_NUMBER, adapter.getItem(i).getOrder_no());
+                startActivity(intent);
             }
         });
 
         orderPullListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                loadGoods();
+                loadOrder();
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                loadGoods();
+                loadOrder();
             }
         });
     }
 
-    private void loadGoods() {
+    private void loadOrder() {
         QueryOrderListRequest request = new QueryOrderListRequest();
         request.setStatus(asList(OrderStatus.SUBMIT_ORDER.getIndex(),
                 OrderStatus.START_TRANSPORT.getIndex(),
@@ -139,7 +143,7 @@ public class QueryOrderActivity extends NeolixNaviagationBaseActivity {
         task.sendRequest(httpRequest, true);
     }
 
-    private void queryGoods(String keywords) {
+    private void queryOrder(String keywords) {
         QueryOrderListRequest request = new QueryOrderListRequest();
         request.setKeyword(keywords);
         request.setStart(startIndex);

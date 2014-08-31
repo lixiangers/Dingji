@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:background="@color/my_red"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border">
+
+            <TextView
+                style="@style/white_text_h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shopping_goods" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_goods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/split_color"
+            android:dividerHeight="@dimen/split_width" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:background="@color/my_red"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border">
+
+            <TextView
+                style="@style/white_text_h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/receive_address" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="@string/contacts" />
+
+            <TextView
+                android:id="@+id/tv_contact"
+                style="@style/black_text_h"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="@string/phone" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/black_text_h"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_address" />
+
+            <TextView
+                android:id="@+id/tv_detail_area"
+                style="@style/black_text_h"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:singleLine="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/my_red"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border">
+
+            <TextView
+                style="@style/white_text_h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_status" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/liner_order_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="@dimen/view_margin_left_right_to_border">
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

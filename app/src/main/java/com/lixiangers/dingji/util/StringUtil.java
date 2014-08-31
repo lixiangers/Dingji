@@ -57,6 +57,10 @@ public final class StringUtil {
         return time == null ? null : new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(time);
     }
 
+    public static String formatTimeWithoutSecond(Date time) {
+        return time == null ? null : new SimpleDateFormat("yyyy-MM-dd HH:mm").format(time);
+    }
+
     public static String getYMdHmsOfDateTime(DateTime referenceTime) {
         return referenceTime.toString("yyyy-MM-dd HH:mm:ss");
     }
