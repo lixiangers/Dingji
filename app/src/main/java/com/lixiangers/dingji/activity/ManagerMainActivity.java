@@ -5,12 +5,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.manager.FinishOrderListActivity;
+import com.lixiangers.dingji.manager.UnFinishOrderListActivity;
 
 public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
 
     private Button goodsManagerButton;
-    private Button orderManagerButton;
+    private Button unfinishOrderButton;
     private Button orderQueryButton;
+    private Button finishOrderButton;
 
     public ManagerMainActivity() {
         super(R.layout.activity_manager);
@@ -27,8 +30,9 @@ public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
 
     private void initView() {
         goodsManagerButton = (Button) findViewById(R.id.bt_goods_manager);
-        orderManagerButton = (Button) findViewById(R.id.bt_backlog_order);
+        unfinishOrderButton = (Button) findViewById(R.id.bt_backlog_order);
         orderQueryButton = (Button) findViewById(R.id.bt_order_query);
+        finishOrderButton = (Button) findViewById(R.id.bt_completed_order);
     }
 
     private void initListener() {
@@ -36,6 +40,20 @@ public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void onClick(View v) {
                 goTo(GoodsManagerActivity.class);
+            }
+        });
+
+        finishOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(FinishOrderListActivity.class);
+            }
+        });
+
+        unfinishOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goTo(UnFinishOrderListActivity.class);
             }
         });
     }
