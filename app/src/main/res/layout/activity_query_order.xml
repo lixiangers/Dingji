@@ -38,6 +38,7 @@
                 android:textColorHint="@color/hint_text_color"
                 android:textColor="@color/my_black"
                 android:textSize="@dimen/text_size_h"
+                android:hint="@string/query_order_hint_text"
                 android:textCursorDrawable="@null" />
         </LinearLayout>
 

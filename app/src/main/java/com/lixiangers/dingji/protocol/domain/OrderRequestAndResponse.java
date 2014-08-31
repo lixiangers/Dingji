@@ -4,7 +4,7 @@ import com.lixiangers.dingji.protocol.http.HttpRequestParams;
 
 import java.util.List;
 
-public class SubmitOrderRequest extends HttpRequestParams {
+public class OrderRequestAndResponse extends HttpRequestParams {
 
     private Integer status;//订单状态:-1: '订单已取消', 0: '下单成功', 1: '开始配送', 2: '配送成功'
     private String id;//: 11,  订单id, 仅用作接口的订单标识

@@ -7,9 +7,9 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
-import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
+import com.lixiangers.dingji.protocol.domain.OrderRequestAndResponse;
 
-public class OrderItemView extends BaseItemView<GoodsItemViewModel> {
+public class OrderItemView extends BaseItemView<OrderRequestAndResponse> {
     private final Context context;
     private TextView orderNumberTextView;
     private TextView orderTimeTextView;
@@ -27,8 +27,13 @@ public class OrderItemView extends BaseItemView<GoodsItemViewModel> {
     }
 
     @Override
-    public void setModel(GoodsItemViewModel model) {
+    public void setModel(OrderRequestAndResponse model) {
         super.setModel(model);
+
+        orderNumberTextView.setText(model.getOrder_no());
+        //TODO
+        orderTimeTextView.setText("");
+
     }
 
     private void initUi() {

@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.protocol.domain.Address;
-import com.lixiangers.dingji.protocol.domain.SubmitOrderRequest;
+import com.lixiangers.dingji.protocol.domain.OrderRequestAndResponse;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
@@ -151,7 +151,7 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         String phone = getTextFrom(phoneEditView);
         String detailArea = getTextFrom(detailEditView);
         int totalAmount = 0;
-        List<SubmitOrderRequest.Product> products = new ArrayList<SubmitOrderRequest.Product>();
+        List<OrderRequestAndResponse.Product> products = new ArrayList<OrderRequestAndResponse.Product>();
 
         if (isBlank(name) || isBlank(phone)
                 || isBlank(getTextFrom(cityAreaEditView)) || isBlank(detailArea)) {
@@ -159,7 +159,7 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
             return;
         }
 
-        SubmitOrderRequest request = new SubmitOrderRequest();
+        OrderRequestAndResponse request = new OrderRequestAndResponse();
         request.setReceiver_name(name);
         request.setReceiver_mobile(phone);
         request.setReceiver_province(province);
@@ -169,7 +169,7 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
 
         for (ShoppingItem shoppingItem : shoppingItemList) {
             totalAmount += shoppingItem.getTotalAmount();
-            SubmitOrderRequest.Product product = new SubmitOrderRequest.Product();
+            OrderRequestAndResponse.Product product = new OrderRequestAndResponse.Product();
             product.setCount(shoppingItem.getQuantity());
             product.setProduct_id(shoppingItem.getGoods().getid());
             products.add(product);
@@ -182,13 +182,13 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.submit_order, request);
 
-        Type type = new TypeToken<HttpResponse<SubmitOrderRequest>>() {
+        Type type = new TypeToken<HttpResponse<OrderRequestAndResponse>>() {
         }.getType();
 
-        RequestServerAsyncTask<HttpResponse<SubmitOrderRequest>> task =
-                new RequestServerAsyncTask<HttpResponse<SubmitOrderRequest>>(type) {
+        RequestServerAsyncTask<HttpResponse<OrderRequestAndResponse>> task =
+                new RequestServerAsyncTask<HttpResponse<OrderRequestAndResponse>>(type) {
                     @Override
-                    public void OnResponse(HttpResponse<SubmitOrderRequest> httpResponse) {
+                    public void OnResponse(HttpResponse<OrderRequestAndResponse> httpResponse) {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
                             showText(getString(R.string.submit_order_success));
