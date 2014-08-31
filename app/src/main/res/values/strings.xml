@@ -113,7 +113,10 @@
     <string name="order">订单</string>
     <string name="is_query_order_detail">正在查询订单详情</string>
     <string name="is_query">正在查询</string>
-    <string name="unfinsih_order">为完成订单</string>
+    <string name="unfinsih_order">未完成订单</string>
     <string name="finish_order">已完成订单</string>
+    <string name="change_order_status">更改订单状态</string>
+    <string name="is_change_order_status">正在更改订单状态</string>
+    <string name="change_order_status_success">更改订单状态成功</string>
 
 </resources>

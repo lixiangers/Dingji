@@ -57,6 +57,8 @@ public class Constant {
     public static final String IS_SELECT_ADDRESS = "is_select_address";
     public static final int QUERY_ORDER_COUNT = 20;
     public static final String ORDER_NUMBER = "order_number";
+    public static final String IS_NEED_CHANGE_ORDER = "is_need_change_order";
+    public static final String IS_ADMIN = "is_admin";
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;

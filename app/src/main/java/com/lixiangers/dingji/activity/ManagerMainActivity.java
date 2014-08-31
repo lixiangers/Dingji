@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.manager.FinishOrderListActivity;
 import com.lixiangers.dingji.manager.UnFinishOrderListActivity;
+import com.lixiangers.dingji.util.Constant;
 
 public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
 
@@ -54,6 +55,13 @@ public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
             @Override
             public void onClick(View v) {
                 goTo(UnFinishOrderListActivity.class);
+            }
+        });
+
+        orderQueryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNextWithBundle(true, QueryOrderActivity.class, Constant.IS_ADMIN);
             }
         });
     }
