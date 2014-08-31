@@ -35,13 +35,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/transparent"
-                android:textColorHint="@color/hint_text_color"
-                android:textColor="@color/my_black"
-                android:textSize="@dimen/text_size_h"
                 android:hint="@string/query_order_hint_text"
-                android:textCursorDrawable="@null" />
+                android:textColor="@color/my_black"
+                android:textColorHint="@color/hint_text_color"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/text_size_h" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.lixiangers.dingji.view.PullRefreshListView.PullToRefreshListView
+        android:id="@+id/pull_lv_order"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/split_color"
+        android:dividerHeight="@dimen/split_width" />
 
 </LinearLayout>

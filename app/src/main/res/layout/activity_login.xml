@@ -22,6 +22,7 @@
             android:background="@color/transparent"
             android:hint="@string/please_input_account"
             android:singleLine="true"
+            android:inputType="phone"
             android:padding="@dimen/edit_text_padding" />
 
         <include layout="@layout/split_view" />
