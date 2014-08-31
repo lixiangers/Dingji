@@ -24,12 +24,11 @@
                 android:text="@string/shopping_goods" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lv_goods"
+        <LinearLayout
+            android:id="@+id/liner_goods"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/split_color"
-            android:dividerHeight="@dimen/split_width" />
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
 
         <LinearLayout
             android:layout_width="match_parent"

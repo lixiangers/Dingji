@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
+import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.StringUtil.getTextFrom;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 import static java.util.Arrays.asList;
@@ -144,6 +146,7 @@ public class QueryOrderActivity extends NeolixNaviagationBaseActivity {
     }
 
     private void queryOrder(String keywords) {
+        showRequestDialog(QueryOrderActivity.this, getString(R.string.is_query));
         QueryOrderListRequest request = new QueryOrderListRequest();
         request.setKeyword(keywords);
         request.setStart(startIndex);
@@ -158,6 +161,7 @@ public class QueryOrderActivity extends NeolixNaviagationBaseActivity {
                 new RequestServerAsyncTask<HttpResponse<List<OrderRequestAndResponse>>>(type) {
                     @Override
                     public void OnResponse(HttpResponse<List<OrderRequestAndResponse>> httpResponse) {
+                        hideRequestDialog();
                         orderPullListView.onPullDownRefreshComplete();
                         orderPullListView.setLastUpdatedLabel(StringUtil.getHmsOfDate(new Date()));
                         if (httpResponse.getError() == null) {
