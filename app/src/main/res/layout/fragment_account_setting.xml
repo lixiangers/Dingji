@@ -241,6 +241,8 @@
         <include layout="@layout/split_view" />
 
         <Button
+            android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
+            android:layout_marginRight="@dimen/view_margin_left_right_to_border"
             android:id="@+id/bt_logout"
             style="@style/my_positive_button"
             android:layout_width="match_parent"
