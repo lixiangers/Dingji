@@ -6,6 +6,10 @@ import java.util.List;
 
 public class SubmitOrderRequest extends HttpRequestParams {
 
+    private Integer status;//订单状态:-1: '订单已取消', 0: '下单成功', 1: '开始配送', 2: '配送成功'
+    private String id;//: 11,  订单id, 仅用作接口的订单标识
+    private String order_no;//: "14082622154830",  订单号码, 用于界面显示
+
     private String receiver_name;//: 收货人姓名
     private String receiver_mobile;//: 收货人手机
     private String receiver_province;//: 收货人省份
@@ -45,6 +49,62 @@ public class SubmitOrderRequest extends HttpRequestParams {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOrder_no() {
+        return order_no;
+    }
+
+    public void setOrder_no(String order_no) {
+        this.order_no = order_no;
+    }
+
+    public String getReceiver_name() {
+        return receiver_name;
+    }
+
+    public String getReceiver_mobile() {
+        return receiver_mobile;
+    }
+
+    public String getReceiver_province() {
+        return receiver_province;
+    }
+
+    public String getReceiver_city() {
+        return receiver_city;
+    }
+
+    public String getReceiver_district() {
+        return receiver_district;
+    }
+
+    public String getReceiver_detail_address() {
+        return receiver_detail_address;
+    }
+
+    public int getTotal_price() {
+        return total_price;
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 
     public static class Product {

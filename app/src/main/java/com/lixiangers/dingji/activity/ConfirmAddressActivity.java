@@ -21,7 +21,6 @@ import com.lixiangers.dingji.view.LocationPopupWindow;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
 import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
@@ -183,13 +182,13 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.submit_order, request);
 
-        Type type = new TypeToken<HttpResponse<Objects>>() {
+        Type type = new TypeToken<HttpResponse<SubmitOrderRequest>>() {
         }.getType();
 
-        RequestServerAsyncTask<HttpResponse<Objects>> task =
-                new RequestServerAsyncTask<HttpResponse<Objects>>(type) {
+        RequestServerAsyncTask<HttpResponse<SubmitOrderRequest>> task =
+                new RequestServerAsyncTask<HttpResponse<SubmitOrderRequest>>(type) {
                     @Override
-                    public void OnResponse(HttpResponse<Objects> httpResponse) {
+                    public void OnResponse(HttpResponse<SubmitOrderRequest> httpResponse) {
                         hideRequestDialog();
                         if (httpResponse.noErrorMessage()) {
                             showText(getString(R.string.submit_order_success));

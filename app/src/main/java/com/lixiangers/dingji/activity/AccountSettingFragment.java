@@ -13,6 +13,7 @@ import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
 import com.lixiangers.dingji.protocol.http.RequestType;
+import com.lixiangers.dingji.util.SharedPreferencesUtil;
 import com.lixiangers.dingji.view.NavigationBar;
 
 import java.lang.reflect.Type;
@@ -47,6 +48,8 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
         problemView = view.findViewById(R.id.view_problem);
         modifyPasswordView = view.findViewById(R.id.view_modify_password);
         logoutButton = view.findViewById(R.id.bt_logout);
+
+        accountTextView.setText(SharedPreferencesUtil.getUserPhone());
 
         initListener();
 

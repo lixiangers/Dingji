@@ -24,7 +24,6 @@
             android:paddingRight="@dimen/view_margin_left_right_to_border">
 
             <TextView
-                android:id="@+id/tv_account"
                 style="@style/black_text_h"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -32,6 +31,7 @@
                 android:text="@string/account" />
 
             <TextView
+                android:id="@+id/tv_account"
                 style="@style/black_text_h"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
