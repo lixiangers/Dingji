@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +23,10 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
     private final LayoutInflater inflater;
     private List<GoodsCategory> data = null;
 
+    private RotateAnimation mRotateUpAnim;
+    private RotateAnimation mRotateDownAnim;
+    private static final int ROTATE_ANIM_DURATION = 150;
+
     private onByGoodsListener onByGoodsListener = new onByGoodsListener() {
         @Override
         public void OnByGoods(Goods goods) {
@@ -36,6 +42,21 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         data = list;
+
+
+        float pivotValue = 0.5f;    // SUPPRESS CHECKSTYLE
+        float toDegree = -90f;     // SUPPRESS CHECKSTYLE
+
+        // 初始化旋转动画
+        mRotateUpAnim = new RotateAnimation(0.0f, toDegree, Animation.RELATIVE_TO_SELF, pivotValue,
+                Animation.RELATIVE_TO_SELF, pivotValue);
+
+        mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
+        mRotateUpAnim.setFillAfter(true);
+        mRotateDownAnim = new RotateAnimation(toDegree, 0.0f, Animation.RELATIVE_TO_SELF, pivotValue,
+                Animation.RELATIVE_TO_SELF, pivotValue);
+        mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
+        mRotateDownAnim.setFillAfter(true);
     }
 
     public void setData(List<GoodsCategory> list) {
@@ -88,8 +109,11 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.group_name);
         groupName.setText(data.get(groupPosition).getCategory());
 
+
         ImageView group_indicator_image = (ImageView) convertView.findViewById(R.id.iv_group_indicator);
-        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_back_hl : R.drawable.ic_back);
+        group_indicator_image.clearAnimation();
+        group_indicator_image.startAnimation(isExpanded ? mRotateUpAnim : mRotateDownAnim);
+//        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_back_hl : R.drawable.ic_back);
         return convertView;
     }
 
