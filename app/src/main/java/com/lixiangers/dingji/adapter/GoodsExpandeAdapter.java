@@ -32,6 +32,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
         public void OnByGoods(Goods goods) {
         }
     };
+    private int selectedPosition;
 
     public void setOnByGoodsListener(GoodsExpandeAdapter.onByGoodsListener onByGoodsListener) {
         this.onByGoodsListener = onByGoodsListener;
