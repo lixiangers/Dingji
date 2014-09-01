@@ -150,7 +150,9 @@
 
             <TextView
                 android:id="@+id/et_order_status"
-                style="@style/my_edit_view"
+                android:background="@drawable/bg_text_view"
+                style="@style/black_text_h"
+                android:paddingLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical" />
