@@ -54,6 +54,7 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
     private EditText goodsDesEditText;
     private Goods goods;
     private EditText catetoryEditText;
+    private boolean isAddGoods = false;
 
     public EditGoodsActivity() {
         super(R.layout.activity_edit_goods);
@@ -64,6 +65,10 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         goods = (Goods) intent.getSerializableExtra(Constant.GOODS_ITEM_VIEW_MODEL);
+        if (goods == null) {
+            isAddGoods = true;
+        }
+
         setTitle(goods == null ? R.string.add_goods : R.string.edit_goods);
         setLeftImage(R.drawable.selector_bg_back);
 
@@ -179,10 +184,8 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         String unit = getTextFrom(unitEditText);
         String category = getTextFrom(catetoryEditText);
         float realPrice = Float.parseFloat(price);
-        boolean isAddGoods = false;
         if (goods == null) {
             goods = new Goods();
-            isAddGoods = true;
         }
 
         goods.setPrice((int) (realPrice * 100));
