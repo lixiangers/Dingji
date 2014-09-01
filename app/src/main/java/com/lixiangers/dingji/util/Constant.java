@@ -59,6 +59,7 @@ public class Constant {
     public static final String ORDER_NUMBER = "order_number";
     public static final String IS_NEED_CHANGE_ORDER = "is_need_change_order";
     public static final String IS_ADMIN = "is_admin";
+    public static final int IMAGE_SIZE = 20;
     public static String Latitude = "Latitude";
     public static String Longitude = "Longitude";
     public static final int MILLISECONDS_IN_A_DAY = 24 * 60 * 60 * 1000;
@@ -71,7 +72,7 @@ public class Constant {
         public static final String VALUE_APPLICATION_JSON = "application/json";
         public static final String POST = "POST";
         public static final String SERVER_ADDRESS = "http://112.126.66.121/appserver/gateway";
-        public static final int TIME_OUT = 8 * 1000;
+        public static final int TIME_OUT = 15 * 1000;
         public static final Charset UTF_8 = Charset.forName("UTF8");
         public static final Charset DEFAULT_CHARSET = UTF_8;
         public static final String JSON_RPC_VERSION = "2.0";
