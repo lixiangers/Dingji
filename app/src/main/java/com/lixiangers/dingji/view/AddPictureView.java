@@ -200,8 +200,8 @@ public class AddPictureView extends LinearLayout {
         currentImageUrl = getGoodsImageName();
         intent.setType("image/*");
         intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", Constant.GOODS_PICTURE_SCALE_WIDTH);
-        intent.putExtra("aspectY", Constant.GOODS_PICTURE_SCALE_HEIGHT);
+//        intent.putExtra("aspectX", Constant.GOODS_PICTURE_SCALE_WIDTH);
+//        intent.putExtra("aspectY", Constant.GOODS_PICTURE_SCALE_HEIGHT);
         intent.putExtra("outputX", Constant.GOODS_PICTURE_WIDTH);
         intent.putExtra("outputY", Constant.GOODS_PICTURE_HEIGHT);
         intent.putExtra("scale", true);

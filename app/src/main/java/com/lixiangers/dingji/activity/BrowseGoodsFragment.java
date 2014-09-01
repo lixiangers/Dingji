@@ -1,5 +1,6 @@
 package com.lixiangers.dingji.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,33 +23,47 @@ import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.StringUtil;
 import com.lixiangers.dingji.view.NavigationBar;
+import com.lixiangers.dingji.view.PullRefreshListView.PullToRefreshBase;
+import com.lixiangers.dingji.view.PullRefreshListView.PullToRefreshExaplandListView;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
-import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.StringUtil.showText;
 
 public class BrowseGoodsFragment extends Fragment {
 
-    private ExpandableListView goodsListView;
+    private PullToRefreshExaplandListView goodsListView;
     private List<GoodsCategory> goodsCategories;
     private GoodsExpandeAdapter adapter;
+    private boolean isFirstCreate = true;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        goodsCategories = new ArrayList<GoodsCategory>();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browse_goods, container, false);
-        goodsListView = (ExpandableListView) view.findViewById(R.id.lv_goods);
+        goodsListView = (PullToRefreshExaplandListView) view.findViewById(R.id.lv_goods);
         NavigationBar navigationBar = (NavigationBar) view.findViewById(R.id.navigation_bar);
         navigationBar.setTitle(R.string.ding_ji_goods);
 
-        goodsCategories = new ArrayList<GoodsCategory>();
 
         initAdapter();
         initGoodsListView();
 
+        if (isFirstCreate) {
+            goodsListView.doPullRefreshing(true, 200);
+            isFirstCreate = false;
+        } else {
+            adapter.setData(goodsCategories);
+            goodsListView.getRefreshableView().expandGroup(0, true);
+        }
         return view;
     }
 
@@ -67,8 +82,15 @@ public class BrowseGoodsFragment extends Fragment {
     }
 
     private void initGoodsListView() {
-        goodsListView.setAdapter(adapter);
-        goodsListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        goodsListView.setPullDownRefreshEnabled(true);
+        goodsListView.setPullUpRefreshEnabled(false);
+        goodsListView.setScrollRefreshEnabled(false);
+        goodsListView.getRefreshableView().setChildDivider(getResources().getDrawable(R.color.split_color));
+        goodsListView.getRefreshableView().setDividerHeight(getResources().getDimensionPixelOffset(R.dimen.split_width));
+        goodsListView.getRefreshableView().setGroupIndicator(null);
+        goodsListView.getRefreshableView().setAdapter(adapter);
+
+        goodsListView.getRefreshableView().setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Goods child = adapter.getChild(groupPosition, childPosition);
@@ -78,16 +100,20 @@ public class BrowseGoodsFragment extends Fragment {
                 return false;
             }
         });
-    }
 
-    @Override
-    public void onResume() {
-        loadData();
-        super.onResume();
+        goodsListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ExpandableListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+                loadData();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+            }
+        });
     }
 
     private void loadData() {
-        showRequestDialog(getActivity(), getString(R.string.is_query_goods));
         final HttpRequest httpRequest = new HttpRequest(
                 RequestType.list_product_in_group, null);
 
@@ -98,11 +124,12 @@ public class BrowseGoodsFragment extends Fragment {
                 new RequestServerAsyncTask<HttpResponse<List<GoodsCategory>>>(type) {
                     @Override
                     public void OnResponse(HttpResponse<List<GoodsCategory>> httpResponse) {
-                        hideRequestDialog();
+                        goodsListView.onPullDownRefreshComplete();
+                        goodsListView.setLastUpdatedLabel(StringUtil.getHmsOfDate(new Date()));
                         if (httpResponse.noErrorMessage()) {
                             goodsCategories = httpResponse.getResponseParams();
                             adapter.setData(goodsCategories);
-                            goodsListView.expandGroup(0, true);
+                            goodsListView.getRefreshableView().expandGroup(0, true);
                         } else
                             showText(httpResponse.getError().getMessage());
                     }

@@ -10,14 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ExpandableListView
+    <com.lixiangers.dingji.view.PullRefreshListView.PullToRefreshExaplandListView
         android:id="@+id/lv_goods"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:childDivider="@color/split_color"
-        android:dividerHeight="@dimen/split_width"
-        android:groupIndicator="@null">
-
-    </ExpandableListView>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

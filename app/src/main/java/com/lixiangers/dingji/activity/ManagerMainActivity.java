@@ -1,6 +1,9 @@
 package com.lixiangers.dingji.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -9,12 +12,15 @@ import com.lixiangers.dingji.manager.FinishOrderListActivity;
 import com.lixiangers.dingji.manager.UnFinishOrderListActivity;
 import com.lixiangers.dingji.util.Constant;
 
+import static com.lixiangers.dingji.util.StringUtil.showText;
+
 public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
 
     private Button goodsManagerButton;
     private Button unfinishOrderButton;
     private Button orderQueryButton;
     private Button finishOrderButton;
+    private boolean isExit;
 
     public ManagerMainActivity() {
         super(R.layout.activity_manager);
@@ -27,6 +33,16 @@ public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
 
         initView();
         initListener();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode != KeyEvent.KEYCODE_BACK)
+            return super.onKeyDown(keyCode, event);
+        else {
+            exit();
+            return false;
+        }
     }
 
     private void initView() {
@@ -65,4 +81,22 @@ public class ManagerMainActivity extends NeolixNaviagationBaseActivity {
             }
         });
     }
+
+    private void exit() {
+        if (isExit) {
+            finish();
+        } else {
+            isExit = true;
+            showText(R.string.please_press_again_to_login_activity);
+            mHandler.sendEmptyMessageDelayed(0, 300);
+        }
+    }
+
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
 }

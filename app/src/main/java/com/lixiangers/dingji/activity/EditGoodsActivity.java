@@ -246,8 +246,8 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", Constant.GOODS_PICTURE_SCALE_WIDTH);
-        intent.putExtra("aspectY", Constant.GOODS_PICTURE_SCALE_HEIGHT);
+//        intent.putExtra("aspectX", Constant.GOODS_PICTURE_SCALE_WIDTH);
+//        intent.putExtra("aspectY", Constant.GOODS_PICTURE_SCALE_HEIGHT);
         intent.putExtra("outputX", outputX);
         intent.putExtra("outputY", outputY);
         intent.putExtra("scale", true);

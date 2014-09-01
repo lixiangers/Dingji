@@ -33,8 +33,8 @@ public class Constant {
     /*用来标识请求gallery的activity*/
     public static final int PHOTO_PICKED = 1002;
     public static final int REQUEST_CROP_IMAGE = 1003;
-    public static final int GOODS_PICTURE_WIDTH = 200;
-    public static final int GOODS_PICTURE_HEIGHT = 200;
+    public static final int GOODS_PICTURE_WIDTH = 800;
+    public static final int GOODS_PICTURE_HEIGHT = 600;
     public static final int GOODS_PICTURE_SCALE_WIDTH = 1;
     public static final int GOODS_PICTURE_SCALE_HEIGHT = 1;
     public static final int REQUEST_ENABLE_BT = 3;
