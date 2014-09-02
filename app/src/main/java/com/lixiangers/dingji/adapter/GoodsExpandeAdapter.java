@@ -127,12 +127,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
         groupName.setText(data.get(groupPosition).getCategory());
 
         ImageView group_indicator_image = (ImageView) convertView.findViewById(R.id.iv_group_indicator);
-
-        if (selectedGroupPosition == groupPosition) {
-            group_indicator_image.clearAnimation();
-            group_indicator_image.startAnimation(isExpanded ? mRotateUpAnim : mRotateDownAnim);
-        } else
-            group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_arrow_up : R.drawable.ic_arrow_down);
+        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_arrow_up : R.drawable.ic_arrow_down);
         return convertView;
     }
 

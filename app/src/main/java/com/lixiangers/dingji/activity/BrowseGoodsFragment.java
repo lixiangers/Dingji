@@ -112,17 +112,11 @@ public class BrowseGoodsFragment extends Fragment {
             }
         });
 
-        goodsListView.getRefreshableView().setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+        goodsListView.getRefreshableView().setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
-            public void onGroupCollapse(int groupPosition) {
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 adapter.setSelectedGroupPosition(groupPosition);
-            }
-        });
-
-        goodsListView.getRefreshableView().setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                adapter.setSelectedGroupPosition(groupPosition);
+                return false;
             }
         });
     }
