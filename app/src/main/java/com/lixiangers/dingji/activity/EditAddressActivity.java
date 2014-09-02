@@ -35,6 +35,7 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
     private String province;
     private String city;
     private String county;
+    private boolean isAdd = false;
 
     public EditAddressActivity() {
         super(R.layout.activity_edit_address);
@@ -44,8 +45,11 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         address = (Address) getIntent().getSerializableExtra(Constant.ADDRESS);
-        if (address == null)
+
+        if (address == null) {
             setTitle(getString(R.string.add_address));
+            isAdd = true;
+        }
         else
             setTitle(R.string.modify_address);
 
@@ -73,7 +77,6 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
         String phone = getTextFrom(phoneEditView);
         String cityArea = getTextFrom(cityAreaEditView);
         String detailArea = getTextFrom(detailEditView);
-        boolean isAdd = false;
 
         if (isBlank(contact) || isBlank(phone) || isBlank(cityArea) || isBlank(detailArea)) {
             showText(getString(R.string.data_incomplete));
@@ -82,7 +85,6 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
 
 
         if (address == null) {
-            isAdd = true;
             address = new Address();
         }
 

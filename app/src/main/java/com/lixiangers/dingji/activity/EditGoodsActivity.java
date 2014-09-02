@@ -23,6 +23,7 @@ import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
 import com.lixiangers.dingji.protocol.http.RequestType;
+import com.lixiangers.dingji.util.BitMapUtil;
 import com.lixiangers.dingji.util.Constant;
 import com.lixiangers.dingji.util.LocalTextWatcher;
 import com.lixiangers.dingji.util.StringUtil;
@@ -54,6 +55,7 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
     private EditText goodsDesEditText;
     private Goods goods;
     private EditText catetoryEditText;
+    private boolean isAddGoods = false;
 
     public EditGoodsActivity() {
         super(R.layout.activity_edit_goods);
@@ -64,6 +66,10 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         goods = (Goods) intent.getSerializableExtra(Constant.GOODS_ITEM_VIEW_MODEL);
+        if (goods == null) {
+            isAddGoods = true;
+        }
+
         setTitle(goods == null ? R.string.add_goods : R.string.edit_goods);
         setLeftImage(R.drawable.selector_bg_back);
 
@@ -179,10 +185,8 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
         String unit = getTextFrom(unitEditText);
         String category = getTextFrom(catetoryEditText);
         float realPrice = Float.parseFloat(price);
-        boolean isAddGoods = false;
         if (goods == null) {
             goods = new Goods();
-            isAddGoods = true;
         }
 
         goods.setPrice((int) (realPrice * 100));
@@ -357,11 +361,11 @@ public class EditGoodsActivity extends NeolixNaviagationBaseActivity {
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
                 .considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565)
+                .bitmapConfig(Bitmap.Config.ARGB_8888)
                 .build();
         ImageLoader imageLoader = MyApplication.getInstance().getImageLoader();
         Bitmap bitmap = imageLoader.loadImageSync(url, options);
-        return StringUtil.bitmapToBase64(bitmap);
+        return StringUtil.bitmapToBase64(BitMapUtil.compressImage(bitmap, Constant.IMAGE_SIZE));
     }
 
     private void deleteOriginImagePath(String originHeadImagePath1) {

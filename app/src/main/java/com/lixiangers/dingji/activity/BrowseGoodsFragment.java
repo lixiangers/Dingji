@@ -72,7 +72,7 @@ public class BrowseGoodsFragment extends Fragment {
         adapter.setOnByGoodsListener(new GoodsExpandeAdapter.onByGoodsListener() {
             @Override
             public void OnByGoods(Goods goods) {
-                StringUtil.showText(goods.getName());
+                StringUtil.showText(getString(R.string.add_to_shopping_cart_success));
                 ShoppingItem shoppingItem = new ShoppingItem();
                 shoppingItem.setGoods(goods);
                 shoppingItem.setQuantity(1);

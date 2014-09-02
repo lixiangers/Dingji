@@ -2,6 +2,7 @@ package com.lixiangers.dingji.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +46,15 @@ public class LoginActivity extends NeolixBaseActivity {
 
         initView();
         initListener();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode != KeyEvent.KEYCODE_BACK)
+            return super.onKeyDown(keyCode, event);
+        else {
+            return false;
+        }
     }
 
     private void initView() {
