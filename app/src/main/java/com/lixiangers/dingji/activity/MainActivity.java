@@ -27,7 +27,6 @@ public class MainActivity extends NeolixBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTabHost();
-        mTabHost.setCurrentTab(1);
     }
 
     @Override
@@ -51,17 +50,18 @@ public class MainActivity extends NeolixBaseActivity {
         mTabHost = (FragmentTabHost) findViewById(R.id.tab_host);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.real_tab_content);
 
-        RelativeLayout acceptOrderTab = createIndicator(R.drawable.selector_bg_back);
-        RelativeLayout pickUpTab = createIndicator(R.drawable.selector_bg_back);
-        RelativeLayout deliveryTab = createIndicator(R.drawable.selector_bg_back);
+        RelativeLayout goodsListTab = createIndicator(R.drawable.selector_bg_goods_list);
+        RelativeLayout shoppingCartTab = createIndicator(R.drawable.selector_bg_shopping_cart);
+        RelativeLayout accountTab = createIndicator(R.drawable.selector_bg_account);
 
-        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAB_SHOPPING_CART).setIndicator(acceptOrderTab),
-                ShoppingCartFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAB_GOODS).setIndicator(pickUpTab),
+        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAB_GOODS).setIndicator(shoppingCartTab),
                 BrowseGoodsFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAG_SETTING).setIndicator(deliveryTab),
+        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAB_SHOPPING_CART).setIndicator(goodsListTab),
+                ShoppingCartFragment.class, null);
+
+        mTabHost.addTab(mTabHost.newTabSpec(Constant.TAG_SETTING).setIndicator(accountTab),
                 AccountSettingFragment.class, null);
     }
 

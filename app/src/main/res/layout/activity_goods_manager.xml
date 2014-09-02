@@ -18,9 +18,8 @@
             android:id="@+id/iv_add_goods"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@drawable/selector_bg_add_picture"
             android:scaleType="center"
-            android:src="@drawable/ico_add_picture" />
+            android:src="@drawable/ic_add_picture" />
 
         <TextView
             android:layout_width="wrap_content"
