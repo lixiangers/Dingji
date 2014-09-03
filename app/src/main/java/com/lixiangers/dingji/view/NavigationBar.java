@@ -45,12 +45,12 @@ public class NavigationBar extends LinearLayout {
 
     public void setTitle(CharSequence text) {
         activityTitle.setText(text);
-        resetView();
+//        resetView();
     }
 
     public void setTitle(int resId) {
         activityTitle.setText(resId);
-        resetView();
+//        resetView();
     }
 
     private void resetView() {

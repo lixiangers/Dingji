@@ -53,6 +53,7 @@ public class QueryOrderActivity extends NeolixNaviagationBaseActivity {
         super.onCreate(savedInstanceState);
         isAdmin = getIntent().getBooleanExtra(Constant.IS_ADMIN, false);
         setTitle(isAdmin ? R.string.query_order : R.string.my_order);
+        setLeftImage(R.drawable.selector_bg_back);
 
         queryImageView = (ImageView) findViewById(R.id.iv_query);
         keywordEditView = (EditText) findViewById(R.id.et_key_word);

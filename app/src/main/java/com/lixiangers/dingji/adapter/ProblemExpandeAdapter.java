@@ -89,7 +89,7 @@ public class ProblemExpandeAdapter extends BaseExpandableListAdapter {
         groupName.setText(data.get(groupPosition).getCategory());
 
         ImageView group_indicator_image = (ImageView) convertView.findViewById(R.id.iv_group_indicator);
-        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_back_hl : R.drawable.ic_back);
+        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_arrow_up : R.drawable.ic_arrow_down);
         return convertView;
     }
 

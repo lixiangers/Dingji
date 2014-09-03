@@ -44,6 +44,8 @@ public abstract class OrderListActivity extends NeolixNaviagationBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(getTitleString());
+        setLeftImage(R.drawable.selector_bg_back);
+
 
         orderPullListView = (PullToRefreshListView) findViewById(R.id.pull_lv_order);
         adapter = new ModelListAdapter<OrderRequestAndResponse>(getApplicationContext());

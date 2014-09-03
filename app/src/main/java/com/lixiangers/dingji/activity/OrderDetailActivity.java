@@ -62,6 +62,8 @@ public class OrderDetailActivity extends NeolixNaviagationBaseActivity {
         isNeedChangeOrder = getIntent().getBooleanExtra(Constant.IS_NEED_CHANGE_ORDER, false);
         String orderNumber = getIntent().getStringExtra(Constant.ORDER_NUMBER);
         setTitle(getString(R.string.order) + orderNumber);
+        setLeftImage(R.drawable.selector_bg_back);
+
 
         contactTextView = (TextView) findViewById(R.id.tv_contact);
         phoneTextView = (TextView) findViewById(R.id.tv_phone);

@@ -3,105 +3,71 @@
 
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\mail-fb317561ef62ca05fd6df60638db7ea3b4a170a5.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\mail.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="428e267abff0d10802ccde86b915da2c20471160"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\mail.jar" jumboMode="false" revision="20.0.0"
+        sha1="428e267abff0d10802ccde86b915da2c20471160" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\gson-2.2.4-1fef72d7ec5cca370a5cc7acfe244b88611bb731.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\gson-2.2.4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\gson-2.2.4.jar" jumboMode="false"
+        revision="20.0.0" sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8" />
+    <item
+        dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\acra-4.5.0-f0202de396d4a9d8bcd854edb0969f87fad84b8f.jar"
+        jar="E:\personal\freeWork\Dingji\app\libs\acra-4.5.0.jar" jumboMode="false"
+        revision="20.0.0" sha1="44a5eb946e0d83eed4a0128d877ca1fd8168b83a" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\junit-3.8.2-9eb3611e87f3233700751674f1922ec8db66b303.jar"
         jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\junit\junit\3.8.2\7e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060\junit-3.8.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="07e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060"/>
-    <item
-        dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\acra-4.5.0-f0202de396d4a9d8bcd854edb0969f87fad84b8f.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\acra-4.5.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="44a5eb946e0d83eed4a0128d877ca1fd8168b83a"/>
+        jumboMode="false" revision="20.0.0" sha1="07e4cde26b53a9a0e3fe5b00d1dbbc7cc1d46060" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.2-SNAPSHOT-with-sources-59dabfc7530ed364a0c62015a8b41a301593db21.jar"
         jar="E:\personal\freeWork\Dingji\app\libs\universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="3526df34297bab9b9cc33d93d6e68f60fc2f94ea"/>
+        jumboMode="false" revision="20.0.0" sha1="3526df34297bab9b9cc33d93d6e68f60fc2f94ea" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\guava-14.0.1-1ecaac9dbb99c157f4a0218144623c1d8c6b00b5.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\guava-14.0.1.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\guava-14.0.1.jar" jumboMode="false"
+        revision="20.0.0" sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\additionnal-b4f965d08e58062d48def80615c16b675ec2d6cd.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\additionnal.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\additionnal.jar" jumboMode="false"
+        revision="20.0.0" sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\android-test-4.1.1.4-159a24c8adbb263749091ab5b082093da5f926ec.jar"
         jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.android\android-test\4.1.1.4\5ac4da79230c68fc7d60dc6b02f1c153fca7a6e6\android-test-4.1.1.4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="5ac4da79230c68fc7d60dc6b02f1c153fca7a6e6"/>
+        jumboMode="false" revision="20.0.0" sha1="5ac4da79230c68fc7d60dc6b02f1c153fca7a6e6" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\Msc-07b01381c937582082d00307b63d265889093acf.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\Msc.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="0e12f2fe518229364615ac08b0aec6796c192093"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\Msc.jar" jumboMode="false" revision="20.0.0"
+        sha1="0e12f2fe518229364615ac08b0aec6796c192093" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\joda-time-2.2-4914da7fbb7164aa7ed06efbd9b11dd132f8e739.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\joda-time-2.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="a5f29a7acaddea3f4af307e8cf2d0cc82645fd7d"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\joda-time-2.2.jar" jumboMode="false"
+        revision="20.0.0" sha1="a5f29a7acaddea3f4af307e8cf2d0cc82645fd7d" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\annotations-4f7a73ada8f5d963419a2feb9a4528c224b2210a.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\annotations.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="86f0db8976d3330dbab3d54a41be652bd9008985"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\annotations.jar" jumboMode="false"
+        revision="20.0.0" sha1="86f0db8976d3330dbab3d54a41be652bd9008985" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\android-support-v4-e9d144532b11802a86f07826a00621f6a172b7e5.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\android-support-v4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="bd6479f5dd592790607e0504e66e0f31c2b4d308"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\android-support-v4.jar" jumboMode="false"
+        revision="20.0.0" sha1="bd6479f5dd592790607e0504e66e0f31c2b4d308" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\annotations-4.1.1.4-c88c14e9925b128be3d99659311ad2e7ccbea3aa.jar"
         jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.android\annotations\4.1.1.4\a1678ba907bf92691d879fef34e1a187038f9259\annotations-4.1.1.4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="a1678ba907bf92691d879fef34e1a187038f9259"/>
+        jumboMode="false" revision="20.0.0" sha1="a1678ba907bf92691d879fef34e1a187038f9259" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\objenesis-1.0-1a1f4e9fbcf5694eedc70e16a53297e326d7421e.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\objenesis-1.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="9b473564e792c2bdf1449da1f0b1b5bff9805704"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\objenesis-1.0.jar" jumboMode="false"
+        revision="20.0.0" sha1="9b473564e792c2bdf1449da1f0b1b5bff9805704" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\slf4j-api-1.7.5-de4d266baafb61122481cb28ae79e5818ec8e74f.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\slf4j-api-1.7.5.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="6b262da268f8ad9eff941b25503a9198f0a0ac93"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\slf4j-api-1.7.5.jar" jumboMode="false"
+        revision="20.0.0" sha1="6b262da268f8ad9eff941b25503a9198f0a0ac93" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\activation-5e903cf063e9b752a3b8f798d9556d61aadadaca.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\activation.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383"/>
+        jar="E:\personal\freeWork\Dingji\app\libs\activation.jar" jumboMode="false"
+        revision="20.0.0" sha1="d1257cbff6faa44c1f325ae0d9413522d4644383" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\debug\greendao-1.3.0-725ef8645eb0b4147958c1f4bb99315ac9466a07.jar"
         jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\de.greenrobot\greendao\1.3.0\fc1bb0b579277b34d086aa10fd9b6238ebfa3272\greendao-1.3.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="fc1bb0b579277b34d086aa10fd9b6238ebfa3272"/>
+        jumboMode="false" revision="20.0.0" sha1="fc1bb0b579277b34d086aa10fd9b6238ebfa3272" />
 
 </pre-dex-items>

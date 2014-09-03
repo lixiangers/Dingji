@@ -49,8 +49,7 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
         if (address == null) {
             setTitle(getString(R.string.add_address));
             isAdd = true;
-        }
-        else
+        } else
             setTitle(R.string.modify_address);
 
         setRightText(R.string.save, new View.OnClickListener() {
@@ -69,7 +68,8 @@ public class EditAddressActivity extends NeolixNaviagationBaseActivity {
             phoneEditView.setText(address.getPhone());
             cityAreaEditView.setText(address.getProvince() + address.getCity() + address.getDistrict());
             detailEditView.setText(address.getDetail_address());
-        }
+        } else
+            locationView.setDefaultAddress();
     }
 
     private void addOrModifyAddress() {
