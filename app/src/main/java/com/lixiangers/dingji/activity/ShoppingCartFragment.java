@@ -2,9 +2,13 @@ package com.lixiangers.dingji.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -79,6 +83,29 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment {
         });
         loadData();
         return view;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        MenuInflater inflater = new MenuInflater(getActivity());
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        item.setChecked(true);
+
+        final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.delete_menu:
+                if (info != null) {
+                    shoppingItemList.remove(info.position);
+                    loadData();
+                }
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 
     private void loadData() {
