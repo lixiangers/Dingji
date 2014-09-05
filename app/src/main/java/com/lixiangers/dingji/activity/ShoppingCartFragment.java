@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,6 +38,7 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment implem
     private PopupWindow popupWindow;
     private View mPopupWindowView;
     private int currentItemIndex = -1;
+    private ShoppingItem currentShoppingItem;
 
     public static void addGoods(ShoppingItem item) {
         boolean isExits = false;
@@ -74,15 +74,15 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment implem
 
         adapter = new ModelListAdapter<ShoppingItem>(MyApplication.getInstance());
         goodsListView.setAdapter(adapter);
-        goodsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                currentItemIndex = position;
-                initPopupWindow(adapter.getItem(position).getGoods().getName());
-                showPopupWindow();
-                return false;
-            }
-        });
+//        goodsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                currentItemIndex = position;
+//                initPopupWindow(adapter.getItem(position).getGoods().getName());
+//                showPopupWindow();
+//                return false;
+//            }
+//        });
 
         addNumberChangeListener();
         commitButton.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +101,18 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment implem
     }
 
     private void loadData() {
+        for (final ShoppingItem shoppingItem : shoppingItemList) {
+            shoppingItem.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    currentShoppingItem = shoppingItem;
+                    initPopupWindow(shoppingItem.getGoods().getName());
+                    showPopupWindow();
+                    return false;
+                }
+            });
+        }
+
         adapter.setData(shoppingItemList);
         goodsListView.setVisibility(shoppingItemList.isEmpty() ? View.GONE : View.VISIBLE);
         goodsListView.setItemsCanFocus(true);
@@ -114,10 +126,10 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment implem
                 @Override
                 public void onNumberChange(int number) {
                     shoppingItem.setQuantity(number);
-                    if (number == 0) {
-                        shoppingItemList.remove(shoppingItem);
-                        loadData();
-                    }
+//                    if (number == 0) {
+//                        shoppingItemList.remove(shoppingItem);
+//                        loadData();
+//                    }
 
                     calcTotalAmount();
                 }
@@ -137,8 +149,8 @@ public class ShoppingCartFragment extends android.support.v4.app.Fragment implem
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.lv_menu:
-                if (currentItemIndex > -1) {
-                    shoppingItemList.remove(currentItemIndex);
+                if (currentShoppingItem != null) {
+                    shoppingItemList.remove(currentShoppingItem);
                     loadData();
                 }
                 popupWindow.dismiss();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class ShoppingItemView extends BaseItemView<ShoppingItem> {
     private SelectQuantityView selectQuantityView;
     private TextView amountTextView;
     private ShoppingItem shoppingItem;
+    private View leftView;
 
     public ShoppingItemView(Context context) {
         super(context);
@@ -51,6 +53,7 @@ public class ShoppingItemView extends BaseItemView<ShoppingItem> {
                 "" : model.getGoods().getImg().get(0);
 
         imageLoader.displayImage(uri, goodsImage, options);
+        leftView.setOnLongClickListener(model.getOnLongClickListener());
     }
 
     private void initUi() {
@@ -62,6 +65,8 @@ public class ShoppingItemView extends BaseItemView<ShoppingItem> {
 
         selectQuantityView = (SelectQuantityView) findViewById(R.id.select_quantity_view);
         amountTextView = (TextView) findViewById(R.id.tv_amount);
+
+        leftView = findViewById(R.id.lv_left_view);
 
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.ic_default_head)

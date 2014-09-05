@@ -1,5 +1,7 @@
 package com.lixiangers.dingji.model;
 
+import android.view.View;
+
 import com.lixiangers.dingji.view.SelectQuantityView;
 
 public class ShoppingItem {
@@ -7,6 +9,7 @@ public class ShoppingItem {
     private int quantity;
 
     private SelectQuantityView.onNumberChangeListener onNumberChangeListener;
+    private View.OnLongClickListener onLongClickListener;
 
     public Goods getGoods() {
         return goods;
@@ -35,5 +38,13 @@ public class ShoppingItem {
 
     public int getTotalAmount() {
         return goods.getPrice() * quantity;
+    }
+
+    public View.OnLongClickListener getOnLongClickListener() {
+        return onLongClickListener;
+    }
+
+    public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
     }
 }
