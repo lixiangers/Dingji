@@ -120,5 +120,6 @@
     <string name="is_change_order_status">正在更改订单状态</string>
     <string name="change_order_status_success">更改订单状态成功</string>
     <string name="add_to_shopping_cart_success">成功添加到购物车</string>
+    <string name="is_get_problem">正在获取问题</string>
 
 </resources>

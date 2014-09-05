@@ -98,6 +98,13 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
                 startActivity(new Intent(getInstance(), QueryOrderActivity.class));
             }
         });
+
+        problemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getInstance(), ProblemActivity.class));
+            }
+        });
     }
 
     private void logout() {
