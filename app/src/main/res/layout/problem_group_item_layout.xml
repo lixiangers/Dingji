@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:background="@color/my_white"
+    android:padding="@dimen/view_margin_left_right_to_border"
+
     android:paddingRight="@dimen/view_margin_left_right_to_border"
     android:paddingLeft="@dimen/view_margin_left_right_to_border"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:orientation="horizontal">
 
     <TextView

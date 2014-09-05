@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:addStatesFromChildren="true"
         android:paddingLeft="@dimen/view_margin_left_right_to_border"
-        android:paddingRight="@dimen/view_margin_left_right_to_border">
+        android:paddingRight="10dp">
 
         <TextView
             style="@style/red_text_h"
@@ -33,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:orientation="horizontal"
             android:gravity="center_vertical|right">
 
             <TextView
@@ -41,11 +42,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            ImageView
+            <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_arrow_right" />
         </LinearLayout>
     </LinearLayout>
 

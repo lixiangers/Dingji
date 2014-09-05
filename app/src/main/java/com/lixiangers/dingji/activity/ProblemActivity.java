@@ -41,7 +41,7 @@ public class ProblemActivity extends NeolixNaviagationBaseActivity {
 
     private void getProblem() {
         final HttpRequest httpRequest = new HttpRequest(
-                RequestType.faq, null);
+                RequestType.faq_json, null);
 
         Type type = new TypeToken<HttpResponse<List<Problem>>>() {
         }.getType();
@@ -60,6 +60,6 @@ public class ProblemActivity extends NeolixNaviagationBaseActivity {
                             showText(httpResponse.getError().getMessage());
                     }
                 };
-        task.sendRequest(httpRequest, false);
+        task.sendRequest(httpRequest, true);
     }
 }
