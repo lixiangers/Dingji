@@ -22,13 +22,13 @@
         jar="E:\personal\freeWork\Dingji\app\libs\universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar"
         jumboMode="false" revision="20.0.0" sha1="3526df34297bab9b9cc33d93d6e68f60fc2f94ea" />
     <item
-        dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\release\guava-14.0.1-1ecaac9dbb99c157f4a0218144623c1d8c6b00b5.jar"
-        jar="E:\personal\freeWork\Dingji\app\libs\guava-14.0.1.jar" jumboMode="false"
-        revision="20.0.0" sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4" />
-    <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\release\additionnal-b4f965d08e58062d48def80615c16b675ec2d6cd.jar"
         jar="E:\personal\freeWork\Dingji\app\libs\additionnal.jar" jumboMode="false"
         revision="20.0.0" sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4" />
+    <item
+        dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\release\guava-14.0.1-1ecaac9dbb99c157f4a0218144623c1d8c6b00b5.jar"
+        jar="E:\personal\freeWork\Dingji\app\libs\guava-14.0.1.jar" jumboMode="false"
+        revision="20.0.0" sha1="69e12f4c6aeac392555f1ea86fab82b5e5e31ad4" />
     <item
         dex="E:\personal\freeWork\Dingji\app\build\intermediates\pre-dexed\release\android-test-4.1.1.4-159a24c8adbb263749091ab5b082093da5f926ec.jar"
         jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.android\android-test\4.1.1.4\5ac4da79230c68fc7d60dc6b02f1c153fca7a6e6\android-test-4.1.1.4.jar"
