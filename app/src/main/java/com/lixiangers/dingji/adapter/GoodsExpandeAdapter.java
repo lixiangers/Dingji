@@ -88,7 +88,10 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return data.get(groupPosition).getData().size();
+        if (data.size() == 0)
+            return 0;
+        else
+            return data.get(groupPosition).getData().size();
     }
 
     @Override
@@ -119,6 +122,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
+
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.group_item_layout, null);
         }
