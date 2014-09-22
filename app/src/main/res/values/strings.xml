@@ -16,7 +16,7 @@
     <string name="remark2">可以对所有订单进行查询</string>
     <string name="remark3">可以订单进行处理</string>
     <string name="remark4">可以订单进行查询</string>
-    <string name="acra_mail_subject">crash</string>
+    <string name="acra_mail_subject">>This is crash report from %s app</string>
     <string name="crash_text">crash</string>
     <string name="system_manager">系统管理</string>
     <string name="choose_from_the_gallery">从图库中选择</string>
