@@ -17,12 +17,13 @@ import com.lixiangers.dingji.protocol.domain.GoodsCategory;
 import com.lixiangers.dingji.view.GoodsItemView;
 import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
     private final Context context;
     private final LayoutInflater inflater;
-    private List<GoodsCategory> data = null;
+    private List<GoodsCategory> data = new ArrayList<GoodsCategory>();
 
     private RotateAnimation mRotateUpAnim;
     private RotateAnimation mRotateDownAnim;
@@ -88,10 +89,11 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        if (data.size() == 0)
-            return 0;
-        else
+        if (data.size() != 0 && data.get(groupPosition).getData() != null)
             return data.get(groupPosition).getData().size();
+        else {
+            return 0;
+        }
     }
 
     @Override
