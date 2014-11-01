@@ -22,7 +22,6 @@ import java.lang.reflect.Type;
 
 import static com.lixiangers.dingji.application.MyApplication.getInstance;
 import static com.lixiangers.dingji.util.DialogFactory.hideRequestDialog;
-import static com.lixiangers.dingji.util.DialogFactory.showRequestDialog;
 import static com.lixiangers.dingji.util.SharedPreferencesUtil.savePwd;
 import static com.lixiangers.dingji.util.SharedPreferencesUtil.saveToken;
 import static com.lixiangers.dingji.util.SharedPreferencesUtil.saveUserPhone;
@@ -47,7 +46,8 @@ public class LoginActivity extends NeolixBaseActivity {
 
         initView();
         initListener();
-        UmengUpdateAgent.update(this);
+        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.update(getApplication());
     }
 
     @Override

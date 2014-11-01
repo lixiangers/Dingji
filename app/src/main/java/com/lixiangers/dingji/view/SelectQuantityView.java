@@ -70,14 +70,14 @@ public class SelectQuantityView extends LinearLayout {
                 super.onTextChanged(charSequence, i, i2, i3);
                 quantityEditView.requestFocus();
                 if (StringUtil.isBlank(charSequence.toString())) {
-                    quantity = 0;
+                    quantity = 1;
                     onNumberChangeListener.onNumberChange(quantity);
                     return;
                 }
 
                 Integer integer = Integer.valueOf(charSequence.toString());
-                if (integer < 0) {
-                    quantity = 0;
+                if (integer < 1) {
+                    quantity = 1;
                     setQuantityTextValue();
                 } else {
                     quantity = integer;

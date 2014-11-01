@@ -101,9 +101,10 @@
 -keepattributes *Annotation*,EnclosingMethod
 
 -keep class  com.lixiangers.dingji.protocol.**{*;void set*(***); *** get*();}
--keep class  com.lixiangers.dingji.domain.**{*;public void set*(***);public *** get*();}
+-keep class  com.lixiangers.dingji.model.**{*;public void set*(***);public *** get*();}
 -keepclassmembers class com.lixiangers.dingji.protocol.** {public <fields>;}
--keepclassmembers class com.lixiangers.dingji.domain.** {public <fields>;}
+-keepclassmembers class com.lixiangers.dingji.model.** {public <fields>;}
+
 -keep class  com.lixiangers.dingji.dao.**{*;}
 -keep class  com.lixiangers.dingji.service.**{*;}
 
@@ -121,8 +122,18 @@
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.examples.android.model.** { *; }
 
-# 添加第三方jar包 友盟升级
--libraryjars libs/umeng-update-v2.4.2.jar
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+-keep public class [com.lixiangers.dingji].R$*{
+    public static final int *;
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
 # 以下类过滤不混淆
 -keep public class * extends com.umeng.**
 # 以下包不进行过滤

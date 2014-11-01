@@ -247,6 +247,47 @@
 
         <include layout="@layout/split_view" />
 
+        <LinearLayout
+            android:id="@+id/view_version"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/view_margin_left_right_to_border"
+            android:paddingRight="@dimen/view_margin_left_right_to_border">
+
+            <TextView
+                style="@style/gray_text_h"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/check_version" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/tv_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    style="@style/gray_text_m" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_arrow_right"
+                    android:gravity="right" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <include layout="@layout/split_view" />
+
         <Button
             android:id="@+id/bt_logout"
             style="@style/my_positive_button"
