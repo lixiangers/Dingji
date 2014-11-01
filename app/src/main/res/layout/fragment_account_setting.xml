@@ -214,6 +214,7 @@
         <include layout="@layout/split_view" />
 
         <LinearLayout
+            android:id="@+id/view_suggest"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/selector_list_view_item_background"
@@ -223,7 +224,6 @@
             android:paddingRight="@dimen/view_margin_left_right_to_border">
 
             <TextView
-                android:id="@+id/view_suggest"
                 style="@style/gray_text_h"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
