@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
 import com.lixiangers.dingji.protocol.domain.OrderRequestAndResponse;
+import com.lixiangers.dingji.util.StringUtil;
 
 public class OrderItemView extends BaseItemView<OrderRequestAndResponse> {
     private final Context context;
@@ -29,11 +30,8 @@ public class OrderItemView extends BaseItemView<OrderRequestAndResponse> {
     @Override
     public void setModel(OrderRequestAndResponse model) {
         super.setModel(model);
-
         orderNumberTextView.setText(model.getOrder_no());
-        //TODO
-        orderTimeTextView.setText("");
-
+        orderTimeTextView.setText(StringUtil.formatOrderCreateTime(model.getAction_time()));
     }
 
     private void initUi() {

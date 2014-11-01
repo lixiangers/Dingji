@@ -111,6 +111,14 @@ public class BrowseGoodsFragment extends Fragment {
             public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
             }
         });
+
+        goodsListView.getRefreshableView().setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                adapter.setSelectedGroupPosition(groupPosition);
+                return false;
+            }
+        });
     }
 
     private void loadData() {

@@ -18,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -46,6 +47,7 @@
             android:id="@+id/view_history_order"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -67,7 +69,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bg_back"
+                    android:background="@drawable/ic_arrow_right"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -79,6 +81,7 @@
             android:id="@+id/view_manager_address"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -100,7 +103,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bg_back"
+                    android:background="@drawable/ic_arrow_right"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -112,6 +115,7 @@
             android:id="@+id/view_modify_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -133,7 +137,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bg_back"
+                    android:background="@drawable/ic_arrow_right"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -145,6 +149,7 @@
             android:id="@+id/view_problem"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -166,7 +171,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bg_back"
+                    android:background="@drawable/ic_arrow_right"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -178,6 +183,7 @@
             android:id="@+id/view_about"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -199,7 +205,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bg_back"
+                    android:background="@drawable/ic_arrow_right"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -210,6 +216,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/selector_list_view_item_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/view_margin_left_right_to_border"
@@ -232,7 +239,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_bg_back"
+                    android:background="@drawable/ic_arrow_right"
                     android:gravity="right" />
             </LinearLayout>
 
@@ -241,12 +248,13 @@
         <include layout="@layout/split_view" />
 
         <Button
-            android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
-            android:layout_marginRight="@dimen/view_margin_left_right_to_border"
             android:id="@+id/bt_logout"
             style="@style/my_positive_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/view_margin_left_right_to_border"
+            android:layout_marginLeft="@dimen/view_margin_left_right_to_border"
+            android:layout_marginRight="@dimen/view_margin_left_right_to_border"
             android:layout_marginTop="30dp"
             android:text="@string/logout" />
 

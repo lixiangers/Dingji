@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.widget.Adapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +33,22 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
         public void OnByGoods(Goods goods) {
         }
     };
-    private int selectedPosition;
+    private int selectedGroupPosition;
+
+    public void setSelectedGroupPosition(int position) {
+        if (!isPositionInRange(position)) {
+            selectedGroupPosition = Adapter.NO_SELECTION;
+            return;
+        }
+
+        this.selectedGroupPosition = position;
+
+        notifyDataSetChanged();
+    }
+
+    public boolean isPositionInRange(int position) {
+        return position >= 0 && position < getGroupCount();
+    }
 
     public void setOnByGoodsListener(GoodsExpandeAdapter.onByGoodsListener onByGoodsListener) {
         this.onByGoodsListener = onByGoodsListener;
@@ -46,7 +62,7 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
 
 
         float pivotValue = 0.5f;    // SUPPRESS CHECKSTYLE
-        float toDegree = -90f;     // SUPPRESS CHECKSTYLE
+        float toDegree = -180f;     // SUPPRESS CHECKSTYLE
 
         // 初始化旋转动画
         mRotateUpAnim = new RotateAnimation(0.0f, toDegree, Animation.RELATIVE_TO_SELF, pivotValue,
@@ -110,11 +126,8 @@ public class GoodsExpandeAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.group_name);
         groupName.setText(data.get(groupPosition).getCategory());
 
-
         ImageView group_indicator_image = (ImageView) convertView.findViewById(R.id.iv_group_indicator);
-        group_indicator_image.clearAnimation();
-        group_indicator_image.startAnimation(isExpanded ? mRotateUpAnim : mRotateDownAnim);
-//        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_back_hl : R.drawable.ic_back);
+        group_indicator_image.setImageResource(isExpanded ? R.drawable.ic_arrow_up : R.drawable.ic_arrow_down);
         return convertView;
     }
 

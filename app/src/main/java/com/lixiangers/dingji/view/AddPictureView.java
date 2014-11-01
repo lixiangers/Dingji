@@ -116,7 +116,7 @@ public class AddPictureView extends LinearLayout {
     private AddPictureItemViewModel getAddPictureViewModel() {
         AddPictureItemViewModel model = new AddPictureItemViewModel();
         model.setCanDelete(false);
-        model.setBitmapURL("drawable://" + R.drawable.ico_add_picture);
+        model.setBitmapURL("drawable://" + R.drawable.ic_add_picture);
         model.setOnAddListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

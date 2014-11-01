@@ -54,11 +54,9 @@ public class AddImageItemView extends BaseItemView<AddPictureItemViewModel> {
     public void setModel(AddPictureItemViewModel model) {
         super.setModel(model);
         if (model.isCanDelete()) {
-            imageView.setBackgroundDrawable(null);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageLoader.displayImage(model.getBitmapURL(), imageView, options);
         } else {
-            imageView.setBackgroundResource(R.drawable.selector_bg_add_picture);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageLoader.displayImage(model.getBitmapURL(), imageView, options);
 //            imageView.setImageResource(R.drawable.ico_add_picture);

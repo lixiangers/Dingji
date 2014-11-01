@@ -2,6 +2,7 @@ package com.lixiangers.dingji.protocol.domain;
 
 import com.lixiangers.dingji.protocol.http.HttpRequestParams;
 
+import java.util.Date;
 import java.util.List;
 
 public class OrderRequestAndResponse extends HttpRequestParams {
@@ -9,6 +10,7 @@ public class OrderRequestAndResponse extends HttpRequestParams {
     private Integer status;//订单状态:-1: '订单已取消', 0: '下单成功', 1: '开始配送', 2: '配送成功'
     private String id;//: 11,  订单id, 仅用作接口的订单标识
     private String order_no;//: "14082622154830",  订单号码, 用于界面显示
+    private Date action_time;//订单提交时间
 
     private String receiver_name;//: 收货人姓名
     private String receiver_mobile;//: 收货人手机
@@ -105,6 +107,10 @@ public class OrderRequestAndResponse extends HttpRequestParams {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public Date getAction_time() {
+        return action_time;
     }
 
     public static class Product {

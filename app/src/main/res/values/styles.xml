@@ -37,6 +37,11 @@
         <item name="android:textSize">@dimen/text_size_h</item>
     </style>
 
+    <style name="black_text_m">
+        <item name="android:textColor">@color/my_black</item>
+        <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
     <style name="black_text_xh">
         <item name="android:textColor">@color/my_black</item>
         <item name="android:textSize">@dimen/text_size_xh</item>
@@ -65,6 +70,11 @@
     <style name="gray_text_h">
         <item name="android:textColor">@color/my_gray</item>
         <item name="android:textSize">@dimen/text_size_h</item>
+    </style>
+
+    <style name="gray_text_m">
+        <item name="android:textColor">@color/my_gray</item>
+        <item name="android:textSize">@dimen/text_size_m</item>
     </style>
 
     <style name="white_text_xh">
@@ -113,5 +123,22 @@
     <style name="selector_button_text">
         <item name="android:textSize">@dimen/text_size_h</item>
         <item name="android:textColor">@color/my_white</item>
+    </style>
+
+    <!-- popwidnow 显示消失 动画-->
+    <style name="my_popwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/enteralpha</item>
+        <item name="android:windowExitAnimation">@anim/exitalpha</item>
+
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 周围变暗 -->
+
     </style>
 </resources>

@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,9 +73,8 @@ public final class StringUtil {
         return String.format("%04d", id);
     }
 
-    public static String formatOrderCreateTime(String time) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        return dateFormat.format(time);
+    public static String formatOrderCreateTime(Date date) {
+        return new DateTime(date).toString("yyyy/MM/dd");
     }
 
     public static String getHmsOfDate(Date date) {

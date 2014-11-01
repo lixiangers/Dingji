@@ -65,6 +65,10 @@ public class LocationPopupWindow extends LinearLayout {
         provinceView.setCurrentItem(i);
     }
 
+    public void setDefaultAddress() {
+        setLocation(AddressData.PROVINCES[0], AddressData.CITIES[0][0], AddressData.COUNTIES[0][0][0]);
+    }
+
     private void initUi() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.cities_layout, this);

@@ -67,7 +67,8 @@ public class ConfirmAddressActivity extends NeolixNaviagationBaseActivity {
         if (requestCode == REQUEST_CODE_SELECT_ADDRESS) {
             Address extra = (Address) data.getSerializableExtra(Constant.ADDRESS);
             fillData(extra);
-        }
+        } else
+            locationView.setDefaultAddress();
     }
 
     private void fillData(Address address) {

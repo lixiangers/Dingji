@@ -48,6 +48,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
         super.onCreate(savedInstanceState);
         goods = (Goods) getIntent().getSerializableExtra(Constant.GOODS);
         setTitle(goods.getName());
+        setLeftImage(R.drawable.selector_bg_back);
         pointsImageList = new ArrayList<ImageView>();
 
         initView();
