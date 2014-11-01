@@ -34,6 +34,24 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/my_activityStyle">
+
+        <!--you meng-->
+        <meta-data
+            android:value="54546450fd98c5d6600008f0"
+            android:name="UMENG_APPKEY" />
+        <meta-data
+            android:value="Channel ID"
+            android:name="UMENG_CHANNEL" />
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService"></service>
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+
+        <!--you meng end-->
+
         <activity
             android:name=".activity.WelcomeActivity"
             android:label="@string/app_name"
