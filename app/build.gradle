@@ -10,10 +10,33 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        myConfig {
+            storeFile file("lixiangAndroid.jks")
+            storePassword "6773674188"
+            keyAlias "lixiang"
+            keyPassword "6773674188"
+        }
+    }
+
+    productFlavors {
+        devApp {
+        }
+    }
+
     buildTypes {
         release {
-            runProguard false
+            runProguard true
+            zipAlign true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.myConfig
+        }
+        debug {
+            runProguard false
+            zipAlign true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.myConfig
         }
     }
 
@@ -26,6 +49,12 @@ android {
 //            res.srcDirs = ['src/main/res']
 //            assets.srcDirs = ['src/main/assets']
         }
+    }
+
+    applicationVariants.all { variant ->
+        def file = variant.outputFile
+        variant.outputFile = new File(file.parent, "DingJi" + variant.productFlavors.get(0).name + "_"
+                + variant.buildType.name + "_" + defaultConfig.versionName + ".apk")
     }
 }
 

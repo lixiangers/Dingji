@@ -15,3 +15,108 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-libraryjars libs/gson-2.2.4.jar
+-libraryjars libs/android-support-v4.jar
+
+-dontwarn    de.greenrobot.**
+-dontwarn    com.google.zxing.**
+-dontwarn    org.acra.**
+-dontwarn    com.sun.**
+-dontwarn    javax.activation.**
+-dontwarn    myjava.awt.datatransfer.**
+-dontwarn    org.apache.harmony.**
+-dontwarn    com.amap.api.**
+-dontwarn    org.jetbrains.annotations.**
+-dontwarn    org.intellij.lang.annotations.**
+-dontwarn    com.igexin.**
+-dontwarn    com.google.gson.**
+-dontwarn    com.google.common.**
+-dontwarn    org.joda.**
+-dontwarn    javax.mail.**
+-dontwarn    org.objenesis.**
+-dontwarn    org.slf4j.**
+-dontwarn   com.nostra13.universalimageloader.**
+-dontwarn   javax.swing.**
+-dontwarn   java.awt.**
+-dontwarn   junit.**
+
+
+-keep class   de.greenrobot.** {*;}
+-keep class   com.google.zxing.** {*;}
+-keep class   org.acra.** {*;}
+-keep class   com.sun.** {*;}
+-keep class   javax.activation.** {*;}
+-keep class   myjava.awt.datatransfer.** {*;}
+-keep class   org.apache.harmony.** {*;}
+-keep class   android.support.v4.** {*;}
+-keep class   org.jetbrains.annotations.** {*;}
+-keep class   org.intellij.lang.annotations.** {*;}
+-keep class   com.igexin.** {*;}
+-keep class   com.google.gson.** {*;}
+-keep class   com.google.common.** {*;}
+-keep class   org.joda.** {*;}
+-keep class   javax.mail.** {*;}
+-keep class   org.objenesis.** {*;}
+-keep class   org.slf4j.** {*;}
+-keep class   com.nostra13.universalimageloader.** {*;}
+-keep class   javax.swing.** {*;}
+-keep class   java.awt.** {*;}
+-keep class   junit.** {*;}
+
+
+
+-keep class   de.greenrobot.** {*;}
+-keep class   com.google.zxing.** {*;}
+-keep class   org.acra.** {*;}
+-keep class   com.sun.** {*;}
+-keep class   javax.activation.** {*;}
+-keep class   myjava.awt.datatransfer.** {*;}
+-keep class   org.apache.harmony.** {*;}
+-keep class   android.support.v4.** {*;}
+-keep class   org.jetbrains.annotations.** {*;}
+-keep class   org.intellij.lang.annotations.** {*;}
+-keep class   com.igexin.** {*;}
+-keep class   com.google.gson.** {*;}
+-keep class   com.google.common.** {*;}
+-keep class   org.joda.** {*;}
+-keep class   javax.mail.** {*;}
+-keep class   org.objenesis.** {*;}
+-keep class   org.slf4j.** {*;}
+-keep class   com.nostra13.universalimageloader.** {*;}
+-keep class   javax.swing.** {*;}
+-keep class   java.awt.** {*;}
+-keep class   junit.** {*;}
+-keep class   com.iflytek.** {*;}
+-keep class   org.achartengine.** {*;}
+
+
+
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.app.Fragment
+-keep class com.amap.api.**  {*;}
+-keep class com.autonavi.**  {*;}
+-keep class com.a.a.**  {*;}
+
+-keepattributes *Annotation*,EnclosingMethod
+
+-keep class  com.lixiangers.dingji.protocol.**{*;void set*(***); *** get*();}
+-keep class  com.lixiangers.dingji.domain.**{*;public void set*(***);public *** get*();}
+-keepclassmembers class com.lixiangers.dingji.protocol.** {public <fields>;}
+-keepclassmembers class com.lixiangers.dingji.domain.** {public <fields>;}
+-keep class  com.lixiangers.dingji.dao.**{*;}
+-keep class  com.lixiangers.dingji.service.**{*;}
+
+
+
+-keepclassmembers enum * {
+           public static **[] values();
+           public static ** valueOf(java.lang.String);
+}
+-keepclasseswithmembernames class * {
+           native <methods>;
+}
+
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
