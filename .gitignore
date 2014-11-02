@@ -10,3 +10,4 @@ gradle/
 local.properties
 */*.iml
 */build/
+build/
