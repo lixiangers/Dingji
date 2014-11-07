@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.viewmodel.GoodsItemViewModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -80,6 +81,6 @@ public class GoodsItemView extends BaseItemView<GoodsItemViewModel> {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        imageLoader = ImageLoader.getInstance();
+        imageLoader = MyApplication.getInstance().getImageLoader();
     }
 }

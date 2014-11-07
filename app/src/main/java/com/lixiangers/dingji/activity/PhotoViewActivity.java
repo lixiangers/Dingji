@@ -10,13 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.application.MyApplication;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.view.Window.FEATURE_NO_TITLE;
 
 
 public class PhotoViewActivity extends Activity {
@@ -45,7 +44,7 @@ public class PhotoViewActivity extends Activity {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        imageLoader = ImageLoader.getInstance();
+        imageLoader = MyApplication.getInstance().getImageLoader();
 
         viewPager.setAdapter(new SamplePagerAdapter());
         viewPager.setCurrentItem(imageIndex);

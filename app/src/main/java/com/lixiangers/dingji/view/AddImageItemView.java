@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.viewmodel.AddPictureItemViewModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -47,7 +48,7 @@ public class AddImageItemView extends BaseItemView<AddPictureItemViewModel> {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        imageLoader = ImageLoader.getInstance();
+        imageLoader = MyApplication.getInstance().getImageLoader();
     }
 
     @Override

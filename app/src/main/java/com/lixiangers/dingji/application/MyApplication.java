@@ -85,9 +85,12 @@ public class MyApplication extends Application {
     }
 
     public void logoutApp() {
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.clearMemoryCache();
-        imageLoader.destroy();
+        try {
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.clearMemoryCache();
+            imageLoader.destroy();
+        } catch (Exception ignore) {
+        }
     }
 
     public ImageLoader getImageLoader() {

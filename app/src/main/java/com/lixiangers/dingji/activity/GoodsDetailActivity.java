@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.model.Goods;
 import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.util.Constant;
@@ -107,7 +108,7 @@ public class GoodsDetailActivity extends NeolixNaviagationBaseActivity {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        imageLoader = ImageLoader.getInstance();
+        imageLoader = MyApplication.getInstance().getImageLoader();
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(new SamplePagerAdapter());

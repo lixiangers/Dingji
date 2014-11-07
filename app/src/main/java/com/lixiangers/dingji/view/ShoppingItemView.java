@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.lixiangers.dingji.R;
 import com.lixiangers.dingji.adapter.BaseItemView;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.model.ShoppingItem;
 import com.lixiangers.dingji.util.StringUtil;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -77,7 +78,7 @@ public class ShoppingItemView extends BaseItemView<ShoppingItem> {
                 .considerExifParams(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .build();
-        imageLoader = ImageLoader.getInstance();
+        imageLoader = MyApplication.getInstance().getImageLoader();
 
         selectQuantityView.setOnNumberChangeListener(new SelectQuantityView.onNumberChangeListener() {
             @Override
