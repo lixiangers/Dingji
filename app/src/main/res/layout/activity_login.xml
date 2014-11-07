@@ -19,7 +19,7 @@
             style="@style/black_text_h"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/transparent"
+            android:background="@color/my_white"
             android:hint="@string/please_input_account"
             android:singleLine="true"
             android:padding="@dimen/edit_text_padding" />
@@ -31,7 +31,7 @@
             style="@style/black_text_h"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/transparent"
+            android:background="@color/my_white"
             android:hint="@string/please_input_password"
             android:singleLine="true"
             android:password="true"

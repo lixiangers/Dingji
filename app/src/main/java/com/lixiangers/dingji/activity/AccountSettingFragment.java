@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
 import com.lixiangers.dingji.R;
+import com.lixiangers.dingji.application.MyApplication;
 import com.lixiangers.dingji.protocol.http.HttpRequest;
 import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
 import com.lixiangers.dingji.protocol.http.RequestType;
+import com.lixiangers.dingji.util.DeviceUtil;
 import com.lixiangers.dingji.util.SharedPreferencesUtil;
 import com.lixiangers.dingji.view.NavigationBar;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.lang.reflect.Type;
 
@@ -33,6 +36,8 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
     private View problemView;
     private View modifyPasswordView;
     private View logoutButton;
+    private TextView versionTextView;
+    private View updateView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,9 +53,11 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
         problemView = view.findViewById(R.id.view_problem);
         modifyPasswordView = view.findViewById(R.id.view_modify_password);
         logoutButton = view.findViewById(R.id.bt_logout);
+        versionTextView = (TextView) view.findViewById(R.id.tv_version);
+        updateView = view.findViewById(R.id.view_version);
 
         accountTextView.setText(SharedPreferencesUtil.getUserPhone());
-
+        versionTextView.setText(DeviceUtil.getPackageVersionName(MyApplication.getInstance()));
         initListener();
 
         return view;
@@ -103,6 +110,13 @@ public class AccountSettingFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getInstance(), ProblemActivity.class));
+            }
+        });
+
+        updateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UmengUpdateAgent.forceUpdate(getInstance());
             }
         });
     }

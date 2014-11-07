@@ -86,7 +86,6 @@ public class MyApplication extends Application {
 
     public void logoutApp() {
         ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.clearDiscCache();
         imageLoader.clearMemoryCache();
         imageLoader.destroy();
     }

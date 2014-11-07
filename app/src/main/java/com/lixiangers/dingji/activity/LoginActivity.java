@@ -16,6 +16,7 @@ import com.lixiangers.dingji.protocol.http.HttpResponse;
 import com.lixiangers.dingji.protocol.http.RequestServerAsyncTask;
 import com.lixiangers.dingji.protocol.http.RequestType;
 import com.lixiangers.dingji.util.SharedPreferencesUtil;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.lang.reflect.Type;
 
@@ -46,6 +47,8 @@ public class LoginActivity extends NeolixBaseActivity {
 
         initView();
         initListener();
+        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.update(getApplication());
     }
 
     @Override
